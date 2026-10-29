@@ -1,0 +1,2322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soutenance · Portfolio de Raphaël Grondin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Syne:wght@700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="moteur.css?v=2-vue">
+  <link rel="stylesheet" href="style.css?v=6-demo">
+  <link rel="stylesheet" href="design-system.css?v=16-illisible">
+  <link rel="stylesheet" href="accessibilite.css?v=13-2">
+  <link rel="stylesheet" href="stack.css?v=15-optimisations">
+  <link rel="stylesheet" href="hebergement.css?v=15f">
+  <link rel="stylesheet" href="tests.css?v=16d">
+  <link rel="stylesheet" href="vitesse.css?v=17b">
+  <link rel="stylesheet" href="projets.css?v=20b">
+  <link rel="stylesheet" href="fin.css?v=22-annexe-svg">
+</head>
+<body>
+  <main id="deck" aria-label="Présentation">
+    <div id="stage">
+      <!-- Le fond du portfolio, commun à toutes les diapositives : trois lueurs floutées
+           qui dérivent lentement, et un grain par-dessus. Le verre des slides le floute. -->
+      <div class="fond" aria-hidden="true">
+        <span class="lueur lueur--rouge"></span>
+        <span class="lueur lueur--orange"></span>
+        <span class="lueur lueur--bleue"></span>
+      </div>
+
+      <!-- Diapositive 1 : la couverture en profondeur de verre.
+           Chaque couche a une position dans l'espace (data-x, data-y, data-z) ; main.js la projette
+           selon la position d'une caméra. Plus data-z est grand, plus la couche est loin.
+           Le nom est à la distance de mise au point (z = 1200) : il s'affiche à sa taille réelle. -->
+      <section class="slide pv" id="slide-01" data-title="Couverture" data-anim="couverture" data-entree data-sans-numero aria-label="Couverture">
+
+        <!-- Les plaques que la caméra traverse à l'entrée (derrière elle une fois arrivée) -->
+        <div class="pv-couche pv-plaque pv-plaque--l verre" data-x="-520" data-y="-240" data-z="-1950" data-r="-4" aria-hidden="true"><span class="verre__reflet"></span></div>
+        <div class="pv-couche pv-plaque pv-plaque--m verre" data-x="480" data-y="210" data-z="-1450" data-r="3" aria-hidden="true"><span class="verre__reflet"></span></div>
+        <div class="pv-couche pv-plaque pv-plaque--l verre" data-x="-260" data-y="320" data-z="-950" data-r="2" aria-hidden="true"><span class="verre__reflet"></span></div>
+        <div class="pv-couche pv-plaque pv-plaque--m verre" data-x="340" data-y="-320" data-z="-480" data-r="-3" aria-hidden="true"><span class="verre__reflet"></span></div>
+
+        <!-- Les plaques du fond, derrière le nom : elles donnent la profondeur au repos -->
+        <div class="pv-couche pv-plaque pv-plaque--fond verre" data-x="200" data-y="40" data-z="2300" data-r="-2" aria-hidden="true"><span class="verre__reflet"></span></div>
+        <div class="pv-couche pv-plaque pv-plaque--m verre" data-x="-760" data-y="-160" data-z="2900" data-r="4" aria-hidden="true"><span class="verre__reflet"></span></div>
+
+        <!-- La dalle de la diapositive, au plan de mise au point : tout le texte est posé sur elle -->
+        <div class="pv-couche pv-dalle verre" data-x="0" data-y="0" data-z="1200">
+          <span class="verre__reflet" aria-hidden="true"></span>
+          <p class="pv-dalle__label">Portfolio 2026 <span aria-hidden="true">·</span> Soutenance — Projet 8</p>
+          <h1 class="pv-nom">
+            <span class="pv-nom__ligne" data-split>Raphaël</span>
+            <span class="pv-nom__ligne" data-split>Grondin</span>
+          </h1>
+          <p class="pv-metier">Développeur web full-stack</p>
+        </div>
+
+        <!-- Les cartes posées sur les coins de la dalle, juste devant elle -->
+        <div class="pv-couche pv-carte verre" data-x="540" data-y="-340" data-z="1060" data-r="2">
+          <span class="verre__reflet" aria-hidden="true"></span>
+          <p class="pv-carte__fort pv-statut">Disponible</p>
+          <p class="pv-carte__petit">Saint-Leu, La Réunion · <time data-horloge>--:--:--</time></p>
+        </div>
+
+        <!-- L'étoile du portfolio, sur un disque de verre -->
+        <div class="pv-couche pv-disque verre" data-x="-590" data-y="290" data-z="1020" aria-hidden="true">
+          <span class="verre__reflet"></span>
+          <div class="badge">
+            <svg class="badge__anneau" viewBox="0 0 160 160">
+              <defs>
+                <path id="badge-cercle" d="M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0" />
+              </defs>
+              <text>
+                <textPath href="#badge-cercle" textLength="389" lengthAdjust="spacing">Développeur full-stack · React · Node.js ·</textPath>
+              </text>
+            </svg>
+            <svg class="badge__etoile" viewBox="0 0 100 100">
+              <path d="M50 8v84" pathLength="1" />
+              <path d="M14 29l72 42" pathLength="1" />
+              <path d="M14 71l72-42" pathLength="1" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="pv-couche pv-carte pv-carte--lien verre" data-x="520" data-y="370" data-z="1110" data-r="-1">
+          <span class="verre__reflet" aria-hidden="true"></span>
+          <span class="pv-cercle" aria-hidden="true">→</span>
+          <p class="pv-carte__fort">portfolio-grd-raphael.vercel.app</p>
+        </div>
+      
+        <template class="slide-script">Je vais vous présenter mon portfolio de développeur web : le site où un recruteur découvre mon profil et mes projets.</template>
+      </section>
+
+      <!-- Diapositive 2 : le déroulé, un parcours en six stations.
+           Une lueur file le long de la route et allume chaque station à son tour.
+           Les stations sont placées en pixels de scène (data-x, data-y), sur les sommets de la route.
+           Icônes : Lucide (ISC), sauf la dernière, l'étoile du portfolio. -->
+      <section class="slide" id="slide-02" data-title="Le déroulé" data-etapes="7" aria-label="Le déroulé">
+        <div class="deroule">
+          <header class="deroule__tete">
+            <p class="deroule__kicker" data-texte="Au programme"></p>
+            <h2 class="deroule__titre">Le déroulé</h2>
+          </header>
+
+          <svg class="deroule__route" viewBox="0 0 1920 1080" aria-hidden="true">
+            <defs>
+              <linearGradient id="deroule-degrade" x1="0" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#ff9a5c" />
+                <stop offset="0.5" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#8fb0ff" />
+              </linearGradient>
+            </defs>
+            <path class="deroule__fantome" d="M 40 640 C 120 640, 140 520, 220 520 C 370 520, 370 800, 520 800 C 670 800, 670 520, 820 520 C 970 520, 970 800, 1120 800 C 1270 800, 1270 520, 1420 520 C 1560 520, 1560 800, 1700 800 C 1790 800, 1850 760, 1960 700" />
+            <path class="deroule__chemin deroule__trace" d="M 40 640 C 120 640, 140 520, 220 520 C 370 520, 370 800, 520 800 C 670 800, 670 520, 820 520 C 970 520, 970 800, 1120 800 C 1270 800, 1270 520, 1420 520 C 1560 520, 1560 800, 1700 800 C 1790 800, 1850 760, 1960 700" />
+          </svg>
+
+          <span class="deroule__lueur" aria-hidden="true"></span>
+
+          <ol class="deroule__stations" role="list">
+            <li class="station station--haut" data-x="220" data-y="520" style="left: 220px; top: 520px;">
+              <span class="station__onde" aria-hidden="true"></span>
+              <div class="station__disque verre">
+                <svg class="station__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+              </div>
+              <div class="station__textes">
+                <span class="station__numero" data-texte="01"></span>
+                <p class="station__nom">Mon pitch</p>
+                <p class="station__detail">Qui je suis, ce que je recherche</p>
+              </div>
+            </li>
+            <li class="station station--bas" data-x="520" data-y="800" style="left: 520px; top: 800px;">
+              <span class="station__onde" aria-hidden="true"></span>
+              <div class="station__disque verre">
+                <svg class="station__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>
+              </div>
+              <div class="station__textes">
+                <span class="station__numero" data-texte="02"></span>
+                <p class="station__nom">Visite du portfolio</p>
+                <p class="station__detail">Navigation, design system, accessibilité</p>
+              </div>
+            </li>
+            <li class="station station--haut" data-x="820" data-y="520" style="left: 820px; top: 520px;">
+              <span class="station__onde" aria-hidden="true"></span>
+              <div class="station__disque verre">
+                <svg class="station__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>
+              </div>
+              <div class="station__textes">
+                <span class="station__numero" data-texte="03"></span>
+                <p class="station__nom">Choix techniques</p>
+                <p class="station__detail">Et les outils utilisés</p>
+              </div>
+            </li>
+            <li class="station station--bas" data-x="1120" data-y="800" style="left: 1120px; top: 800px;">
+              <span class="station__onde" aria-hidden="true"></span>
+              <div class="station__disque verre">
+                <svg class="station__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.34 19a10 10 0 1 1 17.32 0" /><path d="m12 14 4-4" /></svg>
+              </div>
+              <div class="station__textes">
+                <span class="station__numero" data-texte="04"></span>
+                <p class="station__nom">Mesurer la qualité</p>
+                <p class="station__detail">Référencement, accessibilité, performances</p>
+              </div>
+            </li>
+            <li class="station station--haut" data-x="1420" data-y="520" style="left: 1420px; top: 520px;">
+              <span class="station__onde" aria-hidden="true"></span>
+              <div class="station__disque verre">
+                <svg class="station__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg>
+              </div>
+              <div class="station__textes">
+                <span class="station__numero" data-texte="05"></span>
+                <p class="station__nom">Deux projets</p>
+                <p class="station__detail">De ma formation</p>
+              </div>
+            </li>
+            <li class="station station--bas" data-x="1700" data-y="800" style="left: 1700px; top: 800px;">
+              <span class="station__onde" aria-hidden="true"></span>
+              <div class="station__disque verre">
+                <svg class="station__icone station__icone--etoile" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84" /><path d="M14 29l72 42" /><path d="M14 71l72-42" /></svg>
+              </div>
+              <div class="station__textes">
+                <span class="station__numero" data-texte="06"></span>
+                <p class="station__nom">Initiatives personnelles</p>
+                <p class="station__detail">Pour terminer</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      
+        <template class="slide-script">Je vais dérouler la présentation dans cet ordre :
+
+`[→]` d'abord, qui je suis et ce que je recherche,
+
+`[→]` ensuite je ferais une visite de mon portfolio 
+
+`[→]` puis je présenterais mes choix techniques et les outils que j'ai utilisés,
+
+`[→]` la façon dont j'ai mesuré la qualité du site : référencement, accessibilité et performances,
+
+`[→]` je présenterais deux projets de ma formation,
+
+`[→]` et je terminerai par mes initiatives personnelles.</template>
+      </section>
+
+      <!-- Diapositive 3 : qui je suis. À gauche, le fil de l'histoire (un mot-clé par étape) ;
+           à droite, une scène par idée, qui remplace la précédente.
+           Icônes : Lucide (ISC). Logos React et Node.js : Devicon (MIT), repris du portfolio.
+           Logo Google Sheets : redessiné en SVG simplifié. -->
+      <section class="slide" id="slide-03" data-title="Qui je suis" data-etapes="7" aria-label="Qui je suis">
+        <div class="qui">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="01 — Mon pitch"></p>
+              <h2 class="qui__titre">Qui je suis</h2>
+            </div>
+          </header>
+
+          <!-- Le fil : une ligne qui descend d'un mot-clé à l'autre -->
+          <div class="fil">
+            <svg class="fil__ligne" viewBox="0 0 20 520" aria-hidden="true">
+              <path class="fil__fantome" d="M10 10 V510" />
+              <path class="fil__trace" d="M10 10 V510" />
+            </svg>
+            <ol class="fil__etapes" role="list">
+              <li class="fil__etape"><span class="fil__point" aria-hidden="true"></span><span class="fil__mot">Développeur full-stack</span></li>
+              <li class="fil__etape"><span class="fil__point" aria-hidden="true"></span><span class="fil__mot">Le sport, à La Réunion</span></li>
+              <li class="fil__etape"><span class="fil__point" aria-hidden="true"></span><span class="fil__mot">Des tâches répétitives</span></li>
+              <li class="fil__etape"><span class="fil__point" aria-hidden="true"></span><span class="fil__mot">Un script qui range</span></li>
+              <li class="fil__etape"><span class="fil__point" aria-hidden="true"></span><span class="fil__mot">Le déclic</span></li>
+            </ol>
+          </div>
+
+          <div class="qui__scenes">
+            <!-- 1. Full-stack : un pont de l'interface à l'API -->
+            <div class="scene scene--stack">
+              <p class="stack__nom">Raphaël Grondin</p>
+              <p class="stack__metier" data-texte="Développeur web full-stack"></p>
+              <div class="stack__pont">
+                <div class="stack__bout stack__bout--front">
+                  <div class="stack__tuile verre"><img src="../assets/logos/react.svg" alt="" width="96" height="96"></div>
+                  <p class="stack__role">L'interface</p>
+                  <p class="stack__techno">React</p>
+                </div>
+                <svg class="stack__liaison" viewBox="0 0 640 20" preserveAspectRatio="none" aria-hidden="true">
+                  <path class="stack__fantome" d="M0 10 H640" />
+                  <path class="stack__trait" d="M0 10 H640" />
+                </svg>
+                <span class="stack__impulsion" aria-hidden="true"></span>
+                <div class="stack__bout stack__bout--back">
+                  <div class="stack__tuile verre"><img src="../assets/logos/nodejs.svg" alt="" width="96" height="96"></div>
+                  <p class="stack__role">L'API</p>
+                  <p class="stack__techno">Node.js</p>
+                </div>
+              </div>
+              <ul class="stack__qualites" role="list">
+                <li class="qualite verre"><span class="qualite__coche" aria-hidden="true">✓</span>Accessibilité</li>
+                <li class="qualite verre"><span class="qualite__coche" aria-hidden="true">✓</span>Performances</li>
+              </ul>
+            </div>
+
+            <!-- 2. Le sport : deux postes, l'un au-dessus de l'autre, à La Réunion -->
+            <div class="scene scene--sport">
+              <div class="sport__disque verre" aria-hidden="true">
+                <svg class="sport__icone" viewBox="0 0 24 24"><path d="M14.4 14.4 9.6 9.6" /><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" /><path d="m21.5 21.5-1.4-1.4" /><path d="M3.9 3.9 2.5 2.5" /><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" /></svg>
+              </div>
+              <div class="poste poste--2 verre">
+                <span class="poste__quand">Puis</span>
+                <p class="poste__titre">Responsable d'un club de fitness</p>
+              </div>
+              <svg class="sport__montee" viewBox="0 0 24 60" aria-hidden="true"><path d="M12 56 V6 M4 14 12 6 20 14" /></svg>
+              <div class="poste poste--1 verre">
+                <span class="poste__quand">D'abord</span>
+                <p class="poste__titre">Coach sportif</p>
+              </div>
+              <p class="sport__lieu verre">
+                <svg class="sport__epingle" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+                La Réunion
+              </p>
+            </div>
+
+            <!-- 3. Les tâches répétitives, puis Google Apps Script -->
+            <div class="scene scene--taches">
+              <ul class="taches" role="list">
+                <li class="tache">
+                  <span class="tache__fantome" aria-hidden="true"></span><span class="tache__fantome" aria-hidden="true"></span>
+                  <div class="tache__carte verre"><svg class="tache__boucle" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></svg>Le suivi des adhérents</div>
+                </li>
+                <li class="tache">
+                  <span class="tache__fantome" aria-hidden="true"></span><span class="tache__fantome" aria-hidden="true"></span>
+                  <div class="tache__carte verre"><svg class="tache__boucle" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></svg>Les relances clients</div>
+                </li>
+                <li class="tache">
+                  <span class="tache__fantome" aria-hidden="true"></span><span class="tache__fantome" aria-hidden="true"></span>
+                  <div class="tache__carte verre"><svg class="tache__boucle" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></svg>Les rapports</div>
+                </li>
+              </ul>
+              <svg class="taches__fleche" viewBox="0 0 120 40" aria-hidden="true"><path d="M4 20 H108 M94 8 110 20 94 32" /></svg>
+              <div class="code verre">
+                <p class="code__titre"><span class="code__js">JS</span>Google Apps Script</p>
+                <pre class="code__corps"><code><span class="code__ligne code__ligne--note" data-ligne="// Du JavaScript qui pilote Google"></span>
+<span class="code__ligne" data-ligne="const feuille = SpreadsheetApp.getActiveSheet();"></span>
+<span class="code__ligne" data-ligne="GmailApp.sendEmail(adherent, &quot;Relance&quot;, message);"></span></code></pre>
+              </div>
+              <ul class="code__outils" role="list">
+                <li class="outil verre">Google Sheets</li>
+                <li class="outil verre">Gmail</li>
+              </ul>
+            </div>
+
+            <!-- 4. L'exemple : l'e-mail collé dans le tableau, rangé par le script -->
+            <div class="scene scene--exemple">
+              <div class="mail verre">
+                <p class="mail__tete">
+                  <svg class="mail__icone" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /></svg>
+                  Demande d'inscription
+                </p>
+                <div class="mail__corps">
+                  <p>Bonjour,</p>
+                  <p><span class="mail__val">Julie Martin</span> a fait une demande d’inscription sur notre site.</p>
+                  <p>Vous pouvez la joindre au <span class="mail__val">+2620692123456</span> ou par e-mail à <span class="mail__val">julie.martin@example.com</span>.</p>
+                  <p>Elle a indiqué « <span class="mail__val">Remise en forme</span> » comme objectif. Merci de la recontacter.</p>
+                </div>
+              </div>
+              <div class="feuille verre">
+                <p class="feuille__appli verre">
+                  <svg class="feuille__logo" viewBox="0 0 48 66" aria-hidden="true">
+                    <path d="M6 0h24l18 18v42a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6z" fill="#0f9d58" />
+                    <path d="M30 0v13a5 5 0 0 0 5 5h13z" fill="#87ceac" />
+                    <rect x="10" y="30" width="28" height="25" rx="1.5" fill="#fff" />
+                    <path d="M10 38.5h28M10 46.5h28M20.5 30v25" stroke="#0f9d58" stroke-width="2.5" />
+                  </svg>
+                  Google Sheets
+                </p>
+                <div class="feuille__ligne feuille__ligne--tete"><span>Nom</span><span>Téléphone</span><span>E-mail</span><span>Objectif</span></div>
+                <div class="feuille__ligne feuille__ligne--cible"><span class="feuille__cellule"></span><span class="feuille__cellule"></span><span class="feuille__cellule"></span><span class="feuille__cellule"></span></div>
+                <div class="feuille__ligne"><span></span><span></span><span></span><span></span></div>
+                <span class="feuille__ok" aria-hidden="true">✓</span>
+              </div>
+              <p class="exemple__note" data-texte="Indicatif +262 retiré · numéro remis au format lisible"></p>
+            </div>
+
+            <!-- 5. Le déclic -->
+            <div class="scene scene--declic">
+              <p class="declic__phrase"><span class="declic__debut">Automatiser ce qui faisait</span> <span class="declic__cible">perdre du temps<svg class="declic__rature" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 14 56 C 4 22, 70 6, 156 8 C 250 10, 298 26, 294 52 C 290 82, 206 94, 138 92 C 60 90, 4 78, 10 50 C 14 30, 48 18, 84 14" /></svg></span></p>
+              <p class="declic__qui">à moi et à mes collègues</p>
+              <p class="declic__suite">
+                <svg class="declic__fleche" viewBox="0 0 200 40" aria-hidden="true"><path d="M4 20 H186 M170 6 188 20 170 34" /></svg>
+                <span class="declic__dev">Le développement</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">Je commence par me présenter.
+
+`[→]` Je suis Raphaël Grondin, développeur web full-stack : je crée des applications complètes, de l'interface en React à l'API en Node.js, en soignant leur accessibilité et leurs performances.
+
+`[→]` Avant le code, il y a eu le sport : j'ai été coach sportif, puis responsable d'un club de fitness, à La Réunion.
+
+`[→]` En gérant ce club, j'avais beaucoup de tâches répétitives : le suivi des adhérents et les relances clients. J'ai appris Google Apps Script pour les automatiser : c'est du JavaScript qui pilote les outils de Google.
+
+`[→]` Par exemple, les demandes d'inscription arrivaient par e-mail, toujours au même format.
+
+`[→]` Je collais l'e-mail dans le tableau, et mon script rangeait le nom, le téléphone, l'adresse e-mail et l'objectif sportif dans les bonnes colonnes, en retirant l'indicatif +262 et en remettant le numéro au format lisible.
+
+`[→]` Et je me suis rendu compte que ce qui me plaisait vraiment, c'était d'automatiser ce qui faisait perdre du temps, à moi et à mes collègues. C'est ce qui m'a amené au développement.</template>
+      </section>
+
+      <!-- Diapositive 4 : ma formation. Le diplôme qui se termine, puis trois briques côte à côte :
+           le front (un navigateur), le back (un serveur), l'Agile (un Kanban). Icônes : Lucide (ISC). -->
+      <section class="slide" id="slide-04" data-title="Ma formation" data-etapes="4" aria-label="Ma formation">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="01 — Mon pitch"></p>
+              <h2 class="qui__titre pitch__titre">Ma formation</h2>
+            </div>
+          </header>
+
+          <div class="diplome">
+            <div class="diplome__disque verre" aria-hidden="true">
+              <svg class="diplome__progression" viewBox="0 0 200 200"><circle class="diplome__piste" cx="100" cy="100" r="92" /><circle class="diplome__arc" cx="100" cy="100" r="92" /></svg>
+              <svg class="diplome__icone" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg>
+            </div>
+            <div>
+              <p class="diplome__label">La formation</p>
+              <p class="diplome__nom">Développeur web</p>
+            </div>
+          </div>
+
+          <div class="briques">
+            <div class="brique brique--front">
+              <div class="navigateur verre" aria-hidden="true">
+                <div class="navigateur__barre"><i></i><i></i><i></i></div>
+                <div class="navigateur__corps">
+                  <span class="logo-js">JS</span>
+                  <img class="navigateur__react" src="../assets/logos/react.svg" alt="" width="110" height="110">
+                </div>
+              </div>
+              <p class="brique__nom">Le front-end</p>
+              <p class="brique__detail">JavaScript · React</p>
+            </div>
+
+            <svg class="briques__lien" viewBox="0 0 120 20" aria-hidden="true"><path d="M2 10 H118" /></svg>
+            <span class="briques__paquet" aria-hidden="true"></span>
+
+            <div class="brique brique--back">
+              <div class="serveur" aria-hidden="true">
+                <div class="serveur__unite verre"><i class="serveur__voyant"></i><span>Node.js</span></div>
+                <div class="serveur__unite verre"><i class="serveur__voyant"></i><span>Express</span></div>
+                <div class="serveur__unite verre"><i class="serveur__voyant"></i><span>MongoDB</span></div>
+              </div>
+              <p class="brique__nom">Le back-end</p>
+              <p class="brique__detail">Node.js · Express · MongoDB</p>
+            </div>
+
+            <div class="brique brique--agile">
+              <div class="kanban verre" aria-hidden="true">
+                <div class="kanban__col"><p>À faire</p></div>
+                <div class="kanban__col"><p>En cours</p></div>
+                <div class="kanban__col"><p>Terminé</p></div>
+                <span class="kanban__carte"></span><span class="kanban__carte"></span><span class="kanban__carte"></span>
+              </div>
+              <p class="brique__nom">Un projet Agile</p>
+              <p class="brique__detail">Scrum · Kanban</p>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">Pour me lancer, j'ai suivi la formation Développeur web, que je termine aujourd'hui. Elle couvre trois domaines :
+
+`[→]` le front-end, avec JavaScript et React,
+
+`[→]` le back-end, avec Node.js, Express et MongoDB,
+
+`[→]` et la planification d'un projet Agile, avec Scrum et Kanban.</template>
+      </section>
+
+      <!-- Diapositive 5 : Sophie Bluel. L'écran du projet à gauche ; à droite, trois jalons, puis le poids des images.
+           Enfin, les garde-fous de l'API recouvrent l'écran. Icônes : Lucide (ISC). -->
+      <section class="slide" id="slide-05" data-title="Sophie Bluel" data-etapes="9" aria-label="Sophie Bluel">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="01 — Mon pitch"></p>
+              <h2 class="qui__titre pitch__titre">Mon projet le plus marquant</h2>
+            </div>
+          </header>
+
+          <figure class="ecran verre">
+            <div class="ecran__barre" aria-hidden="true"><i></i><i></i><i></i><span class="ecran__url" data-ligne="oc-sophie-bluel-react-version.vercel.app"></span></div>
+            <div class="ecran__image"><img src="../assets/projets/sophie-bluel-cover.webp" alt="Le site de Sophie Bluel" width="1600" height="1200"></div>
+            <!-- Les garde-fous de l'API, posés sur le site comme un bouclier -->
+            <div class="garde">
+              <span class="garde__voile" aria-hidden="true"></span>
+              <div class="garde__bouclier" aria-hidden="true">
+                <span class="garde__onde"></span>
+                <svg class="garde__icone" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
+              </div>
+              <p class="garde__titre" data-texte="Des garde-fous"></p>
+              <p class="garde__but">pour qu'aucun visiteur ne fasse tomber le serveur</p>
+              <ul class="garde__liste" role="list">
+                <li class="garde__item verre">
+                  <svg class="garde__picto garde__picto--jauge" viewBox="0 0 24 24" aria-hidden="true"><path class="garde__aiguille" d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg>
+                  <span class="garde__nom">Envois limités</span><span class="garde__detail">20 par IP / 15 min</span>
+                </li>
+                <li class="garde__item verre">
+                  <svg class="garde__picto" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
+                  <span class="garde__nom">Images vérifiées</span><span class="garde__detail">format réel · 40 Mpx max</span>
+                </li>
+                <li class="garde__item verre">
+                  <svg class="garde__picto garde__picto--retour" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+                  <span class="garde__nom">Retour à l'état d'origine</span><span class="garde__detail">toutes les heures</span>
+                </li>
+              </ul>
+            </div>
+          </figure>
+
+          <div class="bluel">
+            <p class="bluel__nom">Sophie Bluel</p>
+            <svg class="jalons__fil" viewBox="0 0 4 200" preserveAspectRatio="none" aria-hidden="true"><path d="M2 0 V200" /></svg>
+            <ol class="jalons" role="list">
+              <li class="jalon">
+                <span class="jalon__marque jalon__marque--js" aria-hidden="true">JS</span>
+                <p class="jalon__texte"><span class="jalon__quand">D'abord</span> en JavaScript</p>
+              </li>
+              <li class="jalon">
+                <span class="jalon__marque" aria-hidden="true"><img src="../assets/logos/react.svg" alt="" width="40" height="40"></span>
+                <p class="jalon__texte"><span class="jalon__quand">Puis</span> en React + TypeScript</p>
+                <p class="jalon__initiative">de ma propre initiative</p>
+              </li>
+              <li class="jalon">
+                <span class="jalon__marque jalon__marque--ligne" aria-hidden="true"><i></i></span>
+                <p class="jalon__texte"><span class="jalon__quand">Et</span> mis en ligne, avec son API</p>
+              </li>
+            </ol>
+            <div class="poids">
+              <p class="poids__valeurs"><span class="poids__avant">10,4 Mo</span><span class="poids__fleche" aria-hidden="true">→</span><span class="poids__apres">10,4 Mo</span></p>
+              <span class="poids__barre" aria-hidden="true"><span></span></span>
+              <p class="poids__label">Images de la démo, optimisées côté serveur <span class="poids__badge">−95 %</span></p>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">Parmi les projets de cette formation, le plus marquant, c'est Sophie Bluel.
+
+`[→]` Je l'ai d'abord codé en JavaScript,
+
+`[→]` puis je l'ai réécrit de ma propre initiative, en React et TypeScript,
+
+`[→]` et je l'ai mis en ligne, avec son API.
+
+`[→]` Et en optimisant les images côté serveur, celles de la démo sont passées de 10,4 Mo à 534 Ko.
+
+`[→]` Et comme la démo est publique, j'ai ajouté des garde-fous pour qu'aucun visiteur ne puisse faire tomber le serveur :
+
+`[→]` un nombre d'envois limité,
+
+`[→]` des images vérifiées avant d'être traitées,
+
+`[→]` et toutes les heures, la démo revient à son état d'origine, projets et images compris.</template>
+      </section>
+
+      <!-- Diapositive 6 : ma façon de travailler, illustrée par Sophie Bluel. Trois principes à gauche, qui s'ajoutent ;
+           à droite, un exemple par principe : Kasa puis Sophie Bluel, et son appel à l'API ; la fenêtre d'ajout de Sophie Bluel et son bouton « Valider », le cahier de bord -->
+      <section class="slide" id="slide-06" data-title="Ma façon de travailler" data-etapes="7" aria-label="Ma façon de travailler">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="01 — Mon pitch"></p>
+              <h2 class="qui__titre pitch__titre">Ma façon de travailler</h2>
+            </div>
+          </header>
+
+          <ol class="principes" role="list">
+            <li class="principe"><span class="principe__num">1</span><p class="principe__mot">Comprendre</p><p class="principe__detail">ce que je construis</p></li>
+            <li class="principe"><span class="principe__num">2</span><p class="principe__mot">Soigner les détails</p><p class="principe__detail">qui évitent les erreurs</p></li>
+            <li class="principe"><span class="principe__num">3</span><p class="principe__mot">Noter chaque décision</p><p class="principe__detail">dans un journal de bord</p></li>
+          </ol>
+
+          <div class="facon__scenes">
+            <!-- 1. Comprendre : Kasa, mon seul projet React, sans API ; Sophie Bluel réécrit en React, relié à une API.
+                 Dessous, le code qui charge les projets (Home.tsx, extrait), et ses deux lignes clés -->
+            <div class="scene scene--loupe" aria-hidden="true">
+              <div class="pratique">
+                <div class="pratique__carte verre">
+                  <p class="pratique__tete"><img src="../assets/logos/react.svg" alt="" width="36" height="36">Kasa</p>
+                  <p class="pratique__role">Mon seul projet React</p>
+                  <p class="pratique__donnees pratique__donnees--non">
+                    <svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /></svg>data.json · pas d'API
+                  </p>
+                </div>
+                <div class="pratique__carte verre">
+                  <p class="pratique__tete"><img src="../assets/logos/react.svg" alt="" width="36" height="36">Sophie Bluel</p>
+                  <p class="pratique__role">Réécrit en React, pour pratiquer</p>
+                  <p class="pratique__donnees pratique__donnees--oui">
+                    <svg viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" /><rect width="20" height="8" x="2" y="14" rx="2" /><path d="M6 6h.01M6 18h.01" /></svg>Données reçues d'une API
+                  </p>
+                </div>
+              </div>
+
+              <div class="loupe verre">
+                <p class="loupe__fichier">Home.tsx · Sophie Bluel, version React (extrait)</p>
+                <div class="loupe__code">
+<pre class="loupe__net"><span class="loupe__ligne">useEffect(() =&gt; {</span><span class="loupe__ligne">  const fetchWorks = async () =&gt; {</span><span class="loupe__ligne">    const data = await getWorks()</span><span class="loupe__ligne">    setWorks(data)</span><span class="loupe__ligne">  }</span><span class="loupe__ligne">  fetchWorks()</span><span class="loupe__ligne">}, [])</span></pre>
+                  <p class="loupe__note loupe__note--affichage">← à l'affichage de la page</p>
+                  <p class="loupe__note loupe__note--api">← les projets, demandés à l'API</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Soigner les détails : la fenêtre d'ajout de Sophie Bluel, reproduite (UploadModal).
+                 Un double clic sur « Valider » crée deux projets ; puis le bouton passe à « Envoi en cours… » et y reste -->
+            <div class="scene scene--details" aria-hidden="true">
+              <div class="sbm">
+                <img class="sbm__retour" src="../assets/sophie-bluel/arrow-left-solid-full.svg" alt="" width="26" height="26">
+                <img class="sbm__fermer" src="../assets/sophie-bluel/xmark-solid-full.svg" alt="" width="26" height="26">
+                <p class="sbm__titre">Ajout photo</p>
+                <div class="sbm__photo"><img src="../assets/sophie-bluel/abajour-tahina.webp" alt="" width="608" height="814"></div>
+                <p class="sbm__label">Titre</p>
+                <p class="sbm__champ">Abajour Tahina</p>
+                <p class="sbm__label">Catégorie</p>
+                <p class="sbm__champ sbm__champ--liste">Objets</p>
+                <span class="sbm__filet"></span>
+                <div class="sbm__pied">
+                  <span class="sbm__bouton"><span class="sbm__texte">Valider</span></span>
+                  <span class="sbm__onde"></span>
+                  <span class="sbm__refus">clic ignoré</span>
+                  <svg class="sbm__curseur" viewBox="0 0 24 24"><path d="M4 2v17l4.5-4.5 3 6.5 2.5-1-3-6.5H17z" /></svg>
+                </div>
+              </div>
+              <p class="sbm__note sbm__note--double"><i></i><span>Deux clics en 0,8 s :<br>deux projets identiques</span></p>
+              <p class="sbm__note sbm__note--corrige"><i></i><span>Désactivé pendant l'envoi :<br>un seul projet</span></p>
+            </div>
+
+            <!-- 3. Le cahier de bord de Sophie Bluel, où ces deux décisions sont notées -->
+            <div class="scene scene--journal" aria-hidden="true">
+              <div class="journal journal--grand">
+                <p class="journal__nom">Cahier-de-bord-Bluel-React.md</p>
+                <p class="journal__titre">Cahier de bord</p>
+                <ul class="journal__entrees">
+                  <li><span class="journal__coche">✓</span><span class="journal__texte" data-ligne="Animations des modales"></span></li>
+                  <li><span class="journal__coche">✓</span><span class="journal__texte" data-ligne="Garde-fou contre le double clic"></span></li>
+                  <li><span class="journal__coche">✓</span><span class="journal__texte" data-ligne="Optimiser les images envoyées"></span></li>
+                  <li><span class="journal__coche">✓</span><span class="journal__texte" data-ligne="Limiter le nombre d'envois"></span></li>
+                </ul>
+                <p class="journal__pourquoi">Ce qui a été fait · Pourquoi · Vérifié</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">Ce projet résume bien ma façon de travailler. D'abord, comprendre ce que je construis.
+
+`[→]` Avec Kasa seul, je n'avais pas assez pratiqué React pour bien comprendre son fonctionnement : c'est pour ça que j'ai réécrit Sophie Bluel.
+
+`[→]` Et surtout, Kasa lisait ses logements dans un fichier : il n'y avait pas d'API.
+
+`[→]` Avec Sophie Bluel, j'ai appris à relier React à une API, par exemple avec un `useEffect`, qui charge les projets à l'affichage de la page.
+
+`[→]` Sur ce même projet, j'ai aussi soigné les détails qui évitent les erreurs. Par exemple, un double clic sur « Valider » créait deux projets identiques.
+
+`[→]` Désormais, le bouton se désactive pendant l'envoi, et affiche « Envoi en cours… ».
+
+`[→]` Enfin, je note chacune de ces décisions dans un journal de bord, pour pouvoir l'expliquer et y revenir.</template>
+      </section>
+
+      <!-- Diapositive 7 : ce que je cherche. La cible et le poste ; l'équipe ; la progression -->
+      <section class="slide" id="slide-07" data-title="Ce que je cherche" data-etapes="3" aria-label="Ce que je cherche">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="01 — Mon pitch"></p>
+              <h2 class="qui__titre pitch__titre">Ce que je cherche</h2>
+            </div>
+          </header>
+
+          <div class="recherche">
+            <svg class="cible cible--grande" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="cible__anneau" cx="60" cy="60" r="56" />
+              <circle class="cible__anneau" cx="60" cy="60" r="38" />
+              <circle class="cible__anneau" cx="60" cy="60" r="20" />
+              <path class="cible__viseur" d="M60 0 V22 M60 98 V120 M0 60 H22 M98 60 H120" />
+              <circle class="cible__centre" cx="60" cy="60" r="6" />
+            </svg>
+            <div>
+              <p class="recherche__label">Un premier poste</p>
+              <p class="recherche__titre"><span class="cible__ligne" data-texte="Développeur"></span><span class="cible__ligne" data-texte="full-stack junior"></span></p>
+            </div>
+          </div>
+
+          <div class="equipe">
+            <div class="equipe__groupe" aria-hidden="true">
+              <span class="avatar verre"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg></span>
+              <span class="avatar verre"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg></span>
+              <span class="avatar verre"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg></span>
+              <span class="avatar verre"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg></span>
+              <span class="avatar verre"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg></span>
+            </div>
+            <p class="equipe__nom">Une équipe produit à taille humaine</p>
+            <ul class="puces" role="list"><li class="puce">Startup</li><li class="puce">PME</li></ul>
+          </div>
+
+          <div class="progres">
+            <svg class="progres__marches" viewBox="0 0 700 260" aria-hidden="true"><path d="M10 250 H150 V180 H300 V110 H450 V40 H690" /></svg>
+            <span class="progres__senior" style="left: 320px; top: 46px;" aria-hidden="true"></span>
+            <span class="progres__senior" style="left: 470px; top: -24px;" aria-hidden="true"></span>
+            <span class="progres__senior" style="left: 600px; top: -24px;" aria-hidden="true"></span>
+            <span class="progres__moi" aria-hidden="true"></span>
+            <p class="progres__texte">Progresser aux côtés de développeurs expérimentés</p>
+          </div>
+        </div>
+      
+        <template class="slide-script">C'est cette façon de travailler que je veux apporter à une équipe. Aujourd'hui, je recherche un premier poste de développeur full-stack junior,
+
+`[→]` dans une équipe produit à taille humaine, en startup ou en PME,
+
+`[→]` pour progresser aux côtés de développeurs expérimentés.</template>
+      </section>
+
+      <!-- Diapositive 8 : ce que je veux approfondir. Deux cartes qui prennent de la profondeur,
+           le téléphone de GymTracker, puis l'annonce de la partie 2 (la station 02 du déroulé) -->
+      <section class="slide" id="slide-08" data-title="Ce que je veux approfondir" data-etapes="4" aria-label="Ce que je veux approfondir">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="01 — Mon pitch"></p>
+              <h2 class="qui__titre pitch__titre">Ce que je veux approfondir</h2>
+            </div>
+          </header>
+
+          <div class="approf">
+            <div class="profond profond--ts">
+              <span class="profond__calque" aria-hidden="true"></span><span class="profond__calque" aria-hidden="true"></span>
+              <div class="profond__face verre">
+                <span class="ts" aria-hidden="true">TS</span>
+                <p class="profond__nom">TypeScript</p>
+              </div>
+            </div>
+
+            <div class="profond profond--archi">
+              <span class="profond__calque" aria-hidden="true"></span><span class="profond__calque" aria-hidden="true"></span>
+              <div class="profond__face verre">
+                <svg class="archi" viewBox="0 0 220 200" aria-hidden="true">
+                  <rect x="40" y="6" width="140" height="44" rx="10" /><rect x="40" y="78" width="140" height="44" rx="10" /><rect x="40" y="150" width="140" height="44" rx="10" />
+                  <path d="M110 50 V78 M110 122 V150" />
+                  <text x="110" y="34">Routes</text><text x="110" y="106">Contrôleurs</text><text x="110" y="178">Données</text>
+                </svg>
+                <p class="profond__nom">L'architecture back-end</p>
+              </div>
+            </div>
+
+            <div class="mobile">
+              <div class="telephone"><img src="../assets/projets/gymtracker-iphone.webp" alt="GymTracker sur iPhone" width="660" height="1434"></div>
+              <p class="profond__nom">Le mobile</p>
+              <p class="mobile__detail"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg>GymTracker · j'en reparle à la fin</p>
+            </div>
+          </div>
+
+          <!-- Le signal de la démo : une barre de navigateur qui saisit l'adresse du portfolio et charge la page -->
+          <div class="suite">
+            <div class="suite__fenetre verre" aria-hidden="true">
+              <div class="suite__barre">
+                <i></i><i></i><i></i>
+                <p class="suite__adresse">
+                  <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                  <span class="suite__url" data-ligne="portfolio-grd-raphael.vercel.app"></span><span class="suite__caret"></span>
+                </p>
+              </div>
+              <span class="suite__chargement"></span>
+            </div>
+            <p class="suite__kicker" data-texte="02 — Visite du portfolio"></p>
+            <p class="suite__titre">Démonstration sur le navigateur</p>
+          </div>
+        </div>
+      
+        <template class="slide-script">Dans ce poste, je souhaite approfondir TypeScript,
+
+`[→]` l'architecture back-end,
+
+`[→]` et continuer le développement mobile, que j'ai découvert avec GymTracker, un projet personnel dont je vous reparlerai à la fin.
+
+`[→]` Passons maintenant à la visite de mon portfolio, directement sur le navigateur.</template>
+      </section>
+
+      <!-- Diapositive 9 : les données des projets. Le fichier projects.json dans une fenêtre d'éditeur,
+           à gauche ; à droite, ce que React en fait : la liste de l'accueil et une fiche. Couleurs : thème
+           Dark+ de VS Code, comme dans les soutenances précédentes. -->
+      <section class="slide" id="slide-09" data-title="Les données des projets" data-etapes="6" aria-label="Les données des projets">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="02 — Visite du portfolio"></p>
+              <h2 class="qui__titre pitch__titre">Les données des projets</h2>
+            </div>
+          </header>
+
+          <div class="jd">
+            <!-- Le fichier JSON, dans une fenêtre d'éditeur -->
+            <figure class="vsc jd__json" aria-hidden="true">
+              <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext">{ }</span><span class="vsc__chemin">data/</span>projects.json</span></figcaption>
+              <div class="vsc__corps">
+                <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-p">[</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">2</span><code>  <span class="t-p">{</span> <span class="t-k">"id"</span><span class="t-p">:</span> <span class="t-s">"sophie-bluel"</span><span class="t-p">,</span> <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"Sophie Bluel"</span><span class="t-p">,</span> <span class="t-c">…</span> <span class="t-p">},</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">3</span><code>  <span class="t-p">{</span> <span class="t-k">"id"</span><span class="t-p">:</span> <span class="t-s">"kasa"</span><span class="t-p">,</span> <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"Kasa"</span><span class="t-p">,</span> <span class="t-c">…</span> <span class="t-p">},</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">4</span><code>  <span class="t-p">{</span> <span class="t-k">"id"</span><span class="t-p">:</span> <span class="t-s">"mon-vieux-grimoire"</span><span class="t-p">,</span> <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"Mon Vieux Grimoire"</span><span class="t-p">,</span> <span class="t-c">…</span> <span class="t-p">},</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">5</span><code>  <span class="t-p">{</span> <span class="t-k">"id"</span><span class="t-p">:</span> <span class="t-s">"gym-tracker"</span><span class="t-p">,</span> <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"GymTracker"</span><span class="t-p">,</span> <span class="t-c">…</span> <span class="t-p">},</span></code></p>
+                <p class="vsc__ligne jd__nouvelle"><span class="vsc__num">6</span><code>  <span class="t-p">{</span> <span class="t-k">"id"</span><span class="t-p">:</span> <span class="t-s">"nouveau-projet"</span><span class="t-p">,</span> <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"Nouveau projet"</span><span class="t-p">,</span> <span class="t-c">…</span> <span class="t-p">},</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num jd__num-fin">6</span><code><span class="t-p">]</span></code></p>
+              </div>
+            </figure>
+
+            <!-- Ce que React en fait : map pour la liste, find pour la fiche -->
+            <svg class="jd__fleches" viewBox="0 0 190 740" aria-hidden="true">
+              <path class="jd__fleche-map" d="M4 300 C 100 300, 90 180, 186 180" />
+              <path class="jd__fleche-find" d="M4 470 C 100 470, 90 580, 186 580" />
+            </svg>
+            <p class="jd__pilule jd__pilule--map" aria-hidden="true"><code><span class="t-v">projects</span><span class="t-p">.</span><span class="t-f">map</span><span class="t-p">(…)</span></code></p>
+            <p class="jd__pilule jd__pilule--find" aria-hidden="true"><code><span class="t-v">projects</span><span class="t-p">.</span><span class="t-f">find</span><span class="t-p">(…)</span></code></p>
+
+            <!-- La liste de l'accueil -->
+            <div class="jd__page jd__accueil" aria-hidden="true">
+              <div class="jd__barre"><i></i><i></i><i></i><span class="jd__url">portfolio-grd-raphael.vercel.app</span></div>
+              <div class="jd__accueil-corps">
+                <p class="jd__section">Projets</p>
+                <ul class="jd__liste">
+                  <li class="jd__rang"><span class="jd__code">P03</span><span class="jd__titre">Sophie Bluel</span><span class="jd__cat">Full-stack</span></li>
+                  <li class="jd__rang"><span class="jd__code">P05</span><span class="jd__titre">Kasa</span><span class="jd__cat">Front-end</span></li>
+                  <li class="jd__rang"><span class="jd__code">P06</span><span class="jd__titre">Mon Vieux Grimoire</span><span class="jd__cat">Back-end</span></li>
+                  <li class="jd__rang"><span class="jd__code">PERSO</span><span class="jd__titre">GymTracker</span><span class="jd__cat">Mobile</span></li>
+                  <li class="jd__rang jd__rang--neuf"><span class="jd__code">+</span><span class="jd__titre">Nouveau projet</span><span class="jd__cat">—</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Une fiche : la même page pour tous les projets -->
+            <p class="jd__composant" aria-hidden="true"><code><span class="t-p">&lt;</span><span class="t-t">ProjectPage</span> <span class="t-p">/&gt;</span></code> une seule page pour toutes les fiches</p>
+            <div class="jd__page jd__fiche" aria-hidden="true">
+              <div class="jd__barre"><i></i><i></i><i></i><span class="jd__url">portfolio-grd-raphael.vercel.app<span class="jd__chemin">/projet/</span><span class="jd__id">kasa</span></span></div>
+              <div class="jd__fiche-corps">
+                <div class="jd__contenu" data-id="sophie-bluel"><img src="../assets/projets/sophie-bluel-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">Sophie Bluel</p><p class="jd__fiche-cat">Full-stack</p></div>
+                <div class="jd__contenu" data-id="kasa"><img src="../assets/projets/kasa-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">Kasa</p><p class="jd__fiche-cat">Front-end</p></div>
+                <div class="jd__contenu" data-id="mon-vieux-grimoire"><img src="../assets/projets/mon-vieux-grimoire-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">Mon Vieux Grimoire</p><p class="jd__fiche-cat">Back-end</p></div>
+                <div class="jd__contenu" data-id="gym-tracker"><img src="../assets/projets/gym-tracker-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">GymTracker</p><p class="jd__fiche-cat">Mobile</p></div>
+                <div class="jd__contenu" data-id="nouveau-projet"><span class="jd__vide">+</span><p class="jd__fiche-titre">Nouveau projet</p><p class="jd__fiche-cat">sa propre fiche</p></div>
+              </div>
+              <span class="jd__note">l'identifiant</span>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : un extrait de `projects.json` à gauche, la liste des projets et une fiche à droite]
+
+Pendant la visite, vous avez vu la liste des projets et leurs fiches. Ces projets ne sont pas écrits dans le code : ils sont rangés dans un fichier JSON.
+
+`[→]` Sur l'accueil, React parcourt ce fichier avec `map`, et crée une ligne par projet.
+
+`[→]` Pour les fiches, je n'ai pas créé une page par projet : une seule page permet d'afficher n'importe quelle fiche.
+
+`[→]` Pour savoir quel projet afficher, elle lit l'identifiant dans l'adresse, par exemple `/projet/kasa`,
+
+`[→]` et cherche le projet correspondant dans le fichier.
+
+`[→]` Donc, il suffit d'ajouter un projet dans ce fichier pour qu'il apparaisse dans la liste, avec sa propre fiche.</template>
+      </section>
+
+      <!-- Diapositive 10 : le mood board. D'abord le principe du glassmorphisme, démontré ; puis le mood board
+           (les images du dossier « mood board ») ; la palette prélevée dessus ; la typographie et l'étoile. -->
+      <section class="slide" id="slide-10" data-title="Le mood board" data-etapes="5" aria-label="Le mood board">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="02 — Visite du portfolio"></p>
+              <h2 class="qui__titre pitch__titre">Le design system</h2>
+            </div>
+          </header>
+
+          <div class="mb">
+            <!-- Le glassmorphisme, démontré : un fond coloré, puis un panneau de verre dépoli qui glisse dessus -->
+            <div class="mb__demo" aria-hidden="true">
+              <div class="mb__scene">
+                <span class="mb__tache mb__tache--rouge"></span>
+                <span class="mb__tache mb__tache--orange"></span>
+                <span class="mb__tache mb__tache--bleue"></span>
+                <div class="mb__verre"><p>Verre dépoli</p></div>
+              </div>
+              <ol class="mb__legende" role="list">
+                <li><span>1</span>un fond coloré</li>
+                <li><span>2</span>un panneau de verre dépoli, posé dessus</li>
+              </ol>
+            </div>
+
+            <!-- Le mood board : les images épinglées -->
+            <p class="mb__titre-board">Mon mood board <span>· Pinterest</span></p>
+            <figure class="mb__photo mb__photo--a">
+              <span class="mb__punaise" aria-hidden="true"></span>
+              <img src="../assets/moodboard/thermal-kinetics.png" alt="Inspiration : un panneau de verre sur des lueurs rouge, orange et bleue" width="1878" height="1122">
+              <svg class="mb__annotations" viewBox="0 0 600 358" aria-hidden="true">
+                <ellipse class="mb__entoure mb__entoure--type" data-lien="typo" cx="372" cy="304" rx="118" ry="36" />
+                <circle class="mb__entoure mb__entoure--etoile" data-lien="etoile" cx="97" cy="306" r="38" />
+              </svg>
+              <span class="mb__pipette mb__pipette--rouge" data-lien="rouge" style="left: 70px; top: 70px;" aria-hidden="true"></span>
+              <span class="mb__pipette mb__pipette--orange" data-lien="orange" style="left: 300px; top: 150px;" aria-hidden="true"></span>
+              <span class="mb__pipette mb__pipette--bleue" data-lien="bleu" style="left: 560px; top: 250px;" aria-hidden="true"></span>
+            </figure>
+            <figure class="mb__photo mb__photo--b">
+              <span class="mb__punaise" aria-hidden="true"></span>
+              <img src="../assets/moodboard/clarity-engine.jpg" alt="Inspiration : un site en verre dépoli sur fond bleu" width="740" height="493">
+              <span class="mb__pipette mb__pipette--nuit" data-lien="nuit" style="left: 40px; top: 30px;" aria-hidden="true"></span>
+            </figure>
+            <figure class="mb__photo mb__photo--c">
+              <span class="mb__punaise" aria-hidden="true"></span>
+              <img src="../assets/moodboard/wallhaven.jpg" alt="Inspiration : une illustration bleue au grain marqué" width="1920" height="1209">
+              <span class="mb__pipette mb__pipette--grain" data-lien="grain" style="left: 120px; top: 120px;" aria-hidden="true"></span>
+            </figure>
+
+            <!-- Ce que j'en ai gardé : la palette, la typographie, l'étoile -->
+            <div class="mb__palette">
+              <p class="mb__sous-titre">La palette</p>
+              <ul class="mb__teintes" role="list">
+                <li class="mb__teinte" data-lien="nuit"><span class="mb__pastille" style="background: #0b1a4a;"></span><b>Bleu nuit</b><code>#0b1a4a</code></li>
+                <li class="mb__teinte" data-lien="rouge"><span class="mb__pastille" style="background: #c42d1a;"></span><b>Rouge</b><code>#c42d1a</code></li>
+                <li class="mb__teinte" data-lien="orange"><span class="mb__pastille" style="background: #d9581f;"></span><b>Orange</b><code>#d9581f</code></li>
+                <li class="mb__teinte" data-lien="bleu"><span class="mb__pastille" style="background: #2c5fd6;"></span><b>Bleu</b><code>#2c5fd6</code></li>
+                <li class="mb__teinte" data-lien="grain"><span class="mb__pastille mb__pastille--grain"></span><b>Grain</b><code>noise.svg</code></li>
+              </ul>
+            </div>
+
+            <div class="mb__typo" data-lien="typo">
+              <p class="mb__sous-titre">La typographie</p>
+              <p class="mb__aa">Aa</p>
+              <p class="mb__police">Manrope, en grand et en blanc</p>
+            </div>
+            <div class="mb__etoile" data-lien="etoile">
+              <p class="mb__sous-titre">L'étoile du Hero</p>
+              <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84" /><path d="M14 29l72 42" /><path d="M14 71l72-42" /></svg>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : le mood board, puis la palette]
+
+Voyons maintenant le design system.
+
+`[→]` Tout est parti d'un attrait pour le glassmorphisme : des panneaux en verre dépoli, posés sur un fond coloré.
+
+`[→]` Je suis allé chercher des exemples sur Pinterest, et j'en ai fait un mood board.
+
+`[→]` J'en ai gardé un fond bleu nuit traversé de lueurs rouge, orange et bleue, un léger grain,
+
+`[→]` une grande typographie blanche, et même l'étoile du Hero.</template>
+      </section>
+
+      <!-- Diapositive 11 : le design system en Sass. Les variables dans l'éditeur, un mini-site à côté ;
+           changer la palette recolore le site sans toucher aux composants ; puis le mixin du verre et ses quatre
+           @include, qui changent les composants en verre un par un (les vrais appels du portfolio). -->
+      <section class="slide" id="slide-11" data-title="Le design system en Sass" data-etapes="4" aria-label="Le design system en Sass">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="02 — Visite du portfolio"></p>
+              <h2 class="qui__titre pitch__titre">Le design system en Sass</h2>
+            </div>
+          </header>
+
+          <div class="ds">
+            <!-- Les variables -->
+            <figure class="vsc ds__code ds__variables" aria-hidden="true">
+              <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext vsc__ext--scss">S</span><span class="vsc__chemin">src/styles/</span>_variables.scss</span></figcaption>
+              <div class="vsc__corps">
+                <p class="vsc__ligne ds__groupe ds__groupe--couleurs"><span class="vsc__num">1</span><code><span class="t-c">// Les couleurs</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--couleurs"><span class="vsc__num">2</span><code><span class="t-v">$red</span><span class="t-p">: </span><span class="ds__teinte" style="background: #c42d1a;"></span><span class="t-s ds__valeur" data-nouvelle="#7a2fd0">#c42d1a</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--couleurs"><span class="vsc__num">3</span><code><span class="t-v">$orange</span><span class="t-p">: </span><span class="ds__teinte" style="background: #d9581f;"></span><span class="t-s">#d9581f</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--couleurs"><span class="vsc__num">4</span><code><span class="t-v">$blue</span><span class="t-p">: </span><span class="ds__teinte" style="background: #2c5fd6;"></span><span class="t-s">#2c5fd6</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--couleurs"><span class="vsc__num">5</span><code><span class="t-v">$navy</span><span class="t-p">: </span><span class="ds__teinte" style="background: #0b1a4a;"></span><span class="t-s ds__valeur" data-nouvelle="#173d2c">#0b1a4a</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--couleurs"><span class="vsc__num">6</span><code><span class="t-v">$background-color</span><span class="t-p">: </span><span class="t-v">$navy</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">7</span><code> </code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--verre"><span class="vsc__num">8</span><code><span class="t-c">// Le verre</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--verre"><span class="vsc__num">9</span><code><span class="t-v">$glass-bg</span><span class="t-p">: </span><span class="t-f">rgba</span><span class="t-p">(</span><span class="t-v">$glass-tint</span><span class="t-p">, </span><span class="t-n">0.2</span><span class="t-p">);</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--verre"><span class="vsc__num">10</span><code><span class="t-v">$glass-blur</span><span class="t-p">: </span><span class="t-n">22px</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">11</span><code> </code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--arrondis"><span class="vsc__num">12</span><code><span class="t-c">// Les arrondis</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--arrondis"><span class="vsc__num">13</span><code><span class="t-v">$border-radius--l</span><span class="t-p">: </span><span class="t-n">40px</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne ds__groupe ds__groupe--arrondis"><span class="vsc__num">14</span><code><span class="t-v">$border-radius</span><span class="t-p">: </span><span class="t-n">24px</span><span class="t-p">;</span></code></p>
+              </div>
+            </figure>
+
+            <!-- Le mixin du verre, et ses quatre utilisations -->
+            <figure class="vsc ds__code ds__mixin" aria-hidden="true">
+              <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext vsc__ext--scss">S</span><span class="vsc__chemin">src/styles/</span>_mixins.scss</span></figcaption>
+              <div class="vsc__corps">
+                <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-mot">@mixin</span> <span class="t-f">glass</span><span class="t-p">(</span><span class="t-v">$radius</span><span class="t-p">, </span><span class="t-v">$background</span><span class="t-p">) {</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">2</span><code>  <span class="t-k">background</span><span class="t-p">: </span><span class="t-v">$background</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">3</span><code>  <span class="t-k">backdrop-filter</span><span class="t-p">: </span><span class="t-f">blur</span><span class="t-p">(</span><span class="t-v">$glass-blur</span><span class="t-p">);</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">4</span><code>  <span class="t-k">border</span><span class="t-p">: </span><span class="t-n">1px</span> <span class="t-s">solid</span> <span class="t-v">$glass-border</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">5</span><code>  <span class="t-k">border-radius</span><span class="t-p">: </span><span class="t-v">$radius</span><span class="t-p">;</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">6</span><code><span class="t-p">}</span></code></p>
+                <p class="vsc__ligne"><span class="vsc__num">7</span><code> </code></p>
+                <p class="vsc__ligne ds__include"><span class="vsc__num">8</span><code><span class="t-sel">.header</span>  <span class="t-p">{ </span><span class="t-mot">@include</span> <span class="t-f">glass</span><span class="t-p">(</span><span class="t-n">0</span><span class="t-p">, </span><span class="t-v">$glass-bg--strong</span><span class="t-p">); }</span></code></p>
+                <p class="vsc__ligne ds__include"><span class="vsc__num">9</span><code><span class="t-sel">.hero</span>    <span class="t-p">{ </span><span class="t-mot">@include</span> <span class="t-f">glass</span><span class="t-p">(</span><span class="t-v">$border-radius--l</span><span class="t-p">); }</span></code></p>
+                <p class="vsc__ligne ds__include"><span class="vsc__num">10</span><code><span class="t-sel">.filters</span> <span class="t-p">{ </span><span class="t-mot">@include</span> <span class="t-f">glass</span><span class="t-p">(</span><span class="t-v">$border-radius--pill</span><span class="t-p">); }</span></code></p>
+                <p class="vsc__ligne ds__include"><span class="vsc__num">11</span><code><span class="t-sel">input</span>    <span class="t-p">{ </span><span class="t-mot">@include</span> <span class="t-f">glass</span><span class="t-p">(</span><span class="t-v">$border-radius--s</span><span class="t-p">, …); }</span></code></p>
+              </div>
+            </figure>
+            <p class="ds__note ds__note--mixin">Une sorte de fonction : des paramètres, un bloc de styles réutilisable</p>
+
+            <!-- Le mini-site : ses couleurs viennent des variables, ses composants du mixin -->
+            <div class="ds__apercu" aria-hidden="true">
+              <span class="ds__lueur ds__lueur--rouge"></span>
+              <span class="ds__lueur ds__lueur--orange"></span>
+              <span class="ds__lueur ds__lueur--bleue"></span>
+              <div class="ds__comp ds__comp--header"><span>Raphaël Grondin</span><i></i><i></i><i></i><em class="ds__etiquette">en-tête</em></div>
+              <div class="ds__comp ds__comp--hero"><span class="ds__hero-petit">Raphaël Grondin, développeur web</span><span class="ds__hero-grand">FULL-STACK</span><em class="ds__etiquette">Hero</em></div>
+              <div class="ds__comp ds__comp--filtres"><span>Tous</span><span>Front</span><span>Back</span><em class="ds__etiquette">filtres</em></div>
+              <div class="ds__comp ds__comp--champ"><span>Votre nom</span><em class="ds__etiquette">champ du formulaire</em></div>
+            </div>
+            <p class="ds__note ds__note--composants"><span class="ds__coche">✓</span> Aucun composant modifié</p>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : un extrait de `_variables.scss`, puis le mixin du verre]
+
+Pour passer de ce mood board au code, j'ai défini les couleurs, le verre et les arrondis une seule fois, dans des variables Sass :
+
+`[→]` ainsi, si je change de palette, je ne touche pas aux composants.
+
+`[→]` Même chose pour l'effet de verre : il est écrit une seule fois, dans un mixin, une sorte de fonction Sass,
+
+`[→]` que je réutilise partout : l'en-tête, le Hero, les filtres et les champs du formulaire.</template>
+      </section>
+
+      <!-- Diapositive 12 : une démonstration de lisibilité, puis les trois réponses du portfolio.
+           Les opacités et le flou viennent de _variables.scss et _mixins.scss. -->
+      <section class="slide" id="slide-12" data-title="Le point faible du verre" data-etapes="6" aria-label="Le point faible du verre">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="02 — Visite du portfolio"></p>
+              <h2 class="qui__titre pitch__titre">Le point faible du verre</h2>
+            </div>
+          </header>
+
+          <div class="lv">
+            <div class="lv__probleme">
+              <p class="lv__accroche">Sur un fond uni, le contraste est fixe</p>
+              <div class="lv__duo">
+                <figure class="lv__exemple">
+                  <div class="lv__fond-uni"><p>Le même texte blanc</p></div>
+                  <figcaption><strong>Fond uni</strong><span>Un contraste fixe</span></figcaption>
+                </figure>
+                <figure class="lv__exemple">
+                  <div class="lv__fond-variable">
+                    <span class="lv__lueur-mobile" aria-hidden="true"></span>
+                    <div class="lv__vitre-demo"><p>Le même texte blanc</p></div>
+                  </div>
+                  <figcaption><strong>Effet de verre</strong><span>Le fond change, le contraste aussi</span><small class="lv__demo-note">Exemple avec une lueur trop claire</small></figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="lv__couleurs">
+              <p class="lv__accroche">D’abord, les couleurs des lueurs</p>
+              <div class="lv__palette" aria-label="Lueurs rouge, orange et bleue du portfolio">
+                <span style="--lv-teinte: #c42d1a">Rouge</span>
+                <span style="--lv-teinte: #d9581f">Orange</span>
+                <span style="--lv-teinte: #2c5fd6">Bleu</span>
+              </div>
+              <div class="lv__mesure">
+                <p class="lv__ratio"><span>≥</span> 4,5 <span>: 1</span></p>
+                <p class="lv__seuil">Contraste avec le texte blanc</p>
+                <p class="lv__precision">Même dans les zones les plus claires</p>
+              </div>
+            </div>
+
+            <div class="lv__comparaison">
+              <p class="lv__accroche">Le même texte, trois niveaux de verre</p>
+              <div class="lv__echantillons">
+                <figure class="lv__echantillon lv__echantillon--leger">
+                  <div class="lv__decor"><div class="lv__vitre"><p>Le même<br>texte blanc</p><span class="lv__opacite">20 % <small>d’opacité</small></span></div></div>
+                  <figcaption><strong>Verre léger</strong><span>Hero · laisser voir les lueurs</span></figcaption>
+                </figure>
+                <figure class="lv__echantillon lv__echantillon--fort">
+                  <div class="lv__decor"><div class="lv__vitre"><p>Le même<br>texte blanc</p><span class="lv__opacite">45 % <small>d’opacité</small></span></div></div>
+                  <figcaption><strong>Verre fort</strong><span>En-tête · le contenu défile derrière</span></figcaption>
+                </figure>
+                <figure class="lv__echantillon lv__echantillon--contraste">
+                  <div class="lv__decor"><div class="lv__vitre"><p>Le même<br>texte blanc</p><span class="lv__opacite">92 % <small>d’opacité</small></span></div></div>
+                  <figcaption><strong>Contraste élevé</strong><span>Un verre presque opaque</span></figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="lv__preference"><span class="lv__interrupteur" aria-hidden="true"><i></i></span><p>« Augmenter le contraste »<span>Le réglage du système est respecté</span></p></div>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : le même texte sur le verre léger, le verre fort, et en contraste élevé]
+
+Mais ce style a un point faible : la lisibilité.
+
+`[→]` Sur un fond uni, le contraste du texte est fixe.
+
+`[→]` Avec un effet de verre, au contraire, il dépend de ce qui apparaît derrière : un texte blanc se lit bien sur le bleu nuit, moins bien au centre d'une lueur orange.
+
+`[→]` J'ai traité ce problème à trois niveaux. D'abord les couleurs : j’ai ajusté celles des lueurs pour conserver un contraste d’au moins 4,5 pour 1 avec le texte blanc, même dans les zones les plus claires.
+
+`[→]` Ensuite, j’ai utilisé deux niveaux de verre : un verre léger dans le Hero, pour laisser apparaître les lueurs, et un verre plus opaque pour l’en-tête, car le contenu qui défile derrière change constamment.
+
+`[→]` Enfin, si le visiteur a activé « Augmenter le contraste » dans son système, le verre devient presque opaque.</template>
+      </section>
+
+      <!-- Diapositive 13 : démonstrations agrandies du portfolio, pilotées au clic.
+           Références : Layout, Header, Contact, Projects et leurs styles.
+           Les contrôles dessinés sont des illustrations, pas un formulaire actif. -->
+      <section class="slide" id="slide-13" data-title="L’accessibilité" data-etapes="7" aria-label="L’accessibilité">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="02 — Visite du portfolio"></p>
+              <h2 class="qui__titre pitch__titre">L’accessibilité</h2>
+            </div>
+          </header>
+
+          <div class="ac13">
+            <!-- Clavier et balises : la même page devient une carte de ses repères. -->
+            <div class="ac13__navigation">
+              <div class="ac13__navigateur">
+                <div class="ac13__barre"><span aria-hidden="true">● ● ●</span><span>portfolio-grd-raphael.vercel.app</span></div>
+                <div class="ac13__page">
+                  <div class="ac13__entete ac13__repere"><span class="ac13__marque">Raphaël <em>Grondin</em></span><code class="ac13__balise">&lt;header&gt;</code>
+                    <div class="ac13__menu ac13__repere"><span>À propos</span><span>Compétences</span><span>Projets</span><span>Parcours</span><span>Contact</span><code class="ac13__balise">&lt;nav&gt;</code></div>
+                  </div>
+                  <div class="ac13__contenu ac13__repere"><code class="ac13__balise">&lt;main&gt;</code><p>Raphaël Grondin, développeur web</p><strong>FULL-STACK</strong><span class="ac13__projets">Voir mes projets <span>↗</span></span></div>
+                  <div class="ac13__pied ac13__repere"><span>Raphaël Grondin · La Réunion</span><code class="ac13__balise">&lt;footer&gt;</code></div>
+                  <span class="ac13__evitement">Aller au contenu</span>
+                  <span class="ac13__focus" aria-hidden="true"></span>
+                  <svg class="ac13__trajet" viewBox="0 0 1100 620" aria-hidden="true"><path d="M 24 82 H 12 V 420 Q 12 444 36 444 H 68" /></svg>
+                </div>
+              </div>
+              <aside class="ac13__explications">
+                <div class="ac13__texte ac13__texte--tab"><kbd>Tab ↹</kbd><p class="ac13__grand">Le premier<br>arrêt au clavier</p><p>Le lien « Aller au contenu »<br>apparaît au focus.</p></div>
+                <div class="ac13__texte ac13__texte--saut"><kbd>Entrée ↵</kbd><p class="ac13__grand">Directement<br>au contenu</p><p>Le menu est évité.</p></div>
+                <div class="ac13__texte ac13__texte--reperes"><p class="ac13__surtitre">Lecteur d’écran</p><p class="ac13__grand">Des repères<br>pour naviguer</p><ol class="ac13__liste"><li><code>header</code>En-tête</li><li><code>nav</code>Navigation</li><li><code>main</code>Contenu principal</li><li><code>footer</code>Pied de page</li></ol></div>
+              </aside>
+            </div>
+
+            <!-- Les vrais libellés de validation de Contact.tsx. -->
+            <div class="ac13__formulaire">
+              <div class="ac13__form verre">
+                <p class="ac13__surtitre">Contact</p>
+                <p class="ac13__form-titre">Écrivez-moi</p>
+                <div class="ac13__champ ac13__champ--nom"><p>Nom</p><div class="ac13__saisie ac13__saisie--nom"><span class="ac13__curseur" aria-hidden="true"></span></div><p class="ac13__erreur"><span>⚠</span> <span>Indiquez votre nom.</span></p></div>
+                <div class="ac13__champ ac13__champ--email"><p>E-mail</p><div class="ac13__saisie"></div><p class="ac13__erreur"><span>⚠</span> <span>Indiquez une adresse e-mail valide,<br>par exemple nom@domaine.fr.</span></p></div>
+                <span class="ac13__envoyer">Envoyer ↗</span>
+                <span class="ac13__focus-form" aria-hidden="true"></span>
+                <span class="ac13__lien-erreur" aria-hidden="true"></span>
+              </div>
+              <div class="ac13__explications">
+                <div class="ac13__texte ac13__texte--erreurs"><p class="ac13__surtitre">Validation du formulaire</p><p class="ac13__grand">Une erreur,<br>son champ</p><p>Le message est relié<br>au champ concerné.</p><code class="ac13__attribut">aria-describedby</code></div>
+                <div class="ac13__texte ac13__texte--correction"><p class="ac13__surtitre">Focus automatique</p><p class="ac13__grand">Le premier champ<br>à corriger</p><div class="ac13__signaux"><p><i aria-hidden="true"></i>Une couleur</p><p><b aria-hidden="true">⚠</b>Un symbole</p><p><b aria-hidden="true">Aa</b>Un texte explicite</p></div></div>
+              </div>
+            </div>
+
+            <!-- La vidéo du projet est parcourue par la timeline puis remplacée par sa couverture.
+                 Aucun autoplay : sortir de la slide ne laisse pas de média en lecture. -->
+            <div class="ac13__mouvement">
+              <div class="ac13__reglage verre"><span class="ac13__toggle" aria-hidden="true"><i></i></span><p>Réduire les animations<span>Préférence du système</span></p><span class="ac13__etat">Activé</span></div>
+              <div class="ac13__animation verre"><svg class="ac13__etoile" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84 M14 29l72 42 M14 71l72-42" /></svg><p>Animations</p><strong class="ac13__immobile">À l’arrêt</strong></div>
+              <figure class="ac13__media"><div class="ac13__media-ecran"><img src="../assets/projets/sophie-bluel-cover.webp" alt="Image fixe du projet Sophie Bluel"><video class="ac13__video" src="../assets/projets/sophie-bluel-accessibilite.webm" poster="../assets/projets/sophie-bluel-cover.webp" preload="auto" muted playsinline aria-hidden="true"></video></div><figcaption><span>Vidéo du projet</span><strong class="ac13__image-fixe">→ Image fixe</strong></figcaption></figure>
+              <!-- Le défilement doux du site (scroll-behavior: smooth) devient un saut direct. -->
+              <div class="ac13__defilement verre">
+                <div class="ac13__fenetre">
+                  <div class="ac13__fenetre-barre"><span class="ac13__clic">Projets</span></div>
+                  <div class="ac13__fenetre-vue"><div class="ac13__piste">
+                    <div class="ac13__section"><p><code>01 —</code> À propos</p><i></i><i></i></div>
+                    <div class="ac13__section"><p><code>02 —</code> Compétences</p><i></i><i></i></div>
+                    <div class="ac13__section"><p><code>03 —</code> Projets</p><i></i><i></i></div>
+                  </div></div>
+                </div>
+                <p>Défilement</p><strong class="ac13__saut">→ Saut direct</strong>
+              </div>
+              <p class="ac13__confort">Pour les personnes sensibles au mouvement</p>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : le lien « Aller au contenu » au focus, puis une erreur du formulaire]
+
+Le contraste, c'est déjà de l'accessibilité. Passons au reste, en commençant par le clavier.
+
+`[→]` Le premier élément de chaque page, c'est le lien « Aller au contenu ».
+
+`[→]` Il permet de passer le menu au lieu de le traverser à chaque page.
+
+`[→]` Pour les lecteurs d'écran, la page est structurée avec des balises de repère : l'en-tête, la navigation, le contenu principal et le pied de page. On peut ainsi sauter de l'une à l'autre.
+
+`[→]` Le formulaire suit la même logique : chaque erreur est reliée à son champ,
+
+`[→]` et le focus va directement sur le premier champ à corriger. L'erreur n'est pas signalée que par la couleur : il y a aussi un symbole et un texte.
+
+`[→]` Enfin, si « Réduire les animations » est activé dans le système, les animations et les vidéos sont coupées, et un clic dans le menu amène directement à la section, sans défilement. C'est un réglage utilisé par les personnes que le mouvement rend malades.</template>
+      </section>
+
+      <!-- Diapositive 14 : une étape par idée, données et extraits du portfolio.
+           Le diagnostic TypeScript porte sur l'affectation à Project[], pas sur le JSON seul. -->
+      <section class="slide" id="slide-14" data-title="La stack" data-etapes="8" aria-label="La stack">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8Z M2 12l10 5 10-5 M2 16l10 5 10-5" /></svg></div>
+            <div><p class="qui__kicker" data-texte="03 — Choix techniques"></p><h2 class="qui__titre pitch__titre">La stack</h2></div>
+          </header>
+          <div class="st14">
+            <div class="st14__intro"><p>Full-Code</p><span>Un outil pour chaque besoin</span></div>
+
+            <div class="st14__scene st14__react">
+              <div class="st14__react-origine"><p class="st14__petit">D’où je pars</p><p class="st14__grand">Ma formation</p><span>Développeur web</span></div>
+              <svg class="st14__pont" viewBox="0 0 1680 440" aria-hidden="true"><path d="M 470 225 H 670 M 1010 225 H 1210" /></svg>
+              <div class="st14__react-logo verre"><img src="../assets/logos/react.svg" alt="React"><strong>React</strong></div>
+              <div class="st14__react-cible"><p class="st14__petit">Où je vais</p><p class="st14__grand">Les postes<br>que je vise</p></div>
+            </div>
+
+            <div class="st14__scene st14__typescript">
+              <div class="st14__entete-scene"><h3>TypeScript</h3><p>Les erreurs dans l’éditeur, avant le navigateur</p></div>
+              <div class="st14__editeur st14__type"><div class="st14__onglet"><span>TS</span>src/types/project.ts <small>Extrait</small></div><pre><code><span class="t-mot">export type</span> <span class="t-v">Project</span> = {
+  id: <span class="t-k">string</span>;
+  <span class="st14__type-title">title: <span class="t-k">string</span>;</span>
+  cover: <span class="t-k">string</span>;
+  <span class="t-c">// autres champs…</span>
+};</code></pre></div>
+              <div class="st14__editeur st14__json"><div class="st14__onglet"><span>{ }</span>data/projects.json <small>Extrait</small></div><pre><code>{
+  <span class="t-k">"id"</span>: <span class="t-s">"kasa"</span>,
+  <span class="st14__json-title"><span class="t-k">"title"</span>: <span class="t-s">"Kasa"</span>,</span><span class="st14__manquant">← champ oublié</span>
+  <span class="t-k">"cover"</span>: <span class="t-s">"/projets/kasa/cover.webp"</span>
+}</code></pre></div>
+              <div class="st14__verification"><span>Projects.tsx</span><code><span class="t-mot">const</span> <span class="st14__affectation">projects</span>: <span class="t-v">Project</span>[] = data;</code><span class="st14__diagnostic">⚠ La propriété « title » est absente</span></div>
+              <p class="st14__contrat">Le type décrit ce qu’un projet doit contenir</p>
+            </div>
+
+            <div class="st14__scene st14__vite">
+              <div class="st14__entete-scene"><h3>Vite</h3><p class="st14__vite-raison">Démarrer vite en développement</p></div>
+              <div class="st14__terminal"><div class="st14__onglet">Terminal</div><pre><span class="st14__invite">❯</span> <span class="st14__commande">npm run dev</span></pre><p class="st14__pret"><b>✓</b> Serveur prêt</p><code class="st14__local">localhost:5173</code><p class="st14__build-pret"><b>✓</b> Build terminé</p><code class="st14__dist">dist/</code></div>
+              <svg class="st14__flux" viewBox="0 0 1680 500" aria-hidden="true"><path d="M 690 285 H 865 M 846 273 L 865 285 846 297" /></svg>
+              <div class="st14__dev-apercu verre"><p>localhost:5173</p><div><span>Raphaël Grondin</span><strong>FULL-STACK</strong><span class="st14__dev-statut">● Prêt à développer</span></div></div>
+              <div class="st14__production"><p class="st14__petit">Version optimisée</p><div class="st14__fichiers"><div><b>HTML</b><span>index.html</span></div><div><b>JS</b><span>JavaScript</span></div><div><b>CSS</b><span>Styles</span></div></div><p class="st14__livrable">Le site prêt à être publié</p><ul class="st14__optimisations" role="list"><li><b>✓</b>Regroupé : un seul fichier JS, un seul CSS</li><li><b>✓</b>Minifié : sans espaces ni commentaires</li><li><b>✓</b>Le code inutilisé, retiré</li></ul></div>
+            </div>
+
+            <div class="st14__scene st14__sass">
+              <div class="st14__entete-scene"><h3>Sass</h3><p>Écrire une fois, réutiliser dans les composants</p></div>
+              <div class="st14__editeur st14__sass-code"><div class="st14__onglet"><span>S</span>Variables et mixin <small>Extrait</small></div><pre><code><span class="t-v">$glass-blur</span>: <span class="t-n">22px</span>;
+
+<span class="t-mot">@mixin</span> <span class="t-f">glass</span> {
+  <span class="t-k">backdrop-filter</span>: <span class="t-f">blur</span>(<span class="t-v">$glass-blur</span>);
+}</code></pre><p class="st14__sass-note">Une valeur partagée · un bloc de styles réutilisable</p></div>
+              <svg class="st14__distribution" viewBox="0 0 1680 500" aria-hidden="true"><path d="M 810 292 H 890 V 175 H 970 M 890 292 H 970 M 890 292 V 409 H 970" /></svg>
+              <div class="st14__composants"><div class="st14__composant"><span>Hero</span><code>@include glass(…)</code></div><div class="st14__composant"><span>En-tête</span><code>@include glass(…)</code></div><div class="st14__composant"><span>Filtres</span><code>@include glass(…)</code></div></div>
+            </div>
+
+            <div class="st14__scene st14__router">
+              <div class="st14__entete-scene"><h3>React Router</h3><p>Une adresse pour chaque projet</p></div>
+              <code class="st14__route">/projet/<span>:id</span></code>
+              <svg class="st14__routes" viewBox="0 0 1680 500" aria-hidden="true"><path d="M 840 140 V 168 H 425 V 195 M 840 168 H 1255 V 195" /></svg>
+              <figure class="st14__fiche st14__fiche--kasa"><figcaption><span>portfolio…</span><strong>/projet/kasa</strong></figcaption><img src="../assets/projets/kasa-cover.webp" alt="Projet Kasa"></figure>
+              <figure class="st14__fiche st14__fiche--bluel"><figcaption><span>portfolio…</span><strong>/projet/sophie-bluel</strong></figcaption><img src="../assets/projets/sophie-bluel-cover.webp" alt="Projet Sophie Bluel"></figure>
+            </div>
+
+            <ol class="st14__outils" aria-label="Les cinq outils de la stack">
+              <li><img src="../assets/logos/react.svg" alt=""><span>React</span></li>
+              <li><img src="../assets/logos/typescript.svg" alt=""><span>TypeScript</span></li>
+              <li><img src="../assets/logos/vite.svg" alt=""><span>Vite</span></li>
+              <li><img src="../assets/logos/sass.svg" alt=""><span>Sass</span></li>
+              <li><img src="../assets/logos/react-router-fond-sombre.svg" alt=""><span>React Router</span></li>
+            </ol>
+          </div>
+        </div>
+      
+        <template class="slide-script">Passons aux choix techniques. J'ai pris l'option Full-Code, avec un outil pour chaque besoin.
+
+`[→]` Pour l'interface, React, parce que c'est la technologie de ma formation, et celle des postes que je vise.
+
+`[→]` J'y ai ajouté TypeScript, pour voir les erreurs dans l'éditeur, avant qu'elles arrivent dans le navigateur.
+
+`[→]` Par exemple, un type décrit ce que doit contenir un projet : si j'oublie un champ dans le fichier JSON, l'éditeur me le signale tout de suite.
+
+`[→]` Pour construire le site, Vite, pour sa rapidité : le serveur de développement démarre presque instantanément,
+
+`[→]` et la construction produit un site optimisé.
+
+`[→]` Pour les styles, Sass, qui porte le design system : les variables et les mixins évitent de répéter les valeurs.
+
+`[→]` Et pour la navigation, React Router, pour que chaque projet ait sa propre adresse.</template>
+      </section>
+
+      <section class="slide" id="slide-15" data-title="Hébergement, services et animations" data-etapes="12" aria-label="Hébergement, services et animations">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /></svg></div>
+            <div><p class="qui__kicker" data-texte="03 — Choix techniques"></p><h2 class="qui__titre pitch__titre">Hébergement, services et animations</h2></div>
+          </header>
+          <div class="hb15">
+            <!-- 1. GitHub → Vercel → le site : le paquet passe derrière les blocs -->
+            <div class="hb15__scene hb15__deploiement">
+              <svg class="hb15__liens hb15__liens--deploiement" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 412 250 H 628 M 610 238 L 628 250 610 262" /><path d="M 1052 250 H 1268 M 1250 238 L 1268 250 1250 262" /></svg>
+              <span class="hb15__paquet" aria-hidden="true"></span>
+              <div class="hb15__noeud hb15__noeud--github"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v12" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg><strong>GitHub</strong><span>Mon dépôt</span></div>
+              <div class="hb15__noeud hb15__noeud--vercel"><svg class="hb15__triangle" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22.5 21h-21Z" /></svg><strong>Vercel</strong><span>L’hébergeur</span><p class="hb15__etat hb15__etat--construction">● Construction…</p><p class="hb15__etat hb15__etat--deploye">✓ Déployé</p></div>
+              <div class="hb15__noeud hb15__noeud--site"><p class="hb15__adresse">portfolio-grd-raphael.vercel.app</p><div class="hb15__site"><span>Raphaël Grondin</span><strong>FULL-STACK</strong><p class="hb15__maj">✓ Mis à jour</p></div><span class="hb15__flash" aria-hidden="true"></span></div>
+              <div class="hb15__terminal"><span class="hb15__invite">❯</span> <span class="hb15__push">git push</span></div>
+            </div>
+
+            <!-- 2. vercel.json : toutes les adresses vers index.html, puis le rechargement sans lui -->
+            <div class="hb15__scene hb15__reecriture">
+              <figure class="vsc hb15__config" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext">{ }</span>vercel.json</span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-p">{</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">2</span><code>  <span class="t-k">"rewrites"</span><span class="t-p">: [{</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--source"><span class="vsc__num">3</span><code>    <span class="t-k">"source"</span><span class="t-p">:</span> <span class="t-s">"/(.*)"</span><span class="t-p">,</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--destination"><span class="vsc__num">4</span><code>    <span class="t-k">"destination"</span><span class="t-p">:</span> <span class="t-s">"/index.html"</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">5</span><code>  <span class="t-p">}]</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">6</span><code><span class="t-p">}</span></code></p>
+                </div>
+              </figure>
+              <p class="hb15__sans">✕ Sans vercel.json</p>
+              <svg class="hb15__liens hb15__liens--reecriture" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 1184 118 C 1272 118 1272 248 1356 248" /><path d="M 1184 248 H 1356" /><path d="M 1184 378 C 1272 378 1272 248 1356 248 M 1340 238 L 1356 248 1340 258" /></svg>
+              <code class="hb15__url" style="top: 80px">/</code>
+              <code class="hb15__url" style="top: 210px">/projet/kasa</code>
+              <code class="hb15__url" style="top: 340px">/projet/sophie-bluel</code>
+              <div class="hb15__index"><strong>index.html</strong><span>La page de l’application</span></div>
+              <div class="hb15__navigateur">
+                <p class="hb15__barre"><svg class="hb15__recharger" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /></svg><span>portfolio-grd-raphael.vercel.app</span><b>/projet/kasa</b></p>
+                <img src="../assets/projets/kasa-cover.webp" alt="">
+                <div class="hb15__erreur"><p>404: NOT_FOUND</p></div>
+              </div>
+              <p class="hb15__legende-404">Une erreur 404 de l’hébergeur</p>
+            </div>
+
+            <!-- 3. Le formulaire : Formspree reçoit le message et me l'envoie par e-mail -->
+            <div class="hb15__scene hb15__formulaire">
+              <svg class="hb15__liens" viewBox="0 0 1680 590" aria-hidden="true"><path class="hb15__lien--fetch" d="M 432 260 H 628 M 610 248 L 628 260 610 272" /><path class="hb15__lien--mail" d="M 1052 260 H 1268 M 1250 248 L 1268 260 1250 272" /></svg>
+              <code class="hb15__libelle hb15__libelle--fetch">fetch · POST</code>
+              <code class="hb15__libelle hb15__libelle--mail">e-mail</code>
+              <span class="hb15__enveloppe" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 5L2 7" /></svg></span>
+              <div class="hb15__form"><p class="hb15__form-titre">Contact</p><span class="hb15__champ">Nom</span><span class="hb15__champ">E-mail</span><span class="hb15__champ hb15__champ--message">Message</span><span class="hb15__envoyer">Envoyer</span></div>
+              <p class="hb15__vu">✓ Vu pendant la visite</p>
+              <div class="hb15__noeud hb15__noeud--formspree"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg><strong>Formspree</strong><span>Reçoit le formulaire</span></div>
+              <div class="hb15__noeud hb15__noeud--mail"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 5L2 7" /></svg><strong>Ma boîte mail</strong><span>Le message, par e-mail</span></div>
+            </div>
+
+            <!-- 4. La balance : le fléau pivote sur la colonne, les plateaux suspendus restent droits -->
+            <div class="hb15__scene hb15__balance">
+              <p class="hb15__verdict">Disproportionné</p>
+              <svg class="hb15__pied" viewBox="0 0 1680 590" aria-hidden="true"><path class="hb15__colonne" d="M 830 200 H 850 L 856 548 H 824 Z" /><path class="hb15__socle" d="M 760 548 H 920 Q 938 548 945 562 L 952 578 H 728 L 735 562 Q 742 548 760 548 Z" /></svg>
+              <svg class="hb15__fleau" viewBox="0 0 1040 40" aria-hidden="true"><path d="M 20 15 L 520 8 L 1020 15 V 25 L 520 32 L 20 25 Z" /></svg>
+              <div class="hb15__plateau hb15__plateau--gauche">
+                <svg class="hb15__suspente" viewBox="0 0 440 300" aria-hidden="true"><circle class="hb15__anneau-bout" cx="220" cy="10" r="9" /><path d="M 220 19 V 38" /><path d="M 20 260 V 58 Q 20 38 40 38 H 400 Q 420 38 420 58 V 260" /><path class="hb15__coupe" d="M 6 260 H 434 C 404 308 36 308 6 260 Z" /></svg>
+                <div class="hb15__charges"><div class="hb15__charge hb15__charge--form"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M7 8h10M7 12h10M7 16h5" /></svg>Un seul formulaire</div></div>
+              </div>
+              <div class="hb15__plateau hb15__plateau--droite">
+                <svg class="hb15__suspente" viewBox="0 0 440 300" aria-hidden="true"><circle class="hb15__anneau-bout" cx="220" cy="10" r="9" /><path d="M 220 19 V 38" /><path d="M 20 260 V 58 Q 20 38 40 38 H 400 Q 420 38 420 58 V 260" /><path class="hb15__coupe" d="M 6 260 H 434 C 404 308 36 308 6 260 Z" /></svg>
+                <div class="hb15__charges"><div class="hb15__charge hb15__bloc"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6" /></svg>Écrire une API</div><div class="hb15__charge hb15__bloc"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2" /><rect x="2" y="13" width="20" height="8" rx="2" /><path d="M6 7h.01M6 17h.01" /></svg>L’héberger</div></div>
+              </div>
+              <span class="hb15__moyeu" aria-hidden="true"></span>
+            </div>
+
+            <!-- 5. Aucune bibliothèque d'animation -->
+            <div class="hb15__scene hb15__bibli">
+              <div class="hb15__paquet-npm">
+                <div class="hb15__cube"><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5Z" /><path d="m3 8 9 5 9-5M12 13v8" /></svg></div>
+                <div><strong>Framer Motion</strong><span>Une bibliothèque d’animation</span></div>
+                <code class="hb15__commande-npm"><span class="hb15__invite">❯</span> <span class="hb15__install">npm install framer-motion</span></code>
+              </div>
+              <svg class="hb15__rature" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 425 318 L 935 312" /></svg>
+              <p class="hb15__tampon">Pas ajoutée</p>
+              <p class="hb15__aucune">Aucune bibliothèque d’animation</p>
+            </div>
+
+            <!-- 6. Tout en CSS : trois démonstrations qui tournent vraiment en CSS -->
+            <div class="hb15__scene hb15__css">
+              <p class="hb15__css-titre">Tout est en <b>CSS</b></p>
+              <div class="hb15__demos">
+                <div class="hb15__demo">
+                  <div class="hb15__ecran"><img src="../assets/projets/kasa-cover.webp" alt=""><img class="hb15__fondu" src="../assets/projets/mon-vieux-grimoire-cover.webp" alt=""></div>
+                  <h3>Le fondu de l’aperçu</h3>
+                  <pre class="hb15__css-code"><span class="t-k">transition</span>: <span class="t-s">opacity</span> <span class="t-n">.4s</span> <span class="t-s">ease</span>;</pre>
+                </div>
+                <div class="hb15__demo">
+                  <div class="hb15__ecran"><div class="hb15__page"><div class="hb15__defile"><i class="hb15__p-hero"></i><i></i><i></i><i class="hb15__p-court"></i><i class="hb15__p-carte"></i><i class="hb15__p-carte"></i><i></i><i class="hb15__p-court"></i></div></div></div>
+                  <h3>Le défilement</h3>
+                  <pre class="hb15__css-code"><span class="t-k">scroll-behavior</span>: <span class="t-s">smooth</span>;</pre>
+                </div>
+                <div class="hb15__demo">
+                  <div class="hb15__ecran"><div class="hb15__mini-badge"><svg class="hb15__mini-anneau" viewBox="0 0 160 160" aria-hidden="true"><text><textPath href="#hb15-cercle" textLength="389" lengthAdjust="spacing">Curriculum vitae · PDF · Curriculum vitae · PDF ·</textPath></text></svg><svg class="hb15__mini-etoile" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg></div></div>
+                  <h3>La rotation du badge du CV</h3>
+                  <pre class="hb15__css-code"><span class="t-mot">@keyframes</span> <span class="t-f">badge-spin</span> {
+  <span class="t-sel">to</span> { <span class="t-k">transform</span>: <span class="t-f">rotate</span>(<span class="t-n">360deg</span>); }
+}</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. Le texte circulaire : un cercle, puis le texte qui le suit (textPath) -->
+            <div class="hb15__scene hb15__svg">
+              <div class="hb15__badge">
+                <svg class="hb15__anneau" viewBox="0 0 160 160" aria-hidden="true">
+                  <defs><path id="hb15-cercle" d="M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0" /></defs>
+                  <path class="hb15__guide" d="M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0" />
+                  <text><textPath class="hb15__texte-cercle" href="#hb15-cercle" textLength="389" lengthAdjust="spacing" startOffset="0%">Curriculum vitae · PDF · Curriculum vitae · PDF ·</textPath></text>
+                </svg>
+                <svg class="hb15__etoile-grande" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84" /><path d="M14 29l72 42" /><path d="M14 71l72-42" /></svg>
+              </div>
+              <p class="hb15__svg-legende">Un simple SVG</p>
+              <figure class="vsc hb15__svg-code" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext hb15__ext-tsx">TSX</span>Hero.tsx <small class="hb15__extrait">Extrait</small></span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne hb15__ligne--cercle"><span class="vsc__num">1</span><code><span class="hb15__chev">&lt;</span><span class="hb15__tag">path</span> <span class="t-k">id</span>=<span class="t-s">"hero-badge-circle"</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--cercle"><span class="vsc__num">2</span><code>      <span class="t-k">d</span>=<span class="t-s">"M 18 80 a 62 62 0 1 1 124 0 …"</span> <span class="hb15__chev">/&gt;</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--texte"><span class="vsc__num">3</span><code><span class="hb15__chev">&lt;</span><span class="hb15__tag">text</span><span class="hb15__chev">&gt;</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--texte"><span class="vsc__num">4</span><code>  <span class="hb15__chev">&lt;</span><span class="hb15__tag">textPath</span> <span class="t-k">href</span>=<span class="t-s">"#hero-badge-circle"</span><span class="hb15__chev">&gt;</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--texte"><span class="vsc__num">5</span><code>    Curriculum vitae · PDF · …</code></p>
+                  <p class="vsc__ligne hb15__ligne--texte"><span class="vsc__num">6</span><code>  <span class="hb15__chev">&lt;/</span><span class="hb15__tag">textPath</span><span class="hb15__chev">&gt;</span></code></p>
+                  <p class="vsc__ligne hb15__ligne--texte"><span class="vsc__num">7</span><code><span class="hb15__chev">&lt;/</span><span class="hb15__tag">text</span><span class="hb15__chev">&gt;</span></code></p>
+                </div>
+              </figure>
+            </div>
+
+            <!-- 8. Le principe, puis les seules dépendances du site -->
+            <div class="hb15__scene hb15__principe">
+              <div class="hb15__principe-tete">
+                <p class="hb15__principe-texte">Le <span class="hb15__natif">natif</span><br>avant les bibliothèques</p>
+              </div>
+              <figure class="vsc hb15__dependances" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext">{ }</span>package.json <small class="hb15__extrait">Extrait</small></span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-k">"dependencies"</span><span class="t-p">: {</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">2</span><code>  <span class="t-k">"react"</span><span class="t-p">:</span> <span class="t-s">"^19.3.1"</span><span class="t-p">,</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">3</span><code>  <span class="t-k">"react-dom"</span><span class="t-p">:</span> <span class="t-s">"^19.3.1"</span><span class="t-p">,</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">4</span><code>  <span class="t-k">"react-router-dom"</span><span class="t-p">:</span> <span class="t-s">"^7.18.4"</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">5</span><code><span class="t-p">}</span></code></p>
+                </div>
+              </figure>
+              <p class="hb15__accolade hb15__accolade--react">React</p>
+              <p class="hb15__accolade hb15__accolade--router">React Router</p>
+              <p class="hb15__rien">Aucune autre dépendance</p>
+            </div>
+
+            <ol class="hb15__rail" aria-label="Les trois sujets de la slide">
+              <li><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /></svg><span>Hébergement</span><small>Vercel</small></li>
+              <li><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 5L2 7" /></svg><span>Formulaire</span><small>Formspree</small></li>
+              <li><svg class="hb15__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /></svg><span>Animations</span><small>CSS natif</small></li>
+            </ol>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : schéma GitHub → Vercel → visiteur, avec Formspree à côté]
+
+`[→]` Une fois construit, le site est hébergé sur Vercel, relié à mon dépôt GitHub :
+
+`[→]` ainsi, chaque `git push` met le site à jour.
+
+`[→]` Il a seulement fallu ajouter un petit fichier de configuration, qui renvoie toutes les adresses vers la page de l'application.
+
+`[→]` Sans lui, recharger une fiche projet donnerait une erreur 404 de l'hébergeur.
+
+`[→]` Reste le formulaire : j'ai choisi Formspree, que je vous ai montré pendant la visite,
+
+`[→]` parce qu'écrire et héberger une API pour un seul formulaire aurait été disproportionné.
+
+`[→]` Côté animations, en revanche, je n'ai pas ajouté de bibliothèque comme Framer Motion :
+
+`[→]` tout est en CSS : le fondu de l'aperçu, le défilement, la rotation du badge du CV.
+
+`[→]` Et le texte qui tourne autour de l'étoile est un simple SVG, qui fait suivre un cercle au texte.
+
+`[→]` Au final, en dehors de React et de React Router, le site n'a aucune dépendance.</template>
+      </section>
+
+      <section class="slide" id="slide-16" data-title="Les tests" data-etapes="15" aria-label="Les tests">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg></div>
+            <div><p class="qui__kicker" data-texte="04 — Mesurer la qualité"></p><h2 class="qui__titre pitch__titre">Les tests</h2></div>
+          </header>
+          <div class="ts16">
+            <!-- Arrivée : les deux outils -->
+            <div class="ts16__scene ts16__intro">
+              <div class="ts16__outil ts16__outil--lighthouse"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 22h8" /><path d="m10 22 .8-12h2.4l.8 12" /><path d="M9.5 10h5" /><path d="M10.5 10V6.5h3V10" /><path d="M12 4.5v-2" /><path d="M3 5l5 2.5M21 5l-5 2.5" /></svg><strong>Lighthouse</strong><span>Intégré à Chrome</span></div>
+              <div class="ts16__outil ts16__outil--wave"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5 0" /><path d="M2 16c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5 0" /></svg><strong>WAVE</strong><span>Accessibilité</span></div>
+            </div>
+
+            <!-- Lighthouse : quatre jauges, puis le robots.txt -->
+            <div class="ts16__scene ts16__lighthouse">
+              <div class="ts16__entete"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 22h8" /><path d="m10 22 .8-12h2.4l.8 12" /><path d="M9.5 10h5" /><path d="M10.5 10V6.5h3V10" /><path d="M12 4.5v-2" /><path d="M3 5l5 2.5M21 5l-5 2.5" /></svg><h3>Lighthouse</h3><p>L’outil d’audit intégré à Chrome</p></div>
+              <div class="ts16__jauges">
+                <div class="ts16__jauge"><svg viewBox="0 0 220 220" aria-hidden="true"><circle class="ts16__piste" cx="110" cy="110" r="96" /><circle class="ts16__arc" cx="110" cy="110" r="96" /></svg><b>100</b><span>Performance</span></div>
+                <div class="ts16__jauge"><svg viewBox="0 0 220 220" aria-hidden="true"><circle class="ts16__piste" cx="110" cy="110" r="96" /><circle class="ts16__arc" cx="110" cy="110" r="96" /></svg><b>100</b><span>Accessibilité</span></div>
+                <div class="ts16__jauge"><svg viewBox="0 0 220 220" aria-hidden="true"><circle class="ts16__piste" cx="110" cy="110" r="96" /><circle class="ts16__arc" cx="110" cy="110" r="96" /></svg><b>100</b><span>Bonnes pratiques</span></div>
+                <div class="ts16__jauge ts16__jauge--seo"><svg viewBox="0 0 220 220" aria-hidden="true"><circle class="ts16__piste" cx="110" cy="110" r="96" /><circle class="ts16__arc" cx="110" cy="110" r="96" /><circle class="ts16__manque" cx="110" cy="110" r="96" /></svg><b>92</b><span>SEO</span></div>
+              </div>
+              <div class="ts16__emplacement"><code>robots.txt</code><span>Page HTML reçue</span></div>
+              <figure class="vsc ts16__robots" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__chemin">public/</span>robots.txt</span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-k">User-agent</span><span class="t-p">:</span> <span class="t-s">*</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">2</span><code><span class="t-k">Allow</span><span class="t-p">:</span> <span class="t-s">/</span></code></p>
+                </div>
+              </figure>
+              <p class="ts16__ajoute">✓ Ajouté</p>
+            </div>
+
+            <!-- WAVE : le bilan, puis l'alerte sur la phrase du pied de page -->
+            <div class="ts16__scene ts16__wave">
+              <div class="ts16__entete"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5 0" /><path d="M2 16c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5 0" /></svg><h3>WAVE</h3><p>Spécialisé dans l’accessibilité</p></div>
+              <div class="ts16__bilan">
+                <div class="ts16__compte ts16__compte--erreur"><span class="ts16__pastille-erreur" aria-hidden="true">✕</span><b>0</b><span>Erreur</span></div>
+                <div class="ts16__compte ts16__compte--alerte"><span class="ts16__pastille-alerte" aria-hidden="true">!</span><b>2</b><span>Points à vérifier</span></div>
+              </div>
+              <div class="ts16__pied">
+                <p class="ts16__phrase">Voir mes <u>projets</u>, mon <u>parcours</u> ou me <u>contacter</u>.</p>
+                <p class="ts16__pied-bas">© 2026 Raphaël Grondin</p>
+                <span class="ts16__drapeau" aria-hidden="true">!</span>
+              </div>
+              <svg class="ts16__cadre" viewBox="0 0 1680 590" aria-hidden="true"><rect x="626" y="136" width="1028" height="150" rx="18" /></svg>
+              <code class="ts16__nav">&lt;nav aria-label="Navigation de bas de page"&gt;</code>
+              <div class="ts16__bulle"><code>Possible heading</code><p>Un titre oublié ?</p></div>
+              <p class="ts16__reponse"><b>✓</b> C’est un menu</p>
+            </div>
+
+            <!-- Le contraste sur fond flouté : les outils ne savent pas le mesurer -->
+            <div class="ts16__scene ts16__contraste">
+              <div class="ts16__entete"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18Z" /></svg><h3>Le contraste sur fond flouté</h3></div>
+              <div class="ts16__demo">
+                <i class="ts16__tache ts16__tache--orange"></i><i class="ts16__tache ts16__tache--rouge"></i><i class="ts16__tache ts16__tache--bleue"></i>
+                <div class="ts16__verre"><span>Raphaël Grondin</span><strong>FULL-STACK</strong></div>
+                <span class="ts16__cible" aria-hidden="true"></span>
+                <p class="ts16__mesure">Contraste : <b class="ts16__valeur">?</b></p>
+              </div>
+              <p class="ts16__outils-non">Lighthouse et WAVE ne le mesurent pas</p>
+            </div>
+
+            <!-- Le calcul de l'IA : trois couches, la couleur réelle, la formule -->
+            <div class="ts16__scene ts16__calcul-verre">
+              <div class="ts16__entete"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7Z" /><path d="m2 12 10 5 10-5" /><path d="m2 17 10 5 10-5" /></svg><h3>Le contraste sur le verre</h3></div>
+              <div class="ts16__methode">
+                <p class="ts16__methode-tete"><span class="ts16__ia">IA</span>Calcul des contrastes</p>
+                <p class="ts16__etape-ia"><b>1</b>Les couleurs, prises dans le code</p>
+                <p class="ts16__etape-ia"><b>2</b>Le pire cas : le centre de la lueur la plus claire</p>
+                <p class="ts16__etape-ia"><b>3</b>La couleur réelle derrière le texte</p>
+              </div>
+              <div class="ts16__formule">
+                <p class="ts16__formule-tete">La formule des WCAG</p>
+                <p><span>Luminance</span><code>L = 0,2126 R + 0,7152 G + 0,0722 B</code></p>
+                <p><span>Ratio</span><code>(L clair + 0,05) / (L sombre + 0,05)</code></p>
+                <p class="ts16__application"><code>= (1 + 0,05) / (0,079 + 0,05)</code><b>≈ 8,2 : 1</b></p>
+                <p class="ts16__minimum">Minimum WCAG AA : 4,5 : 1</p>
+              </div>
+              <div class="ts16__pile">
+                <div class="ts16__couche ts16__couche--fond"><i></i></div>
+                <div class="ts16__couche ts16__couche--lueur"><i></i></div>
+                <div class="ts16__couche ts16__couche--verre"><i></i></div>
+                <span class="ts16__pire" aria-hidden="true"></span>
+                <p class="ts16__aa">Aa</p>
+              </div>
+              <p class="ts16__etiquette ts16__etiquette--verre"><b>Le verre</b><code data-ligne="rgb(10, 20, 64) à 20 %"></code></p>
+              <p class="ts16__etiquette ts16__etiquette--lueur"><b>La lueur orange</b><code data-ligne="#d9581f à 70 %"></code></p>
+              <p class="ts16__etiquette ts16__etiquette--fond"><b>Le fond bleu nuit</b><code data-ligne="#0b1a4a"></code></p>
+              <svg class="ts16__fleche-pile" viewBox="0 0 1680 710" aria-hidden="true"><path d="M 1180 420 V 482 M 1168 470 L 1180 484 1192 470" /></svg>
+              <div class="ts16__resultat"><span>Aa</span></div>
+              <p class="ts16__resultat-legende"><b>Couleur réelle derrière le texte</b><code>#7e3c30</code></p>
+            </div>
+
+            <!-- La vérification à l'écran : le Colour Contrast Analyser -->
+            <div class="ts16__scene ts16__cca">
+              <div class="ts16__entete"><svg class="ts16__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 22 1-1h3l9-9" /><path d="M3 21v-3l9-9" /><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z" /></svg><h3>Vérifié à l’écran</h3><p>Colour Contrast Analyser : la pipette prend un vrai pixel</p></div>
+              <p class="ts16__cca-ratio ts16__cca-ratio--rouge"><span>Lueur rouge</span><b>8,2 : 1</b></p>
+              <figure class="ts16__capture ts16__capture--rouge"><img src="../captures/cca-lueur-rouge-8-2.png" alt="Colour Contrast Analyser : texte #F1EBED sur #712D4B, ratio 8,2:1"><svg viewBox="0 0 405 540" aria-hidden="true"><ellipse cx="345" cy="336" rx="66" ry="30" /></svg></figure>
+              <figure class="ts16__capture ts16__capture--bleue"><img src="../captures/cca-lueur-bleue-7.png" alt="Colour Contrast Analyser : texte #E9EDF5 sur #204AA1, ratio 7:1"><svg viewBox="0 0 405 540" aria-hidden="true"><ellipse cx="343" cy="336" rx="66" ry="30" /></svg></figure>
+              <p class="ts16__cca-ratio ts16__cca-ratio--bleue"><span>Lueur bleue</span><b>7 : 1</b></p>
+              <p class="ts16__cca-minimum">Bien au-dessus du minimum de 4,5 : 1</p>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : les scores Lighthouse et le bilan WAVE]
+
+Voyons maintenant comment j'ai mesuré la qualité du site.
+
+`[→]` Je commence par Lighthouse, l'outil d'audit intégré à Chrome : il donne 100 en performance, en accessibilité et en bonnes pratiques.
+
+`[→]` Seul le SEO était bloqué à 92, à cause du `vercel.json` : il renvoyait la page du site à la place du `robots.txt`, un petit fichier qui indique aux moteurs de recherche ce qu'ils ont le droit d'explorer.
+
+`[→]` Lighthouse ne trouvait donc pas de vrai `robots.txt` : j'en ai ajouté un.
+
+`[→]` J'ai complété avec WAVE, spécialisé dans l'accessibilité : il ne relève aucune erreur.
+
+`[→]` Il signale seulement des points à vérifier, comme la phrase du pied de page, écrite en grand :
+
+`[→]` il demande si ce n'est pas un titre oublié.
+
+`[→]` C'est voulu : c'est un menu.
+
+`[→]` Mais aucun de ces outils ne sait mesurer un contraste sur un fond flouté.
+
+[ÉCRAN : le titre « Le contraste sur le verre », et à droite un empilement de trois couches, de bas en haut : le fond bleu nuit `#0b1a4a`, la lueur orange `#d9581f` à 70 %, le verre `rgb(10, 20, 64)` à 20 %. Un texte blanc « Aa » posé dessus.]
+
+`[→]` J'ai donc procédé en deux temps. D'abord, j'ai fait calculer ces contrastes par l'IA.
+
+`[→]` Elle a pris les couleurs dans le code, et s'est placée dans le pire cas : le texte au centre de la lueur la plus claire.
+
+[ÉCRAN : une flèche sous l'empilement, vers la couleur obtenue : un carré `#7e3c30`, légendé « couleur réelle derrière le texte »]
+
+[ÉCRAN : la formule, en deux lignes, avec le résultat de l'exemple :
+Luminance : L = 0,2126 R + 0,7152 G + 0,0722 B
+Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8,2 : 1 — minimum WCAG AA : 4,5 : 1]
+
+`[→]` Elle a superposé la lueur et le verre pour obtenir la couleur réelle derrière le texte,
+
+`[→]` puis elle a appliqué la formule des WCAG.
+
+[ÉCRAN : les deux captures du Colour Contrast Analyser côte à côte (`captures/cca-lueur-rouge-8-2.png` et `captures/cca-lueur-bleue-7.png`), avec le ratio de chacune entouré]
+
+`[→]` Ensuite, je les ai vérifiés moi-même à l'écran, avec le Colour Contrast Analyser : sa pipette prend la couleur d'un vrai pixel.
+
+`[→]` Sur une lueur rouge, j'obtiens 8,2 pour 1, et sur une lueur bleue, 7 pour 1 : bien au-dessus du minimum de 4,5.</template>
+      </section>
+
+      <section class="slide" id="slide-17" data-title="Vitesse et référencement" data-etapes="8" aria-label="Vitesse et référencement">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg></div>
+            <div><p class="qui__kicker" data-texte="04 — Mesurer la qualité"></p><h2 class="qui__titre pitch__titre">Vitesse et référencement</h2></div>
+          </header>
+          <div class="vr17">
+            <!-- 1. Le premier affichage, puis la place réservée aux images -->
+            <div class="vr17__scene vr17__affichage">
+              <div class="vr17__stat vr17__stat--affichage"><p>Premier affichage</p><b class="vr17__chiffre">0,6 s</b></div>
+              <div class="vr17__stat vr17__stat--decalage"><p>Décalage pendant le chargement</p><b>0,004</b><small>Score CLS de Lighthouse</small></div>
+              <div class="vr17__navigateur">
+                <p class="vr17__barre-nav"><span class="vsc__points"><i></i><i></i><i></i></span><span>portfolio-grd-raphael.vercel.app</span></p>
+                <div class="vr17__page">
+                  <div class="vr17__hero"><span>Raphaël Grondin, développeur web</span><strong>FULL-STACK</strong></div>
+                  <div class="vr17__reserve"><img src="../assets/projets/kasa-cover.webp" alt=""><span>Place réservée</span></div>
+                  <div class="vr17__lignes"><i></i><i></i><i></i><i class="vr17__court"></i></div>
+                  <span class="vr17__guide" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="vr17__axe"><span class="vr17__piste"></span><span class="vr17__rempli"></span><span class="vr17__repere"><i></i><b>0,6 s</b></span><small class="vr17__axe-debut">0 s</small><small class="vr17__axe-fin">1 s</small></div>
+            </div>
+
+            <!-- 2. Les médias allégés : les couvertures, puis les vidéos -->
+            <div class="vr17__scene vr17__medias">
+              <div class="vr17__couvertures">
+                <div class="vr17__vignettes">
+                  <img src="../assets/projets/sophie-bluel-cover.webp" alt="">
+                  <img src="../assets/projets/kasa-cover.webp" alt="">
+                  <img src="../assets/projets/mon-vieux-grimoire-cover.webp" alt="">
+                  <img src="../assets/projets/gym-tracker-cover.webp" alt="">
+                </div>
+                <p class="vr17__dimensions"><span>Les 4 couvertures</span><b class="vr17__taille">3 200 × 2 400 px</b></p>
+                <div class="vr17__poids"><i></i><b class="vr17__poids-valeur">1,1 Mo</b></div>
+              </div>
+              <div class="vr17__videos">
+                <div class="vr17__video">
+                  <div class="vr17__vignette-video"><img src="../assets/projets/sophie-bluel-cover.webp" alt=""><span aria-hidden="true">▶</span></div>
+                  <p class="vr17__video-nom">Sophie Bluel</p>
+                  <div class="vr17__ligne-poids vr17__ligne-poids--mp4"><i style="--w: 1100px"></i><span>MP4 · 3,0 Mo</span></div>
+                  <div class="vr17__ligne-poids vr17__ligne-poids--webm"><i style="--w: 195px"></i><span>WebM · 532 Ko</span></div>
+                </div>
+                <div class="vr17__video">
+                  <div class="vr17__vignette-video"><img src="../assets/projets/mon-vieux-grimoire-cover.webp" alt=""><span aria-hidden="true">▶</span></div>
+                  <p class="vr17__video-nom">Mon Vieux Grimoire</p>
+                  <div class="vr17__ligne-poids vr17__ligne-poids--mp4"><i style="--w: 587px"></i><span>MP4 · 1,6 Mo</span></div>
+                  <div class="vr17__ligne-poids vr17__ligne-poids--webm"><i style="--w: 131px"></i><span>WebM · 356 Ko</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Le résultat Google et le seul h1 de la page -->
+            <div class="vr17__scene vr17__seo">
+              <div class="vr17__google">
+                <p class="vr17__url">portfolio-grd-raphael.vercel.app</p>
+                <p class="vr17__titre-google">Grondin Raphaël - Développeur Web Full Stack</p>
+                <p class="vr17__description">Portfolio de Raphael Grondin, développeur full stack JavaScript junior : projets React, Node.js et MongoDB, responsives et accessibles. Mobile en France.</p>
+                <code class="vr17__balise vr17__balise--title">&lt;title&gt;</code>
+                <code class="vr17__balise vr17__balise--meta">&lt;meta name="description"&gt;</code>
+              </div>
+              <div class="vr17__plan">
+                <span class="vr17__plan-entete"></span>
+                <div class="vr17__plan-hero"><span>Raphaël Grondin, développeur web</span><strong>Full-Stack</strong><b class="vr17__h1">h1</b></div>
+                <span class="vr17__plan-bloc"></span><span class="vr17__plan-bloc"></span>
+              </div>
+              <p class="vr17__plan-legende">Un seul titre principal</p>
+            </div>
+
+            <!-- 4. Un titre d'onglet par fiche projet -->
+            <div class="vr17__scene vr17__onglets-scene">
+              <div class="vr17__onglets">
+                <p class="vr17__onglet"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg><span>Grondin Raphaël - Développeur Web Full Stack</span></p>
+                <p class="vr17__onglet"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg><span>Kasa — Projet Front-end | Raphaël Grondin</span></p>
+                <p class="vr17__onglet"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg><span>Sophie Bluel — Projet Full-stack | Raphaël Grondin</span></p>
+              </div>
+              <span class="vr17__onglets-bord"></span>
+              <figure class="vsc vr17__code-titre" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext vr17__ext-tsx">TSX</span>ProjectPage.tsx</span></figcaption>
+                <div class="vsc__corps"><p class="vsc__ligne"><span class="vsc__num">35</span><code><span class="vr17__chev">&lt;</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span><span class="t-p">{</span><span class="t-s">`</span><span class="t-p">${</span><span class="t-v">project</span>.<span class="t-v">title</span><span class="t-p">}</span><span class="t-s"> — Projet </span><span class="t-p">${</span><span class="t-v">project</span>.<span class="t-v">category</span><span class="t-p">}</span><span class="t-s"> | Raphaël Grondin`</span><span class="t-p">}</span><span class="vr17__chev">&lt;/</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span></code></p></div>
+              </figure>
+              <p class="vr17__onglets-legende">Un titre d’onglet par fiche projet</p>
+            </div>
+
+            <!-- 5. Les mots-clés : trois offres d'emploi, et la description du site -->
+            <div class="vr17__scene vr17__mots">
+              <div class="vr17__offres">
+                <div class="vr17__offre"><p class="vr17__entreprise">Groupe Réussite</p><p class="vr17__poste">Développeur junior <span data-mot="full-stack">full stack</span></p><p class="vr17__puces"><span>React</span><span data-mot="javascript">JavaScript</span></p></div>
+                <div class="vr17__offre"><p class="vr17__entreprise">Androzuk Consulting</p><p class="vr17__poste">Développeur full stack</p><p class="vr17__puces"><span data-mot="react">React</span><span data-mot="node">Node.js</span></p></div>
+                <div class="vr17__offre"><p class="vr17__entreprise">Recommand</p><p class="vr17__poste"><span data-mot="junior">Junior</span> Software Engineer</p><p class="vr17__puces"><span>JavaScript</span><span>React</span><span>API</span></p></div>
+              </div>
+              <div class="vr17__meta">
+                <code>&lt;meta name="description"&gt;</code>
+                <p>Portfolio de Raphael Grondin, développeur <span class="vr17__mot" data-mot="full-stack">full stack</span> <span class="vr17__mot" data-mot="javascript">JavaScript</span> <span class="vr17__mot" data-mot="junior">junior</span> : projets <span class="vr17__mot" data-mot="react">React</span>, <span class="vr17__mot" data-mot="node">Node.js</span> et MongoDB, responsives et accessibles. Mobile en France.</p>
+              </div>
+            </div>
+
+            <ol class="vr17__rail" aria-label="Les deux sujets de la slide">
+              <li><svg class="vr17__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg><span>Vitesse</span></li>
+              <li><svg class="vr17__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg><span>Référencement</span></li>
+            </ol>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : le premier affichage, le poids des médias, puis le résultat Google et les onglets. À la fin, les trois offres d'emploi, affichées sans être lues : Groupe Réussite (Développeur junior full stack : React, JavaScript), Androzuk Consulting (Développeur full stack : React, Node.js), Recommand (Junior Software Engineer : JavaScript, React, API). Leurs mots-clés rejoignent la description du site.]
+
+`[→]` Côté performances, le premier affichage arrive en 0,6 seconde,
+
+`[→]` et la page ne bouge pas pendant le chargement.
+
+`[→]` J'ai aussi allégé les médias : les couvertures des projets passent de 1,1 Mo à 388 Ko,
+
+`[→]` et les vidéos sont converties en WebM, un format plus léger.
+
+`[→]` Côté référencement, chaque page a un seul titre principal et une description pour Google,
+
+`[→]` et chaque fiche projet a son propre titre d'onglet.
+
+`[→]` Enfin, les mots-clés du site viennent de trois offres d'emploi que j'ai analysées.</template>
+      </section>
+
+      <section class="slide" id="slide-18" data-title="Deux projets de formation" data-etapes="3" aria-label="Deux projets de formation">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><rect x="2" y="4" width="9" height="16" rx="2" /><rect x="13" y="4" width="9" height="16" rx="2" /></svg></div>
+            <div><p class="qui__kicker" data-texte="05 — Deux projets"></p><h2 class="qui__titre pitch__titre">Deux projets de formation</h2></div>
+          </header>
+          <div class="dp18">
+            <div class="dp18__carte dp18__carte--kasa">
+              <span class="dp18__vide">P05</span>
+              <div class="dp18__contenu"><img src="../assets/projets/kasa-cover.webp" alt="Kasa"><p><strong>Kasa</strong><span>P05</span></p></div>
+            </div>
+            <div class="dp18__carte dp18__carte--mvg">
+              <span class="dp18__vide">P06</span>
+              <div class="dp18__contenu"><img src="../assets/projets/mon-vieux-grimoire-cover.webp" alt="Mon Vieux Grimoire"><p><strong>Mon Vieux Grimoire</strong><span>P06</span></p></div>
+            </div>
+            <svg class="dp18__liens" viewBox="0 0 1680 710" aria-hidden="true"><path d="M 560 560 H 730" /><path d="M 1120 560 H 950" /></svg>
+            <p class="dp18__face dp18__face--front"><img src="../assets/logos/react.svg" alt="">Front-end</p>
+            <p class="dp18__profil">Mon profil<b>Full-Stack</b></p>
+            <p class="dp18__face dp18__face--back"><img src="../assets/logos/nodejs.svg" alt="">Back-end</p>
+          </div>
+        </div>
+      
+        <template class="slide-script">Passons à deux projets de ma formation.
+
+`[→]` J'ai choisi Kasa et Mon Vieux Grimoire, parce qu'ils montrent les deux faces de mon profil :
+
+`[→]` Kasa côté front-end, Mon Vieux Grimoire côté back-end.</template>
+      </section>
+
+      <section class="slide" id="slide-19" data-title="Kasa" data-etapes="9" aria-label="Kasa">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z" /></svg></div>
+            <div><p class="qui__kicker" data-texte="05 — Deux projets · Front-end"></p><h2 class="qui__titre pitch__titre">Kasa</h2></div>
+          </header>
+          <div class="fp">
+            <!-- La fiche du portfolio -->
+            <div class="fp__scene ka19__accueil">
+              <img class="fp__couverture" src="../assets/projets/kasa-cover.webp" alt="Kasa">
+              <div class="fp__accroche"><p class="fp__code">P05 · 2026 · Front-end</p><p class="fp__slogan">Une application de location en React, pensée composant par composant</p></div>
+            </div>
+
+            <!-- Contexte : une plateforme de location -->
+            <div class="fp__scene ka19__location">
+              <figure class="fp__navigateur fp__navigateur--grand"><p class="fp__barre"><span class="vsc__points"><i></i><i></i><i></i></span>oc-projet5-kasa.vercel.app</p><img src="../assets/projets/kasa-desktop.webp" alt="Kasa sur ordinateur"></figure>
+              <div class="fp__fait"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z" /></svg><p>Location de logements <b>entre particuliers</b></p></div>
+            </div>
+
+            <!-- Contexte : de la maquette Figma à React -->
+            <div class="fp__scene ka19__figma">
+              <div class="ka19__maquette"><p class="ka19__cadre-nom">Kasa — Desktop</p><div class="ka19__cadre"><img src="../assets/projets/kasa-desktop.webp" alt=""><i></i><i></i><i></i><i></i></div><p class="ka19__legende">La maquette Figma</p></div>
+              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 760 260 H 960 M 942 248 L 960 260 942 272" /></svg>
+              <div class="ka19__react"><img src="../assets/logos/react.svg" alt=""><p>Refait en <b>React</b></p></div>
+            </div>
+
+            <!-- L'enjeu : quatre pages, des composants réutilisables, ordinateur et mobile -->
+            <div class="fp__scene ka19__enjeu">
+              <ol class="ka19__pages">
+                <li><b>1</b>Accueil</li><li><b>2</b>Fiche logement</li><li><b>3</b>À propos</li><li><b>4</b>Page 404</li>
+              </ol>
+              <p class="ka19__composants"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></svg>Des composants réutilisables</p>
+              <figure class="fp__navigateur ka19__ordi"><p class="fp__barre"><span class="vsc__points"><i></i><i></i><i></i></span>Ordinateur</p><img src="../assets/projets/kasa-desktop.webp" alt=""></figure>
+              <figure class="ka19__mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></figure>
+            </div>
+
+            <!-- La stack -->
+            <div class="fp__scene ka19__stack">
+              <div class="fp__tuiles">
+                <div class="fp__tuile"><img src="../assets/logos/react.svg" alt=""><strong>React</strong></div>
+                <div class="fp__tuile"><img src="../assets/logos/typescript.svg" alt=""><strong>TypeScript</strong></div>
+                <div class="fp__tuile"><img src="../assets/logos/react-router-fond-sombre.svg" alt=""><strong>React Router</strong></div>
+                <div class="fp__tuile fp__tuile--avec"><img src="../assets/logos/sass.svg" alt=""><strong>Sass</strong><span>pour les styles</span></div>
+              </div>
+            </div>
+
+            <!-- Réalisation : un seul menu dépliant, sur deux pages -->
+            <div class="fp__scene ka19__menu">
+              <div class="ka19__page ka19__page--apropos"><p class="ka19__page-nom">À propos</p><div class="ka19__collapse"><p class="ka19__barre-menu">Fiabilité<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></p><div class="ka19__panneau"><div><i></i><i></i><i class="ka19__court"></i></div></div></div></div>
+              <div class="ka19__page ka19__page--logement"><p class="ka19__page-nom">Fiche logement</p><div class="ka19__collapse"><p class="ka19__barre-menu">Équipements<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></p><div class="ka19__panneau"><ul><li></li><li></li><li></li></ul></div></div></div>
+              <figure class="vsc ka19__code" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext fp__ext-tsx">TSX</span>Un seul composant : Collapse</span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="fp__chev">&lt;</span><span class="t-t">Collapse</span> <span class="t-k">title</span>=<span class="t-s">"Fiabilité"</span><span class="fp__chev">&gt;</span><span class="t-p">{</span><span class="t-v">texte</span><span class="t-p">}</span><span class="fp__chev">&lt;/</span><span class="t-t">Collapse</span><span class="fp__chev">&gt;</span>  <span class="t-c">// À propos</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">2</span><code><span class="fp__chev">&lt;</span><span class="t-t">Collapse</span> <span class="t-k">title</span>=<span class="t-s">"Équipements"</span><span class="fp__chev">&gt;&lt;</span><span class="fp__tag">ul</span><span class="fp__chev">&gt;</span>…<span class="fp__chev">&lt;/</span><span class="fp__tag">ul</span><span class="fp__chev">&gt;&lt;/</span><span class="t-t">Collapse</span><span class="fp__chev">&gt;</span>  <span class="t-c">// Fiche logement</span></code></p>
+                </div>
+              </figure>
+            </div>
+
+            <!-- Réalisation : trois versions -->
+            <div class="fp__scene ka19__versions">
+              <div class="ka19__version ka19__version--1"><b>V1</b><p>Un état dans chaque menu</p><span>✕ Un bug ouvrait tous les menus</span></div>
+              <div class="ka19__version ka19__version--2"><b>V2</b><p>L’état remonté dans la page</p><span>~ Un seul menu ouvert à la fois, jamais demandé</span></div>
+              <div class="ka19__version ka19__version--3"><b>V3</b><p>L’état revient dans le composant</p><code>useState(false)</code><span>✓ Réutilisable sur n’importe quelle page</span></div>
+              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 515 230 H 575 M 561 220 L 575 230 561 240" /><path d="M 1105 230 H 1165 M 1151 220 L 1165 230 1151 240" /></svg>
+            </div>
+
+            <!-- Le résultat -->
+            <div class="fp__scene ka19__resultat">
+              <div class="fp__preuves">
+                <div class="fp__preuve"><div class="fp__preuve-visuel"><img src="../assets/projets/kasa-desktop.webp" alt=""></div><p><b>✓</b> Fidèle à la maquette</p></div>
+                <div class="fp__preuve"><div class="fp__preuve-visuel fp__preuve-visuel--mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></div><p><b>✓</b> Adapté au mobile</p></div>
+                <div class="fp__preuve"><div class="fp__preuve-visuel ka19__clavier"><span class="ka19__touche">Tab</span><span class="ka19__touche">Entrée</span><p class="ka19__barre-menu ka19__barre-focus">Fiabilité<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></p></div><p><b>✓</b> Menus utilisables au clavier</p></div>
+              </div>
+            </div>
+
+            <!-- Pour l'améliorer -->
+            <div class="fp__scene ka19__ameliorer">
+              <div class="fp__pistes">
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3" /><path d="M7 15h10" /></svg><p>Des tests automatisés</p><span>À venir</span></div>
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="m8 10-2 2 2 2M16 10l2 2-2 2" /></svg><p>Un carrousel utilisable au clavier et au doigt</p><span>À venir</span></div>
+              </div>
+            </div>
+
+            <ol class="fp__rail" aria-label="Les rubriques de la fiche">
+              <li>Contexte</li><li>L’enjeu</li><li>La stack</li><li>Réalisation</li><li>Résultat</li><li>À améliorer</li>
+            </ol>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : la fiche Kasa du portfolio]
+
+`[→]` Commençons par Kasa, une plateforme de location entre particuliers.
+
+`[→]` Le projet consistait à refaire son site en React, à partir d'une maquette Figma.
+
+`[→]` L'enjeu : quatre pages, avec des composants réutilisables, fidèles à la maquette sur ordinateur et sur mobile.
+
+`[→]` Pour ça, j'ai utilisé React, TypeScript et React Router, avec Sass pour les styles.
+
+`[→]` Ma réalisation principale, c'est le menu dépliant : un seul composant, réutilisé sur deux pages, avec une animation d'ouverture fluide.
+
+`[→]` Il m'a fallu trois versions pour qu'il soit vraiment réutilisable.
+
+`[→]` Au final, le site est fidèle à la maquette, adapté au mobile, et ses menus sont utilisables au clavier.
+
+`[→]` Pour l'améliorer, j'ajouterais des tests automatisés, et un carrousel utilisable au clavier et au doigt.</template>
+      </section>
+
+      <section class="slide" id="slide-20" data-title="Mon Vieux Grimoire" data-etapes="10" aria-label="Mon Vieux Grimoire">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6.5a2.5 2.5 0 0 0 0 5H20" /></svg></div>
+            <div><p class="qui__kicker" data-texte="05 — Deux projets · Back-end"></p><h2 class="qui__titre pitch__titre">Mon Vieux Grimoire</h2></div>
+          </header>
+          <div class="fp">
+            <div class="fp__scene vg20__accueil">
+              <img class="fp__couverture" src="../assets/projets/mon-vieux-grimoire-cover.webp" alt="Mon Vieux Grimoire">
+              <div class="fp__accroche"><p class="fp__code">P06 · 2026 · Back-end</p><p class="fp__slogan">L’API d’un site de notation de livres</p></div>
+            </div>
+
+            <div class="fp__scene vg20__notation">
+              <figure class="fp__navigateur fp__navigateur--grand"><p class="fp__barre"><span class="vsc__points"><i></i><i></i><i></i></span>Mon Vieux Grimoire</p><img src="../assets/projets/mvg-desktop.webp" alt="Mon Vieux Grimoire sur ordinateur"></figure>
+              <div class="fp__fait"><p class="vg20__etoiles" aria-hidden="true"><span>★</span><span>★</span><span>★</span><span>★</span><span class="vg20__vide">★</span></p><p>Un site de <b>notation de livres</b></p></div>
+            </div>
+
+            <!-- Le front fourni, l'API à développer, la base -->
+            <div class="fp__scene vg20__archi">
+              <div class="vg20__bloc vg20__bloc--front"><img src="../assets/logos/react.svg" alt=""><strong>Le front React</strong><span>Fourni</span></div>
+              <div class="vg20__bloc vg20__bloc--api"><div class="vg20__logos"><img src="../assets/logos/nodejs.svg" alt=""><img class="fp__express" src="../assets/logos/express.svg" alt=""></div><strong>L’API</strong><span>Node.js et Express · ma mission</span></div>
+              <div class="vg20__bloc vg20__bloc--base"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg><strong>MongoDB</strong><span>La base</span></div>
+              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 470 270 H 600 M 586 260 L 600 270 586 280" /><path d="M 1080 270 H 1210 M 1196 260 L 1210 270 1196 280" /></svg>
+            </div>
+
+            <!-- L'enjeu : le contrat du front, non modifiable -->
+            <div class="fp__scene vg20__enjeu">
+              <div class="vg20__fige"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg><strong>Le front</strong><span>Impossible à modifier</span></div>
+              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 420 280 H 540 M 526 270 L 540 280 526 290" /></svg>
+              <div class="vg20__contrat">
+                <p class="vg20__contrat-tete">Ce que le front attend</p>
+                <ul>
+                  <li><b>POST</b><code>/api/auth/signup</code></li><li><b>POST</b><code>/api/auth/login</code></li>
+                  <li><b>GET</b><code>/api/books</code></li><li><b>GET</b><code>/api/books/:id</code></li>
+                  <li><b>GET</b><code>/api/books/bestrating</code></li><li><b>POST</b><code>/api/books</code></li>
+                  <li><b>PUT</b><code>/api/books/:id</code></li><li><b>DELETE</b><code>/api/books/:id</code></li>
+                  <li><b>POST</b><code>/api/books/:id/rating</code></li>
+                </ul>
+              </div>
+              <p class="vg20__exactement">Respecté à la lettre</p>
+            </div>
+
+            <!-- La stack -->
+            <div class="fp__scene vg20__stack">
+              <div class="fp__tuiles fp__tuiles--cinq">
+                <div class="fp__tuile"><img src="../assets/logos/nodejs.svg" alt=""><strong>Node.js</strong></div>
+                <div class="fp__tuile"><img class="fp__express" src="../assets/logos/express.svg" alt=""><strong>Express</strong></div>
+                <div class="fp__tuile"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg><strong>MongoDB</strong></div>
+                <div class="fp__tuile fp__tuile--avec"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4" /><path d="m10.8 12.2 8.7-8.7M17 6l3 3M14.5 8.5l2 2" /></svg><strong>JWT</strong><span>l’authentification</span></div>
+                <div class="fp__tuile fp__tuile--avec"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-5-5L5 21" /></svg><strong>Sharp</strong><span>les images</span></div>
+              </div>
+            </div>
+
+            <!-- Ma règle -->
+            <div class="fp__scene vg20__regle">
+              <svg class="vg20__bouclier" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="m9 12 2 2 4-4" /></svg>
+              <p class="vg20__regle-texte">Ne jamais faire confiance<br>au navigateur</p>
+            </div>
+
+            <!-- L'exemple : l'auteur est lu dans le token -->
+            <div class="fp__scene vg20__exemple">
+              <figure class="vsc vg20__requete" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet">La requête du navigateur</span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-p">{</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">2</span><code>  <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"…"</span><span class="t-p">,</span></code></p>
+                  <p class="vsc__ligne vg20__faux"><span class="vsc__num">3</span><code>  <span class="t-k">"userId"</span><span class="t-p">:</span> <span class="t-s">"id-d-un-autre"</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">4</span><code><span class="t-p">}</span></code></p>
+                </div>
+              </figure>
+              <p class="vg20__console">Modifiable dans la console</p>
+              <p class="vg20__token"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4" /><path d="m10.8 12.2 8.7-8.7M17 6l3 3M14.5 8.5l2 2" /></svg>Le token signé<code>req.auth.userId</code></p>
+              <figure class="vsc vg20__serveur" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext">JS</span>bookController.js <small class="fp__extrait">Extrait</small></span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">35</span><code><span class="t-mot">const</span> <span class="t-v">book</span> = <span class="t-mot">new</span> <span class="t-t">Book</span>({</code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">36</span><code>  ...<span class="t-v">bookObject</span>,</code></p>
+                  <p class="vsc__ligne vg20__vrai"><span class="vsc__num">37</span><code>  <span class="t-k">userId</span>: <span class="t-v">req</span>.<span class="t-v">auth</span>.<span class="t-v">userId</span>,</code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">⋮</span><code>  <span class="t-c">// l’image, les notes…</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">42</span><code>})</code></p>
+                </div>
+              </figure>
+              <p class="vg20__sinon">Sinon, n’importe qui pourrait publier au nom d’un autre</p>
+            </div>
+
+            <!-- Le résultat -->
+            <!-- Le résultat : chaque route testée avec Postman, y compris les refus attendus -->
+            <div class="fp__scene vg20__postman">
+              <div class="vg20__collection">
+                <p class="vg20__collection-barre"><span class="vsc__points"><i></i><i></i><i></i></span>Postman · collection Mon Vieux Grimoire</p>
+                <div class="vg20__requete-test"><b>POST</b><code>/api/auth/signup</code><span class="vg20__statut">201</span></div>
+                <div class="vg20__requete-test"><b>POST</b><code>/api/auth/login</code><span class="vg20__statut">200</span></div>
+                <div class="vg20__requete-test"><b>GET</b><code>/api/books</code><span class="vg20__statut">200</span></div>
+                <div class="vg20__requete-test"><b>POST</b><code>/api/books</code><span class="vg20__statut">201</span></div>
+                <div class="vg20__requete-test vg20__requete-test--refus"><b>PUT</b><code>/api/books/:id<small>Le livre d’un autre → "unauthorized request"</small></code><span class="vg20__statut vg20__statut--refus">403</span><em>✓ Refusé</em></div>
+                <div class="vg20__requete-test vg20__requete-test--refus"><b>POST</b><code>/api/books/:id/rating<small>Une note de 6 → "rating must be between 0 and 5"</small></code><span class="vg20__statut vg20__statut--refus">400</span><em>✓ Refusé</em></div>
+              </div>
+            </div>
+
+            <div class="fp__scene vg20__resultat">
+              <div class="fp__preuves fp__preuves--deux">
+                <div class="fp__preuve fp__preuve--chiffre"><b class="vg20__poids">−98 %</b><p>Sur le poids des images</p><small>67,5 Mo → 1,2 Mo</small></div>
+                <div class="fp__preuve fp__preuve--chiffre"><b class="vg20__ligne"><span class="vg20__point"></span>En ligne</b><p>Une démo publique</p><small>Front sur Vercel · API sur Alwaysdata</small></div>
+              </div>
+            </div>
+
+            <div class="fp__scene vg20__ameliorer">
+              <div class="fp__pistes">
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3" /><path d="M7 15h10" /></svg><p>Des tests automatisés</p><small>Lancés à chaque modification du code</small><span>À venir</span></div>
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg><p>Limiter les tentatives de connexion</p><small>Par exemple avec express-rate-limit</small><span>À venir</span></div>
+              </div>
+            </div>
+
+            <ol class="fp__rail" aria-label="Les rubriques de la fiche">
+              <li>Contexte</li><li>L’enjeu</li><li>La stack</li><li>Ma règle</li><li>Résultat</li><li>À améliorer</li>
+            </ol>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : la fiche Mon Vieux Grimoire du portfolio]
+
+`[→]` Passons au back-end, avec Mon Vieux Grimoire, un site de notation de livres.
+
+`[→]` Cette fois, le front React était fourni : ma mission était de développer l'API, en Node.js et Express, avec une base MongoDB.
+
+`[→]` Tout l'enjeu, c'était de respecter exactement ce que le front attend, sans pouvoir le modifier.
+
+`[→]` J'ai donc utilisé Node.js, Express et MongoDB, avec JWT pour l'authentification et Sharp pour les images.
+
+`[→]` Sur ce projet, je me suis fixé une règle : ne jamais faire confiance au navigateur.
+
+`[→]` Par exemple, l'auteur d'un livre est lu dans le token, jamais dans la requête : sinon, n'importe qui pourrait publier au nom d'un autre.
+
+`[→]` Pour le vérifier, j'ai testé chaque route avec Postman, y compris les cas qui doivent être refusés, comme modifier le livre d'un autre ou donner une note supérieure à 5.
+
+`[→]` Côté résultats, les images sont 98 % plus légères, et la démo est en ligne.
+
+`[→]` Pour l'améliorer, j'ajouterais des tests automatisés, lancés à chaque modification du code, et je limiterais les tentatives de connexion.</template>
+      </section>
+
+      <section class="slide" id="slide-21" data-title="Au-delà des consignes" data-etapes="10" aria-label="Au-delà des consignes">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" /></svg></div>
+            <div><p class="qui__kicker" data-texte="06 — Initiatives personnelles"></p><h2 class="qui__titre pitch__titre">Au-delà des consignes</h2></div>
+          </header>
+          <div class="in21">
+            <!-- GymTracker : l'application -->
+            <div class="in21__scene in21__gym">
+              <img class="in21__iphone" src="../assets/projets/gymtracker-iphone.webp" alt="GymTracker sur iPhone">
+              <div class="in21__montre" aria-hidden="true"><div class="in21__ecran"><span>Exercice reconnu</span><b class="in21__reps">0</b><small>répétitions</small></div></div>
+              <div class="in21__gym-texte">
+                <p class="in21__perso">Projet personnel</p>
+                <strong>GymTracker</strong>
+                <span>iPhone et Apple Watch</span>
+                <ul><li><b>✓</b> Reconnaît l’exercice</li><li><b>✓</b> Compte les répétitions</li></ul>
+              </div>
+            </div>
+
+            <!-- Le code par l'IA, mon rôle -->
+            <div class="in21__scene in21__role">
+              <div class="in21__carte in21__carte--ia"><svg class="in21__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6" /></svg><strong>Le code</strong><span>Écrit entièrement par une IA</span></div>
+              <div class="in21__carte in21__carte--moi"><strong>Mon rôle</strong>
+                <p class="in21__casquette"><svg class="in21__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="18" rx="2" /><path d="M9 2h6v4H9zM9 12h6M9 16h4" /></svg>Chef de produit</p>
+                <p class="in21__casquette"><svg class="in21__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3" /><path d="M7 15h10" /></svg>Testeur</p>
+              </div>
+            </div>
+
+            <!-- Les données et le résultat -->
+            <div class="in21__scene in21__donnees">
+              <div class="in21__collecte"><b class="in21__nombre">678</b><p>enregistrements collectés moi-même</p><small>5,9 h de mouvement</small></div>
+              <svg class="in21__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 660 250 H 780 M 764 238 L 780 250 764 262" /></svg>
+              <div class="in21__seance">
+                <p>Une séance qu’elle n’avait jamais vue</p>
+                <div class="in21__series" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="in21__manquee"></i></div>
+                <b class="in21__score">23 / 24 <span>séries reconnues</span></b>
+              </div>
+            </div>
+
+            <!-- Sophie Bluel, réécrit en React -->
+            <div class="in21__scene in21__sophie">
+              <div class="in21__js"><span class="in21__logo-js">JS</span><strong>Sophie Bluel</strong><span>Projet 3 · en JavaScript</span></div>
+              <svg class="in21__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 500 250 H 820 M 804 238 L 820 250 804 262" /></svg>
+              <p class="in21__initiative">De ma propre initiative</p>
+              <div class="in21__react">
+                <img src="../assets/projets/sophie-bluel-cover.webp" alt="Sophie Bluel en React">
+                <div><span class="in21__logos"><img src="../assets/logos/react.svg" alt="React"><img src="../assets/logos/typescript.svg" alt="TypeScript"></span><b><i class="in21__point"></i>En ligne</b></div>
+                <code>oc-sophie-bluel-react-version.vercel.app</code>
+              </div>
+            </div>
+
+            <!-- Les portfolios étudiés -->
+            <div class="in21__scene in21__etudes">
+              <div class="in21__portfolios">
+                <p><b>Gaël Manzola</b><code>gmanzola.fr</code></p>
+                <p><b>Brittany Chiang</b><code>brittanychiang.com</code></p>
+                <p><b>Isaac Fayemi</b><code>fayemi.design</code></p>
+                <p><b>Michael Gatt</b><code>michaelgatt.com</code></p>
+                <p><b>Lynn Fisher</b><code>lynnandtonic.com</code></p>
+                <p><b>Keziah Moselle</b><code>keziahmoselle.fr</code></p>
+                <p><b>David Fiz</b><code>davidfiz.com</code></p>
+                <p><b>Ev Astapov</b><code>astapable.com</code></p>
+                <p><b>Joseph</b><code>joe.arkaans.com</code></p>
+              </div>
+            </div>
+
+            <!-- Chaque idée notée avec sa source -->
+            <div class="in21__scene in21__sources">
+              <figure class="vsc in21__fichier" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext in21__ext-md">M↓</span>INSPIRATIONS.md <small class="in21__extrait">Extrait</small></span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="in21__md">|</span> <span class="t-k">#</span> <span class="in21__md">|</span> <span class="t-k">Idée</span> <span class="in21__md">|</span> <span class="t-k">Inspiré de</span> <span class="in21__md">|</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">2</span><code><span class="in21__md">|---|---|---|</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">3</span><code><span class="in21__md">|</span> 1 <span class="in21__md">|</span> Sections numérotées « 01 — À propos » <span class="in21__md">|</span> <span class="t-s">Gaël Manzola</span> <span class="in21__md">|</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">4</span><code><span class="in21__md">|</span> 6 <span class="in21__md">|</span> Lien du menu actif selon la section lue <span class="in21__md">|</span> <span class="t-s">Brittany Chiang</span> <span class="in21__md">|</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">5</span><code><span class="in21__md">|</span> 9 <span class="in21__md">|</span> Menu écrit comme une phrase <span class="in21__md">|</span> <span class="t-s">Michael Gatt</span> <span class="in21__md">|</span></code></p>
+                  <p class="vsc__ligne"><span class="vsc__num">6</span><code><span class="in21__md">|</span> 13 <span class="in21__md">|</span> Grain sur le fond <span class="in21__md">|</span> <span class="t-s">CSS-Tricks, Grainy Gradients</span> <span class="in21__md">|</span></code></p>
+                </div>
+              </figure>
+              <p class="in21__treize">13 idées reprises, chacune avec sa source</p>
+            </div>
+
+            <!-- La méthode : commits, journal, branche -->
+            <div class="in21__scene in21__methode">
+              <div class="in21__pilier in21__pilier--commits">
+                <p class="in21__pilier-titre">Un commit par étape</p>
+                <div class="in21__terminal"><p><span class="in21__invite">❯</span> git log --oneline</p><p><b>e22a10c</b> Apply minor content updates</p><p><b>87b8da7</b> Turn hero star into a CV badge</p><p><b>762ce76</b> Add CV buttons in hero and contact</p><p class="in21__suite">… 44 commits</p></div>
+              </div>
+              <div class="in21__pilier in21__pilier--journal">
+                <p class="in21__pilier-titre">Un journal : chaque décision, sa raison</p>
+                <div class="in21__md-fenetre"><p class="in21__md-onglet">journal-technique.md</p><p class="in21__h2">## Le design system en Sass</p><p class="in21__h3">### Pourquoi</p><p>- <b>Les variables avant les composants</b>, parce que le design était déjà décidé</p></div>
+              </div>
+              <div class="in21__pilier in21__pilier--branche">
+                <p class="in21__pilier-titre">Une variante sur une branche Git</p>
+                <svg class="in21__graphe" viewBox="0 0 472 230" aria-hidden="true">
+                  <path class="in21__main" d="M 20 170 H 452" />
+                  <path class="in21__variante" d="M 120 170 C 160 170 160 80 200 80 H 300 C 340 80 340 170 380 170" />
+                  <circle cx="60" cy="170" r="10" /><circle cx="120" cy="170" r="10" /><circle class="in21__noeud-branche" cx="220" cy="80" r="10" /><circle class="in21__noeud-branche" cx="280" cy="80" r="10" /><circle class="in21__fusion" cx="380" cy="170" r="14" /><circle cx="440" cy="170" r="10" />
+                  <text x="250" y="52" text-anchor="middle">cv-badge</text><text x="20" y="210">main</text>
+                </svg>
+                <p class="in21__badge-legende"><svg class="in21__etoile" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg>Le badge du CV : testé à part, puis gardé</p>
+              </div>
+            </div>
+
+            <ol class="in21__rail" aria-label="Les initiatives">
+              <li>GymTracker</li><li>Sophie Bluel en React</li><li>Inspirations</li><li>Méthode</li>
+            </ol>
+          </div>
+        </div>
+      
+        <template class="slide-script">Pour finir, mes initiatives personnelles.
+
+`[→]` D'abord GymTracker, le projet personnel dont je vous parlais tout à l'heure : une application iPhone et Apple Watch qui reconnaît l'exercice et compte les répétitions.
+
+`[→]` Le code a été entièrement écrit par une IA, et je le dis clairement : mon rôle a été celui de chef de produit et de testeur.
+
+`[→]` En revanche, j'ai collecté moi-même 678 enregistrements pour entraîner la reconnaissance, et sur une séance qu'elle n'avait jamais vue, elle a reconnu 23 séries sur 24.
+
+`[→]` Il y a aussi Sophie Bluel, dont je vous ai parlé : après le projet en JavaScript, je l'ai réécrit en React et TypeScript de ma propre initiative, et mis en ligne.
+
+`[→]` Et pour ce portfolio, avant de le dessiner, j'ai étudié des portfolios de développeurs.
+
+`[→]` Chaque idée que j'ai reprise est notée avec sa source, dans un fichier du dépôt.
+
+`[→]` Enfin, sur chaque projet, j'applique la même méthode : un commit par étape,
+
+`[→]` un journal où chaque décision est notée avec sa raison,
+
+`[→]` et quand j'hésite, une variante testée sur une branche Git, comme pour le badge du CV.</template>
+      </section>
+
+      <section class="slide" id="slide-22" data-title="Pour résumer" data-etapes="4" aria-label="Pour résumer">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11" /><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17" /></svg></div>
+            <div><p class="qui__kicker" data-texte="Conclusion"></p><h2 class="qui__titre pitch__titre">Pour résumer</h2></div>
+          </header>
+          <ul class="rs22">
+            <li class="rs22__point"><span class="rs22__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg></span><p>En ligne</p><code><i class="rs22__vert"></i>portfolio-grd-raphael.vercel.app</code></li>
+            <li class="rs22__point"><span class="rs22__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5" /><path d="M11 18h2" /></svg></span><p>Adapté au mobile</p><code>Testé jusqu’à 390 px de large</code></li>
+            <li class="rs22__point"><span class="rs22__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg></span><p>Accessible et rapide</p><code>Lighthouse 100 · WAVE 0 erreur</code></li>
+            <li class="rs22__point"><span class="rs22__icone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6.5a2.5 2.5 0 0 0 0 5H20" /><path d="M9 8h7M9 12h5" /></svg></span><p>Chaque choix justifié</p><code>journal-technique.md</code></li>
+          </ul>
+        </div>
+      
+        <template class="slide-script">Pour résumer, ce portfolio est en ligne,
+
+`[→]` il s'adapte au mobile,
+
+`[→]` il est accessible et rapide,
+
+`[→]` et je sais justifier chacun de ses choix.</template>
+      </section>
+
+      <section class="slide" id="slide-23" data-title="Merci" data-etapes="1" data-sans-numero aria-label="Merci">
+        <div class="mr23">
+          <p class="mr23__nom">Raphaël Grondin · Développeur web Full-Stack</p>
+          <h2 class="mr23__merci">Merci</h2>
+          <div class="mr23__badge" aria-hidden="true">
+            <svg class="mr23__anneau" viewBox="0 0 160 160"><defs><path id="mr23-cercle" d="M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0" /></defs><text><textPath href="#mr23-cercle" textLength="389" lengthAdjust="spacing">Merci · Des questions ? · Merci · Des questions ? ·</textPath></text></svg>
+            <svg class="mr23__etoile" viewBox="0 0 100 100"><path d="M50 8v84" /><path d="M14 29l72 42" /><path d="M14 71l72-42" /></svg>
+          </div>
+          <div class="mr23__liens">
+            <p class="mr23__lien verre"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg><span>Le site<code>portfolio-grd-raphael.vercel.app</code></span></p>
+            <p class="mr23__lien verre"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v12" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></svg><span>Le code<code>github.com/grdRaphael/portfolio_grd_raphael</code></span></p>
+          </div>
+          <p class="mr23__dispo"><i></i>Disponible</p>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : le lien du site et le lien GitHub]
+
+Voilà pour la présentation. Je reste à votre disposition pour vos questions.</template>
+      </section>
+
+      <!-- Annexe 1 : aide-mémoire du texte circulaire du badge (Hero.tsx, Hero.scss). Le code reprend le vrai
+           SVG du portfolio ; à droite, le même SVG, construit étape par étape. Le rail, invisible sur le site,
+           est tracé ici en orange pour le voir. -->
+      <section class="slide" id="annexe-01" data-title="Aide-mémoire SVG" data-annex data-etapes="4" aria-label="Aide-mémoire : le texte circulaire en SVG">
+        <div class="pitch">
+          <header class="qui__tete">
+            <div class="qui__pastille verre" aria-hidden="true">
+              <svg class="qui__icone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3" /><path d="M12 7v10M7.7 9.5l8.6 5M7.7 14.5l8.6-5" /></svg>
+            </div>
+            <div>
+              <p class="qui__kicker" data-texte="Annexe — Aide-mémoire"></p>
+              <h2 class="qui__titre pitch__titre">Le texte circulaire du badge</h2>
+            </div>
+          </header>
+
+          <div class="sv">
+            <figure class="vsc sv__tsx" aria-hidden="true">
+              <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext">TSX</span><span class="vsc__chemin">components/Hero/</span>Hero.tsx</span></figcaption>
+              <div class="vsc__corps">
+                <p class="vsc__ligne" data-groupe="svg"><span class="vsc__num">1</span><code><span class="t-p">&lt;</span><span class="t-t">svg</span> <span class="t-k">viewBox</span><span class="t-p">=</span><span class="t-s">"0 0 160 160"</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="defs"><span class="vsc__num">2</span><code>  <span class="t-p">&lt;</span><span class="t-t">defs</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="defs"><span class="vsc__num">3</span><code>    <span class="t-p">&lt;</span><span class="t-t">path</span> <span class="t-k">id</span><span class="t-p">=</span><span class="t-s">"hero-badge-circle"</span></code></p>
+                <p class="vsc__ligne" data-groupe="defs"><span class="vsc__num">4</span><code>          <span class="t-k">d</span><span class="t-p">=</span><span class="t-s">"M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0"</span> <span class="t-p">/&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="defs"><span class="vsc__num">5</span><code>  <span class="t-p">&lt;/</span><span class="t-t">defs</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="text"><span class="vsc__num">6</span><code>  <span class="t-p">&lt;</span><span class="t-t">text</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="text"><span class="vsc__num">7</span><code>    <span class="t-p">&lt;</span><span class="t-t">textPath</span> <span class="t-k">href</span><span class="t-p">=</span><span class="t-s">"#hero-badge-circle"</span> <span class="t-k">textLength</span><span class="t-p">=</span><span class="t-s">"389"</span></code></p>
+                <p class="vsc__ligne" data-groupe="text"><span class="vsc__num">8</span><code>              <span class="t-k">lengthAdjust</span><span class="t-p">=</span><span class="t-s">"spacing"</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="text"><span class="vsc__num">9</span><code>      Curriculum vitae · PDF · Curriculum vitae · PDF ·</code></p>
+                <p class="vsc__ligne" data-groupe="text"><span class="vsc__num">10</span><code>    <span class="t-p">&lt;/</span><span class="t-t">textPath</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="text"><span class="vsc__num">11</span><code>  <span class="t-p">&lt;/</span><span class="t-t">text</span><span class="t-p">&gt;</span></code></p>
+                <p class="vsc__ligne" data-groupe="svg"><span class="vsc__num">12</span><code><span class="t-p">&lt;/</span><span class="t-t">svg</span><span class="t-p">&gt;</span></code></p>
+              </div>
+            </figure>
+            <figure class="vsc sv__scss" aria-hidden="true">
+              <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext sv__ext-scss">S</span><span class="vsc__chemin">components/Hero/</span>Hero.scss <small class="sv__simplifie">extrait simplifié</small></span></figcaption>
+              <div class="vsc__corps">
+                <p class="vsc__ligne" data-groupe="css"><span class="vsc__num">1</span><code><span class="t-mot">@keyframes</span> <span class="t-f">badge-spin</span> <span class="t-p">{</span> <span class="t-k">to</span> <span class="t-p">{</span> <span class="t-k">transform</span><span class="t-p">:</span> <span class="t-f">rotate</span><span class="t-p">(</span><span class="t-n">360deg</span><span class="t-p">);</span> <span class="t-p">} }</span></code></p>
+                <p class="vsc__ligne" data-groupe="css"><span class="vsc__num">2</span><code><span class="t-t">.hero_badge_ring</span> <span class="t-p">{</span> <span class="t-k">animation</span><span class="t-p">:</span> badge-spin <span class="t-n">12s</span> linear infinite paused<span class="t-p">;</span> <span class="t-p">}</span></code></p>
+                <p class="vsc__ligne" data-groupe="css"><span class="vsc__num">3</span><code><span class="t-t">.hero_badge:hover .hero_badge_ring</span> <span class="t-p">{</span> <span class="t-k">animation-play-state</span><span class="t-p">:</span> running<span class="t-p">;</span> <span class="t-p">}</span></code></p>
+              </div>
+            </figure>
+
+            <div class="sv__demo verre">
+              <div class="sv__badge" aria-hidden="true">
+                <svg class="sv__cadre" viewBox="0 0 160 160"><rect x="1" y="1" width="158" height="158" rx="2" /></svg>
+                <span class="sv__coord sv__coord--debut">0, 0</span><span class="sv__coord sv__coord--fin">160, 160</span>
+                <svg class="sv__anneau" viewBox="0 0 160 160">
+                  <defs><path id="sv-cercle" d="M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0" /></defs>
+                  <path class="sv__rail" d="M 18 80 a 62 62 0 1 1 124 0 a 62 62 0 1 1 -124 0" />
+                  <text class="sv__texte"><textPath href="#sv-cercle" textLength="389" lengthAdjust="spacing">Curriculum vitae · PDF · Curriculum vitae · PDF ·</textPath></text>
+                </svg>
+                <svg class="sv__etoile" viewBox="0 0 100 100"><path d="M50 8v84M14 29l72 42M14 71l72-42" /></svg>
+              </div>
+              <ol class="sv__notes" role="list">
+                <li class="sv__note"><span>1</span><p><code>&lt;svg viewBox&gt;</code>Une image décrite par du code (160 × 160)</p></li>
+                <li class="sv__note"><span>2</span><p><code>&lt;defs&gt; &lt;path id&gt;</code>Le rail, rangé et jamais affiché (ici en orange) · <em>M</em> pose le crayon, <em>a</em> trace un arc</p></li>
+                <li class="sv__note"><span>3</span><p><code>&lt;textPath href="#id"&gt;</code>Le texte suit le rail · <em>textLength</em> = 2 × π × 62 ≈ 389 : un tour exact</p></li>
+                <li class="sv__note"><span>4</span><p><code>@keyframes</code>Tout le SVG tourne, en pause jusqu’au survol</p></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      
+        <template class="slide-script">[ÉCRAN : le SVG du badge dans Hero.tsx, et le même SVG construit étape par étape]
+
+Le badge du CV est un SVG : une image décrite par du code.
+
+`[→]` Dans `&lt;defs&gt;`, un chemin en forme de cercle sert de rail : il est rangé, jamais affiché, et il porte un `id`.
+
+`[→]` `&lt;textPath&gt;` écrit le texte le long de ce rail : son `href` reprend l'`id` du chemin. Et `textLength` vaut le périmètre du cercle : le texte fait exactement un tour.
+
+`[→]` Enfin, une animation CSS fait tourner tout le SVG. Elle est en pause, et ne démarre qu'au survol.</template>
+      </section>
+
+      <div id="slide-number" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <!-- Panneau de script (touche N) et import : repris du deck de Menu Maker -->
+  <div id="notes">
+    <div class="nt-grip"
+      title="Glissez pour fixer la hauteur · double-clic pour la laisser s'ajuster au passage"><i></i></div>
+    <div class="nt-bar">
+      <span class="nt-where"></span>
+      <span class="nt-passage"></span>
+      <span class="nt-etat"></span>
+      <div class="nt-tools">
+        <button type="button" data-nt="position" title="Placer le panneau en haut ou en bas">En haut</button>
+        <button type="button" data-nt="tout" title="Afficher tout le script de la slide">Tout</button>
+        <button type="button" data-nt="conduite" title="Notes de conduite">Conduite</button>
+        <button type="button" data-nt="moins" title="Réduire le texte">A−</button>
+        <button type="button" data-nt="plus" title="Agrandir le texte">A+</button>
+        <button type="button" data-nt="baisser" title="Réduire le panneau (fixe la hauteur)">▾</button>
+        <button type="button" data-nt="monter" title="Agrandir le panneau (fixe la hauteur)">▴</button>
+        <button type="button" data-nt="importer">Importer</button>
+        <button type="button" data-nt="copier">Copier tout</button>
+        <button type="button" data-nt="retablir" title="Revenir au script d'origine">Rétablir</button>
+      </div>
+    </div>
+    <div class="nt-conduite"></div>
+    <div class="nt-zone">
+      <textarea id="nt-texte" spellcheck="false" aria-label="Script de la slide"></textarea>
+    </div>
+  </div>
+
+  <div id="nt-import">
+    <div class="nti-card">
+      <h3>Importer un script</h3>
+      <p>Collez le contenu de <code>script.md</code>. Chaque section
+        <code>### SLIDE n</code> ou <code>### ANNEXE An</code> sera déposée sur la slide
+        correspondante. Vos modifications actuelles seront remplacées.</p>
+      <textarea id="nti-texte" spellcheck="false" placeholder="Collez le script ici…"></textarea>
+      <p class="nti-etat"></p>
+      <div class="nti-actions">
+        <button type="button" data-nti="annuler">Annuler</button>
+        <button type="button" data-nti="ok" class="nti-ok">Répartir sur les slides</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="timer"><span class="dot"></span><span class="t">00:00</span><small>/ 15:00</small></div>
+  <div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <!-- GSAP 3.13 : tous les plugins sont gratuits depuis cette version -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/DrawSVGPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/TextPlugin.min.js"></script>
+  <script src="notes.js"></script>
+  <script src="main.js?v=30"></script>
+</body>
+</html>

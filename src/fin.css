@@ -1,0 +1,176 @@
+/* Slides 21 à 23 — les initiatives, le résumé, le merci. Préfixes exclusifs in21, rs22, mr23. */
+
+/* ---------- 21. Au-delà des consignes ---------- */
+.in21 { position: absolute; left: 120px; top: 275px; width: 1680px; height: 710px; }
+.in21__scene { position: absolute; inset: 0 0 auto; height: 590px; }
+.in21 .vsc { position: absolute; }
+.in21__icone { width: 64px; height: 64px; flex-shrink: 0; fill: none; stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.in21__fleche { position: absolute; inset: 0; width: 100%; height: 590px; fill: none; stroke: #ffb08a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.in21__rail { position: absolute; left: 0; right: 0; bottom: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 0; list-style: none; }
+.in21__rail li { height: 80px; display: flex; align-items: center; justify-content: center; border-top: 2px solid rgba(255,255,255,.25); font-size: 26px; font-weight: 500; color: #c2cbe2; }
+
+/* GymTracker */
+.in21__iphone { position: absolute; left: 160px; top: 0; width: 262px; height: 570px; object-fit: cover; border-radius: 40px; border: 8px solid #060a18; box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+.in21__montre { position: absolute; left: 470px; top: 220px; width: 190px; height: 230px; border-radius: 52px; background: #050608; border: 6px solid #2e2f33; box-shadow: 0 24px 60px rgba(0,0,0,.55); }
+.in21__ecran { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.in21__ecran span { font-size: 15px; font-weight: 600; color: #9cf1bd; }
+.in21__ecran b { font-size: 88px; font-weight: 600; line-height: 1.1; }
+.in21__ecran small { font-size: 16px; color: #c8d0e5; }
+.in21__gym-texte { position: absolute; left: 820px; top: 50px; width: 860px; }
+.in21__perso { display: inline-block; padding: 6px 18px; border-radius: 999px; border: 2px solid #ffb08a; color: #ffb08a; font-size: 24px; font-weight: 600; }
+.in21__gym-texte strong { display: block; margin-top: 18px; font-size: 96px; font-weight: 600; letter-spacing: -.05em; line-height: 1; }
+.in21__gym-texte > span { display: block; margin-top: 12px; font-size: 34px; color: #d8def0; }
+.in21__gym-texte ul { margin: 40px 0 0; padding: 0; list-style: none; }
+.in21__gym-texte li { margin-bottom: 18px; font-size: 36px; font-weight: 500; }
+.in21__gym-texte li b { color: #9cf1bd; }
+
+/* Le code par l'IA, mon rôle */
+.in21__carte { position: absolute; top: 40px; width: 780px; height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; border-radius: 26px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.in21__carte strong { font-size: 48px; font-weight: 600; letter-spacing: -.03em; }
+.in21__carte--ia { left: 0; }
+.in21__carte--ia .in21__icone { width: 100px; height: 100px; }
+.in21__carte--ia span { font-size: 32px; color: #d8def0; }
+.in21__carte--moi { left: 900px; border: 3px solid #ffb08a; }
+.in21__casquette { width: 520px; height: 96px; display: flex; align-items: center; gap: 22px; padding: 0 30px; border-radius: 18px; background: #26336a; font-size: 36px; font-weight: 600; }
+.in21__casquette .in21__icone { width: 52px; height: 52px; }
+
+/* 678 enregistrements, 23 séries sur 24 */
+.in21__collecte { position: absolute; left: 0; top: 80px; width: 620px; text-align: center; }
+.in21__nombre { display: block; font-size: 170px; font-weight: 600; letter-spacing: -.05em; line-height: 1; }
+.in21__collecte p { margin-top: 12px; font-size: 32px; }
+.in21__collecte small { display: block; margin-top: 8px; font-size: 24px; color: #ffd9c2; }
+.in21__seance { position: absolute; left: 820px; top: 60px; width: 860px; }
+.in21__seance > p { font-size: 32px; }
+.in21__series { display: grid; grid-template-columns: repeat(12, 40px); gap: 14px; margin: 34px 0; }
+.in21__series i { width: 40px; height: 40px; border-radius: 10px; background: #0cce6b; }
+.in21__series .in21__manquee { background: transparent; border: 3px dashed rgba(255,255,255,.5); }
+.in21__score { display: block; font-size: 76px; font-weight: 600; letter-spacing: -.03em; color: #9cf1bd; }
+.in21__score span { font-size: 32px; font-weight: 500; letter-spacing: 0; color: #ffffff; }
+
+/* Sophie Bluel, réécrit en React */
+.in21__js { position: absolute; left: 0; top: 80px; width: 460px; height: 360px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border-radius: 26px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.in21__logo-js { width: 120px; height: 120px; display: flex; align-items: flex-end; justify-content: flex-end; padding: 10px 14px; border-radius: 14px; background: #f7df1e; color: #000000; font-size: 52px; font-weight: 700; }
+.in21__js strong { font-size: 40px; font-weight: 600; }
+.in21__js > span:last-child { font-size: 26px; color: #d8def0; }
+.in21__initiative { position: absolute; left: 500px; top: 196px; width: 320px; text-align: center; font-size: 24px; font-weight: 600; color: #ffd9c2; }
+.in21__react { position: absolute; left: 860px; top: 20px; width: 820px; overflow: hidden; border-radius: 24px; background: #13204f; border: 3px solid #ffb08a; }
+.in21__react > img { display: block; width: 100%; height: 340px; object-fit: cover; }
+.in21__react > div { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px 8px; }
+.in21__logos { display: flex; gap: 18px; }
+.in21__logos img { width: 50px; height: 50px; }
+.in21__react b { display: flex; align-items: center; gap: 14px; font-size: 32px; font-weight: 600; }
+.in21__point { width: 18px; height: 18px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 16px 4px rgba(74,222,128,.5); }
+.in21__react > code { display: block; padding: 0 28px 22px; font-size: 22px; color: #c8d0e5; }
+
+/* Les portfolios étudiés, puis le fichier des sources */
+.in21__portfolios { position: absolute; left: 0; top: 20px; width: 1680px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 60px; }
+.in21__portfolios p { height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border-radius: 20px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.in21__portfolios b { font-size: 36px; font-weight: 600; }
+.in21__portfolios code { font-size: 22px; color: #ffd9c2; }
+.in21__fichier { left: 140px; top: 10px; width: 1400px; }
+.in21 .in21__fichier .vsc__ligne { height: 54px; line-height: 54px; font-size: 26px; }
+.in21__ext-md { color: #519aba; }
+.in21__extrait { margin-left: 14px; color: #c6c6c6; font: 16px var(--police); }
+.in21__md { color: #808080; }
+.in21__treize { position: absolute; top: 465px; width: 100%; text-align: center; font-size: 36px; font-weight: 500; }
+
+/* La méthode : commits, journal, branche */
+.in21__pilier { position: absolute; top: 30px; width: 520px; padding: 28px 28px 32px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.in21__pilier--commits { left: 0; }
+.in21__pilier--journal { left: 580px; }
+.in21__pilier--branche { left: 1160px; }
+.in21__pilier-titre { min-height: 80px; font-size: 32px; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; }
+.in21__terminal { margin-top: 14px; padding: 18px 20px; border-radius: 14px; background: #0a1436; font: 16.5px/1.5 ui-monospace, monospace; }
+.in21__terminal p { margin: 8px 0; white-space: nowrap; }
+.in21__terminal b { color: #ffd27a; font-weight: 600; }
+.in21__invite { color: #ffb08a; }
+.in21__suite { color: #9aa3b8; }
+.in21__md-fenetre { margin-top: 14px; overflow: hidden; border-radius: 14px; background: #1e1e1e; }
+.in21__md-fenetre p { padding: 6px 20px; font: 20px/1.45 ui-monospace, monospace; color: #d4d4d4; }
+.in21__md-fenetre .in21__md-onglet { padding: 10px 18px; background: #2c2c2c; font-size: 16px; color: #e7e7eb; }
+.in21__md-fenetre .in21__h2, .in21__md-fenetre .in21__h3 { color: #569cd6; font-weight: 700; }
+.in21__md-fenetre b { color: #ffffff; }
+.in21__md-fenetre p:last-child { padding-bottom: 18px; }
+.in21__graphe { display: block; width: 100%; height: auto; margin-top: 10px; }
+.in21__main, .in21__variante { fill: none; stroke-width: 4; stroke-linecap: round; }
+.in21__main { stroke: #c2cbe2; }
+.in21__variante { stroke: #ffb08a; }
+.in21__graphe circle { fill: #13204f; stroke: #c2cbe2; stroke-width: 4; }
+.in21__graphe .in21__noeud-branche { stroke: #ffb08a; }
+.in21__graphe .in21__fusion { fill: #9cf1bd; stroke: #9cf1bd; }
+.in21__graphe text { font: 22px ui-monospace, monospace; fill: #ffb08a; }
+.in21__graphe text:last-of-type { fill: #c2cbe2; }
+.in21__badge-legende { display: flex; align-items: center; gap: 16px; margin-top: 20px; font-size: 25px; line-height: 1.3; }
+.in21__etoile { width: 46px; height: 46px; flex-shrink: 0; fill: none; stroke: #ffffff; stroke-width: 12; stroke-linecap: round; }
+
+/* ---------- 22. Pour résumer ---------- */
+.rs22 { position: absolute; left: 120px; top: 290px; width: 1680px; margin: 0; padding: 0; list-style: none; }
+.rs22__point { height: 128px; margin-bottom: 22px; display: flex; align-items: center; gap: 36px; padding: 0 40px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.rs22__icone { width: 84px; height: 84px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: #26336a; }
+.rs22__icone svg { width: 46px; height: 46px; fill: none; stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.rs22__point p { flex: 1; font-size: 54px; font-weight: 500; letter-spacing: -.03em; }
+.rs22__point code { display: flex; align-items: center; gap: 12px; font-size: 24px; color: #ffd9c2; white-space: nowrap; }
+.rs22__vert { width: 14px; height: 14px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 12px 3px rgba(74,222,128,.5); }
+
+/* ---------- 23. Merci ---------- */
+.mr23 { position: absolute; inset: 0; }
+.mr23__nom { position: absolute; top: 170px; width: 100%; text-align: center; font-size: 28px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #ffb08a; }
+.mr23__merci { position: absolute; top: 230px; width: 100%; text-align: center; font-size: 280px; font-weight: 500; line-height: 1; letter-spacing: -.05em; }
+.mr23__badge { position: absolute; left: 1390px; top: 200px; width: 220px; height: 220px; display: grid; place-items: center; }
+.mr23__anneau { position: absolute; inset: 0; width: 100%; height: 100%; fill: #ffffff; font-size: 12px; font-weight: 700; text-transform: uppercase; animation: mr23-tour 16s linear infinite; }
+.mr23__etoile { width: 92px; height: 92px; fill: none; stroke: #ffffff; stroke-width: 12; stroke-linecap: round; }
+.mr23__liens { position: absolute; top: 640px; width: 100%; display: flex; justify-content: center; gap: 40px; }
+.mr23__lien { width: 760px; height: 130px; background: var(--verre-fond--fort); display: flex; align-items: center; gap: 26px; padding: 0 34px; border-radius: 28px; }
+.mr23__lien svg { width: 52px; height: 52px; flex-shrink: 0; fill: none; stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.mr23__lien span { font-size: 22px; color: #d8def0; }
+.mr23__lien code { display: block; margin-top: 4px; font: 600 26px var(--police); color: #ffffff; }
+.mr23__dispo { position: absolute; top: 830px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 26px; font-weight: 500; }
+.mr23__dispo i { width: 14px; height: 14px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 14px 4px rgba(74,222,128,.55); }
+@keyframes mr23-tour { to { transform: rotate(360deg); } }
+
+/* ==========================================================
+   Annexe 1 — Aide-mémoire : le texte circulaire du badge
+   Préfixe sv exclusif à cette annexe.
+   ========================================================== */
+.sv { position: absolute; left: 120px; top: 250px; width: 1680px; height: 790px; }
+.sv__tsx, .sv__scss { position: absolute; left: 0; width: 1000px; }
+.sv__tsx { top: 0; }
+.sv__scss { top: 540px; }
+.sv .vsc__ligne { height: 36px; line-height: 36px; font-size: 19px; }
+.sv__ext-scss { color: #f48fb1; }
+.sv__simplifie { margin-left: 8px; font-size: 15px; color: #8b8b8b; }
+
+.sv__demo { position: absolute; left: 1040px; top: 0; width: 640px; height: 736px; padding: 44px 40px 32px; border-radius: 28px; }
+.sv__badge { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+.sv__cadre, .sv__anneau, .sv__etoile { position: absolute; overflow: visible; }
+.sv__cadre { inset: 0; width: 100%; height: 100%; fill: none; stroke: rgba(255, 255, 255, 0.45); stroke-width: 0.8; }
+.sv__coord { position: absolute; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; color: var(--texte-doux); }
+.sv__coord--debut { left: 0; top: -26px; }
+.sv__coord--fin { right: 0; bottom: -26px; }
+.sv__anneau {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* --tourne passe à running à la dernière étape ; le survol la lance aussi, comme sur le site */
+  animation: sv-tour 12s linear infinite;
+  animation-play-state: var(--tourne, paused);
+}
+.sv__badge:hover .sv__anneau { animation-play-state: running; }
+@keyframes sv-tour { to { transform: rotate(360deg); } }
+.sv__rail { fill: none; stroke: #ffb08a; stroke-width: 1.2; }
+.sv__etoile { left: 30%; top: 30%; width: 40%; height: 40%; fill: none; stroke: #ffffff; stroke-width: 12; stroke-linecap: square; }
+
+.sv__notes { margin: 58px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.sv__note { display: flex; gap: 16px; align-items: flex-start; }
+.sv__note > span { flex-shrink: 0; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 176, 138, 0.2); color: #ffb08a; font-size: 17px; font-weight: 700; }
+.sv__note p { font-size: 18px; line-height: 1.35; }
+.sv__note code { display: block; margin-bottom: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 17px; color: #ffb08a; }
+.sv__note em { font-style: normal; font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sv__anneau { animation: none; }
+}

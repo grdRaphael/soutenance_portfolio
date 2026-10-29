@@ -1,0 +1,147 @@
+/* Slide 15 — hébergement, formulaire, animations, principe. Une scène par idée,
+   blocs pleins et schématiques. Préfixe exclusif hb15. */
+.hb15 { position: absolute; left: 120px; top: 275px; width: 1680px; height: 710px; }
+.hb15__scene { position: absolute; inset: 0 0 auto; height: 590px; }
+.hb15__icone { width: 64px; height: 64px; fill: none; stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.hb15__liens, .hb15__pied, .hb15__rature { position: absolute; inset: 0; width: 100%; height: 590px; fill: none; stroke: #ffb08a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.hb15__invite { color: #ffb08a; }
+.hb15 .vsc { position: absolute; }
+.hb15 .vsc__ligne { height: 50px; line-height: 50px; font-size: 25px; }
+.hb15__extrait { margin-left: 14px; color: #c6c6c6; font: 16px var(--police); }
+
+/* Le repère des trois sujets */
+.hb15__rail { position: absolute; left: 0; right: 0; bottom: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 0; list-style: none; }
+.hb15__rail li { display: flex; align-items: center; justify-content: center; gap: 16px; height: 90px; border-top: 2px solid rgba(255,255,255,.25); color: #e0e5f5; }
+.hb15__rail .hb15__icone { width: 38px; height: 38px; stroke: currentColor; }
+.hb15__rail span { font-size: 28px; font-weight: 500; }
+.hb15__rail small { font-size: 22px; color: #c2cbe2; }
+
+/* Les blocs du schéma (opaques, pas de verre) */
+.hb15__noeud { position: absolute; top: 100px; width: 400px; height: 300px; padding-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.hb15__noeud strong { font-size: 44px; font-weight: 600; letter-spacing: -.03em; }
+.hb15__noeud > span { font-size: 26px; color: #d8def0; }
+.hb15__noeud--github { left: 0; }
+.hb15__noeud--vercel { left: 640px; }
+.hb15__noeud--site { left: 1280px; padding: 0; overflow: hidden; align-items: stretch; text-align: left; }
+.hb15__noeud--formspree { left: 640px; top: 120px; height: 280px; }
+.hb15__noeud--mail { left: 1280px; top: 120px; height: 280px; }
+
+/* 1. Déploiement */
+.hb15__triangle { width: 72px; height: 72px; fill: #ffffff; }
+.hb15__etat { position: absolute; left: 0; right: 0; bottom: 24px; font-size: 24px; font-weight: 600; }
+.hb15__etat--construction { color: #ffd27a; }
+.hb15__etat--deploye { color: #9cf1bd; }
+.hb15__adresse { padding: 16px 22px; background: #0a1436; border-bottom: 1px solid rgba(255,255,255,.2); font: 18px ui-monospace, monospace; color: #c8d0e5; }
+.hb15__site { padding: 34px 30px; }
+.hb15__site span { display: block; font-size: 24px; }
+.hb15__site strong { display: block; margin-top: 6px; font-size: 58px; font-weight: 500; letter-spacing: -.04em; }
+.hb15__maj { display: inline-block; margin-top: 18px; padding: 6px 16px; border-radius: 999px; background: rgba(156,241,189,.14); color: #9cf1bd; font-size: 22px; font-weight: 600; }
+.hb15__flash { position: absolute; inset: 0; background: #ffffff; opacity: 0; visibility: hidden; }
+.hb15__paquet { position: absolute; left: 0; top: 236px; width: 28px; height: 28px; border-radius: 50%; background: #ffb08a; box-shadow: 0 0 24px 8px rgba(232,105,46,.7); opacity: 0; visibility: hidden; }
+.hb15__terminal { position: absolute; left: 0; top: 430px; width: 400px; height: 78px; display: flex; align-items: center; gap: 14px; padding: 0 26px; border-radius: 16px; background: #111728; border: 1px solid rgba(255,255,255,.25); font: 30px ui-monospace, monospace; }
+
+/* 2. La réécriture des adresses */
+.hb15__config { left: 0; top: 30px; width: 700px; }
+.hb15__sans { position: absolute; left: 170px; top: 448px; padding: 10px 26px; border-radius: 999px; border: 3px solid #ff9a8a; background: #2a1020; color: #ffc2b8; font-size: 30px; font-weight: 600; }
+.hb15__url { position: absolute; left: 800px; width: 380px; height: 76px; display: flex; align-items: center; padding: 0 24px; border-radius: 14px; background: #13204f; border: 2px solid rgba(255,255,255,.35); font-size: 26px; }
+.hb15__index { position: absolute; left: 1360px; top: 168px; width: 320px; height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border-radius: 20px; background: #13204f; border: 2px solid #ffb08a; }
+.hb15__index strong { font: 600 34px ui-monospace, monospace; }
+.hb15__index span { font-size: 22px; color: #d8def0; }
+.hb15__navigateur { position: absolute; left: 800px; top: 30px; width: 880px; height: 460px; overflow: hidden; border-radius: 20px; border: 2px solid rgba(255,255,255,.35); background: #0a1436; }
+.hb15__barre { height: 64px; display: flex; align-items: center; gap: 18px; padding: 0 22px; background: #1c253d; font: 22px ui-monospace, monospace; }
+.hb15__barre span { color: #a9b3cc; }
+.hb15__barre b { margin-left: -18px; font-weight: 600; color: #ffffff; }
+.hb15__recharger { width: 32px; height: 32px; fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hb15__navigateur img { display: block; width: 100%; height: 396px; object-fit: cover; }
+.hb15__erreur { position: absolute; inset: 64px 0 0; display: grid; place-items: center; background: #000000; }
+.hb15__erreur p { font: 600 44px ui-monospace, monospace; color: #ffffff; }
+.hb15__legende-404 { position: absolute; left: 800px; top: 512px; width: 880px; text-align: center; font-size: 30px; }
+
+/* 3. Le formulaire */
+.hb15__form { position: absolute; left: 0; top: 80px; width: 420px; height: 360px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.hb15__form-titre { margin-bottom: 4px; font-size: 32px; font-weight: 600; }
+.hb15__champ { height: 44px; display: flex; align-items: center; padding: 0 14px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,.35); font-size: 20px; color: #c8d0e5; }
+.hb15__champ--message { height: 70px; align-items: flex-start; padding-top: 10px; }
+.hb15__envoyer { align-self: flex-start; margin-top: 6px; padding: 12px 34px; border-radius: 999px; background: #bf4f1c; font-size: 22px; font-weight: 700; }
+.hb15__vu { position: absolute; left: 640px; top: 56px; width: 400px; text-align: center; font-size: 24px; font-weight: 600; color: #9cf1bd; }
+.hb15__libelle { position: absolute; top: 208px; width: 196px; text-align: center; font-size: 22px; color: #ffd9c2; }
+.hb15__libelle--fetch { left: 432px; }
+.hb15__libelle--mail { left: 1062px; }
+.hb15__enveloppe { position: absolute; left: 0; top: 237px; width: 48px; height: 46px; display: grid; place-items: center; border-radius: 10px; background: #ffb08a; box-shadow: 0 0 22px 6px rgba(232,105,46,.55); opacity: 0; visibility: hidden; }
+.hb15__enveloppe svg { width: 30px; height: 30px; fill: none; stroke: #0b1a4a; stroke-width: 2; stroke-linejoin: round; }
+
+/* 4. La balance : pivot en (840, 190) ; fléau de 2 × 500 px ; chaque plateau est accroché au bout du fléau */
+.hb15__verdict { position: absolute; top: 0; width: 100%; text-align: center; font-size: 76px; font-weight: 600; letter-spacing: -.04em; }
+.hb15__pied { stroke: #e0e5f5; stroke-width: 3; stroke-linejoin: round; }
+.hb15__colonne { fill: #e0e5f5; }
+.hb15__socle { fill: #13204f; }
+.hb15__fleau { position: absolute; left: 320px; top: 170px; width: 1040px; height: 40px; overflow: visible; fill: #e0e5f5; }
+.hb15__moyeu { position: absolute; left: 818px; top: 168px; width: 44px; height: 44px; border-radius: 50%; background: #13204f; border: 4px solid #e0e5f5; box-shadow: inset 0 0 0 7px #13204f, inset 0 0 0 14px #ffb08a; }
+.hb15__plateau { position: absolute; top: 180px; width: 440px; height: 300px; }
+.hb15__plateau--gauche { left: 120px; }
+.hb15__plateau--droite { left: 1120px; }
+.hb15__suspente { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; stroke: #e0e5f5; stroke-width: 3; stroke-linecap: round; }
+.hb15__anneau-bout { fill: #13204f; stroke-width: 4; }
+.hb15__coupe { fill: #13204f; stroke-width: 4; stroke-linejoin: round; }
+.hb15__charges { position: absolute; left: 50px; right: 50px; bottom: 40px; display: flex; flex-direction: column; gap: 10px; }
+.hb15__charge { height: 90px; display: flex; align-items: center; gap: 18px; padding: 0 24px; border-radius: 14px; background: #13204f; border: 2px solid rgba(255,255,255,.35); font-size: 28px; font-weight: 500; white-space: nowrap; }
+.hb15__charge .hb15__icone { width: 42px; height: 42px; flex-shrink: 0; }
+.hb15__charge--form { height: 100px; }
+.hb15__bloc { border-color: #ffb08a; }
+
+/* 5. Pas de bibliothèque */
+.hb15__paquet-npm { position: absolute; left: 390px; top: 60px; width: 900px; height: 320px; padding: 44px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; border-radius: 26px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.hb15__cube { width: 150px; height: 150px; display: grid; place-items: center; border-radius: 24px; background: #26336a; }
+.hb15__cube .hb15__icone { width: 84px; height: 84px; }
+.hb15__paquet-npm strong { display: block; font-size: 70px; font-weight: 600; letter-spacing: -.04em; }
+.hb15__paquet-npm div > span { display: block; margin-top: 6px; font-size: 28px; color: #d8def0; }
+.hb15__commande-npm { width: 100%; font-size: 30px; }
+.hb15__rature { stroke: #ff8c8c; stroke-width: 6; }
+.hb15__tampon { position: absolute; left: 1010px; top: 262px; padding: 8px 26px; border: 4px solid #ff9a8a; border-radius: 12px; background: #2a1020; color: #ffc2b8; font-size: 40px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; transform: rotate(-8deg); }
+.hb15__aucune { position: absolute; top: 450px; width: 100%; text-align: center; font-size: 42px; font-weight: 500; }
+
+/* 6. Tout en CSS : les démonstrations tournent en CSS, comme sur le site */
+.hb15__css-titre { position: absolute; top: 0; width: 100%; text-align: center; font-size: 46px; font-weight: 500; }
+.hb15__css-titre b { color: #ffb08a; font-weight: 600; }
+.hb15__demos { position: absolute; top: 85px; left: 0; width: 1680px; display: flex; gap: 60px; }
+.hb15__demo { width: 520px; height: 480px; overflow: hidden; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.hb15__ecran { position: relative; height: 270px; overflow: hidden; background: #0a1436; }
+.hb15__ecran > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hb15__demo h3 { padding: 22px 28px 4px; font-size: 30px; font-weight: 600; letter-spacing: -.02em; }
+.hb15__css-code { margin: 12px 24px 0; padding: 14px 18px; border-radius: 12px; background: #1e1e1e; font: 20px/1.6 ui-monospace, monospace; color: #d4d4d4; white-space: pre; }
+.hb15__fondu { animation: hb15-fondu 5s ease-in-out infinite; }
+.hb15__page { position: absolute; left: 70px; right: 70px; top: 24px; bottom: 0; overflow: hidden; border-radius: 12px 12px 0 0; background: #13204f; border: 1px solid rgba(255,255,255,.25); border-bottom: 0; }
+.hb15__defile { display: flex; flex-direction: column; gap: 14px; padding: 18px; animation: hb15-defile 6s ease-in-out infinite; }
+.hb15__defile i { display: block; height: 18px; border-radius: 9px; background: rgba(255,255,255,.28); }
+.hb15__defile .hb15__p-hero { height: 120px; border-radius: 12px; background: linear-gradient(120deg, #c42d1a, #d9581f 45%, #2c5fd6); }
+.hb15__defile .hb15__p-court { width: 60%; }
+.hb15__defile .hb15__p-carte { height: 90px; border-radius: 12px; background: rgba(255,255,255,.16); }
+.hb15__mini-badge { position: absolute; left: 50%; top: 50%; width: 210px; height: 210px; margin: -105px 0 0 -105px; display: grid; place-items: center; }
+.hb15__mini-anneau { position: absolute; inset: 0; width: 100%; height: 100%; fill: #ffffff; font-size: 12px; font-weight: 700; text-transform: uppercase; animation: hb15-tour 12s linear infinite; }
+.hb15__mini-etoile { width: 90px; height: 90px; fill: none; stroke: #ffffff; stroke-width: 12; stroke-linecap: round; }
+
+/* 7. Le texte circulaire */
+.hb15__badge { position: absolute; left: 140px; top: 40px; width: 440px; height: 440px; display: grid; place-items: center; }
+.hb15__anneau { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: #ffffff; font-size: 12px; font-weight: 700; text-transform: uppercase; animation: hb15-tour 12s linear infinite; }
+.hb15__guide { fill: none; stroke: #ffb08a; stroke-width: 1.2; }
+.hb15__etoile-grande { width: 190px; height: 190px; fill: none; stroke: #ffffff; stroke-width: 12; stroke-linecap: round; }
+.hb15__svg-legende { position: absolute; left: 140px; top: 505px; width: 440px; text-align: center; font-size: 32px; font-weight: 500; }
+.hb15__svg-code { left: 720px; top: 70px; width: 960px; }
+.hb15__ext-tsx { color: #4fc1ff; }
+.hb15__tag { color: #569cd6; }
+.hb15__chev { color: #808080; }
+
+/* 8. Le principe et les dépendances */
+.hb15__principe-tete { position: absolute; top: 150px; width: 100%; text-align: center; transform-origin: 50% 0; }
+.hb15__principe-texte { margin-top: 18px; font-size: 118px; font-weight: 500; line-height: 1.08; letter-spacing: -.05em; }
+.hb15__natif { color: #ffb08a; }
+.hb15__dependances { left: 390px; top: 245px; width: 900px; }
+.hb15__accolade { position: absolute; left: 1310px; display: flex; align-items: center; padding-left: 40px; font-size: 32px; font-weight: 600; }
+.hb15__accolade::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 22px; border: 3px solid #ffb08a; border-left: 0; border-radius: 0 10px 10px 0; }
+.hb15__accolade--react { top: 367px; height: 92px; }
+.hb15__accolade--router { top: 467px; height: 42px; }
+.hb15__rien { position: absolute; top: 620px; width: 100%; text-align: center; font-size: 38px; font-weight: 500; }
+
+@keyframes hb15-fondu { 0%, 35% { opacity: 0; } 50%, 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes hb15-defile { 0%, 15% { transform: translateY(0); } 50%, 65% { transform: translateY(-230px); } 100% { transform: translateY(0); } }
+@keyframes hb15-tour { to { transform: rotate(360deg); } }

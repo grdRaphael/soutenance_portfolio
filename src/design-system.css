@@ -1,0 +1,474 @@
+/* ==========================================================
+   design-system.css — diapositives 10 et 11 : le mood board, puis le design system en Sass.
+   Complète style.css (fenêtre VS Code, en-têtes de partie, couleurs).
+   ========================================================== */
+
+/* Couleurs Dark+ supplémentaires pour le SCSS */
+.t-n { color: #b5cea8; }     /* nombre, unité */
+.t-mot { color: #c586c0; }   /* @mixin, @include */
+.t-sel { color: #d7ba7d; }   /* sélecteur */
+.vsc__ext--scss { color: #f472b6; }
+
+/* ==========================================================
+   Diapositive 10 — Le mood board
+   ========================================================== */
+.mb {
+  position: absolute;
+  left: 120px;
+  top: 260px;
+  width: 1680px;
+  height: 740px;
+}
+
+/* La démonstration du glassmorphisme */
+.mb__demo {
+  position: absolute;
+  left: 440px;
+  top: 40px;
+  width: 800px;
+}
+
+.mb__scene {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: #0b1a4a;
+}
+
+/* Des taches nettes : sous le verre elles deviennent floues, c'est ce qui montre le verre dépoli */
+.mb__tache {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.mb__tache--rouge { left: 30px; top: 20px; width: 340px; height: 300px; background: #c42d1a; }
+.mb__tache--orange { left: 270px; top: 170px; width: 300px; height: 260px; background: #d9581f; }
+.mb__tache--bleue { left: 470px; top: -20px; width: 360px; height: 360px; background: #2c5fd6; }
+
+.mb__verre {
+  --flou: 24px;
+  position: absolute;
+  left: 140px;
+  top: 120px;
+  width: 520px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(var(--flou));
+  backdrop-filter: blur(var(--flou));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 20px 50px rgba(5, 10, 35, 0.35);
+}
+
+.mb__verre p { font-size: 44px; font-weight: 600; letter-spacing: -0.02em; }
+
+.mb__legende {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.mb__legende li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.mb__legende span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #ffb08a;
+  color: #ffb08a;
+  font-size: 18px;
+}
+
+/* Le mood board : des images épinglées, légèrement de travers */
+.mb__titre-board {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mb__titre-board span { color: #ffb08a; }
+
+.mb__photo {
+  position: absolute;
+  margin: 0;
+  padding: 10px;
+  border-radius: 14px;
+  background: #f4f1ec;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.mb__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.mb__photo--a { left: 0; top: 50px; width: 620px; height: 378px; transform: rotate(-3deg); z-index: 2; }
+.mb__photo--b { left: 560px; top: 330px; width: 440px; height: 300px; transform: rotate(4deg); z-index: 3; }
+.mb__photo--c { left: 40px; top: 470px; width: 440px; height: 285px; transform: rotate(2.5deg); z-index: 1; }
+
+.mb__punaise {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff9a7a, #c42d1a 70%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Les annotations tracées sur l'image : la typographie, l'étoile */
+.mb__annotations {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 600px;
+  height: 358px;
+  overflow: visible;
+}
+
+.mb__entoure {
+  fill: none;
+  stroke: #ffd24a;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+/* La pipette : un anneau qui prélève une couleur sur l'image */
+.mb__pipette {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35), 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.mb__pipette--rouge { background: #c42d1a; }
+.mb__pipette--orange { background: #d9581f; }
+.mb__pipette--bleue { background: #2c5fd6; }
+.mb__pipette--nuit { background: #0b1a4a; }
+.mb__pipette--grain { background: #3a64c8 url("../assets/noise.svg") 0 0 / 60px; }
+
+/* Ce que j'en ai gardé, à droite */
+.mb__sous-titre {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffb08a;
+}
+
+.mb__palette {
+  position: absolute;
+  left: 1080px;
+  top: 40px;
+  width: 600px;
+}
+
+.mb__teintes {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mb__teinte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 110px;
+}
+
+.mb__pastille {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.mb__pastille--grain { background: #24315f url("../assets/noise.svg") 0 0 / 70px; }
+
+.mb__teinte b { margin-top: 6px; font-size: 19px; font-weight: 600; }
+.mb__teinte code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; color: var(--texte-doux); }
+
+.mb__typo {
+  position: absolute;
+  left: 1080px;
+  top: 360px;
+  width: 300px;
+}
+
+.mb__aa {
+  font-size: 170px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.mb__police { font-size: 22px; color: var(--texte-doux); }
+
+.mb__etoile {
+  position: absolute;
+  left: 1420px;
+  top: 360px;
+  width: 260px;
+}
+
+.mb__etoile svg {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin-top: 26px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 14;
+  stroke-linecap: square;
+}
+
+/* Au survol, un prélèvement et ce qu'il est devenu à droite avancent ensemble ; le reste recule.
+   `scale` et `translate` s'ajoutent au transform que GSAP laisse sur les éléments. */
+.mb__pipette,
+.mb__teinte,
+.mb__typo,
+.mb__etoile,
+.mb__entoure {
+  transition: scale 0.4s cubic-bezier(0.22, 1, 0.36, 1), translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s ease, stroke-width 0.3s ease;
+}
+
+.mb__pipette,
+.mb__teinte,
+.mb__typo,
+.mb__etoile { cursor: default; }
+
+.mb__entoure { pointer-events: all; }
+
+.mb.a-survol .mb__teinte:not(.est-survole),
+.mb.a-survol .mb__typo:not(.est-survole),
+.mb.a-survol .mb__etoile:not(.est-survole) { filter: opacity(0.35); }
+
+.mb__pipette.est-survole {
+  scale: 1.5;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.8));
+}
+
+.mb__entoure.est-survole {
+  stroke-width: 6;
+  filter: drop-shadow(0 0 10px rgba(255, 210, 74, 0.9));
+}
+
+.mb__teinte.est-survole {
+  scale: 1.18;
+  translate: 0 -14px;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.5));
+}
+
+.mb__typo.est-survole,
+.mb__etoile.est-survole {
+  scale: 1.1;
+  translate: 0 -14px;
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.35));
+}
+
+/* ==========================================================
+   Diapositive 11 — Le design system en Sass
+   ========================================================== */
+.ds {
+  position: absolute;
+  left: 120px;
+  top: 260px;
+  width: 1680px;
+  height: 740px;
+}
+
+.ds__code {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 860px;
+}
+
+.ds__code .vsc__ligne { height: 40px; line-height: 40px; font-size: 21px; }
+
+/* La pastille de couleur que VS Code affiche devant une valeur */
+.ds__teinte {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0 8px -1px 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.ds__mixin { visibility: hidden; }
+
+.ds__note {
+  position: absolute;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.ds__note--mixin {
+  left: 0;
+  top: 600px;
+  width: 860px;
+  color: #ffd9c2;
+}
+
+/* Le mini-site : ses couleurs sont des variables CSS, que la slide fait changer */
+.ds__apercu {
+  --nuit: #0b1a4a;
+  --rouge: #c42d1a;
+  --orange: #d9581f;
+  --bleu: #2c5fd6;
+  position: absolute;
+  left: 940px;
+  top: 20px;
+  width: 740px;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: var(--nuit);
+}
+
+.ds__lueur {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.85;
+}
+
+.ds__lueur--rouge { left: -60px; top: -60px; width: 380px; height: 320px; background: var(--rouge); }
+.ds__lueur--orange { left: 200px; top: 160px; width: 300px; height: 260px; background: var(--orange); }
+.ds__lueur--bleue { right: -80px; bottom: -80px; width: 420px; height: 380px; background: var(--bleu); }
+
+/* Les composants : d'abord pleins et neutres ; le mixin les change en verre */
+.ds__comp {
+  --flou: 0px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background: #2a3260;
+  -webkit-backdrop-filter: blur(var(--flou));
+  backdrop-filter: blur(var(--flou));
+}
+
+.ds__comp--header { left: 0; top: 0; width: 740px; height: 64px; gap: 12px; padding: 0 24px; font-size: 18px; font-weight: 600; }
+.ds__comp--header span { margin-right: auto; }
+.ds__comp--header i { width: 46px; height: 10px; border-radius: 5px; background: rgba(255, 255, 255, 0.4); }
+
+.ds__comp--hero {
+  left: 30px;
+  top: 100px;
+  width: 680px;
+  height: 250px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 28px 34px;
+  border-radius: 34px;
+}
+
+.ds__hero-petit { font-size: 18px; font-weight: 500; text-transform: uppercase; }
+.ds__hero-grand { font-size: 84px; font-weight: 500; line-height: 0.9; letter-spacing: -0.05em; }
+
+.ds__comp--filtres { left: 30px; top: 390px; height: 60px; gap: 6px; padding: 6px; border-radius: 999px; }
+.ds__comp--filtres span { padding: 8px 20px; border-radius: 999px; font-size: 18px; font-weight: 600; }
+.ds__comp--filtres span:first-child { background: #fff; color: #0b1a4a; }
+
+.ds__comp--champ { left: 30px; top: 490px; width: 680px; height: 66px; padding: 0 22px; border-radius: 14px; font-size: 20px; color: var(--texte-doux); }
+
+/* L'étiquette qui nomme le composant au moment où le mixin s'y applique */
+.ds__etiquette {
+  position: absolute;
+  right: 14px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: #bf4f1c;
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  opacity: 0;
+}
+
+.ds__note--composants {
+  left: 940px;
+  top: 640px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds__coche { color: var(--vert-statut); font-weight: 800; }
+
+/* ==========================================================
+   Diapositive 12 — Le point faible du verre
+   Préfixe lv exclusif à cette diapositive. Les trois échantillons
+   partagent exactement le même fond, le même texte et le même flou.
+   ========================================================== */
+.lv { position: absolute; left: 120px; top: 285px; width: 1680px; height: 700px; }
+.lv__probleme, .lv__couleurs, .lv__comparaison { position: absolute; inset: 0; }
+.lv__accroche { font-size: 34px; font-weight: 500; letter-spacing: -0.025em; }
+.lv__duo { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 48px; }
+.lv figure { margin: 0; }
+.lv__fond-uni, .lv__fond-variable { position: relative; height: 340px; border-radius: 28px; overflow: hidden; background: #0b1a4a; border: 1px solid rgba(255,255,255,0.28); }
+.lv__fond-uni, .lv__vitre-demo { display: grid; place-items: center; }
+.lv__fond-uni p, .lv__vitre-demo p { font-size: 46px; font-weight: 800; letter-spacing: -0.025em; }
+/* Contre-exemple volontaire, exagéré : une lueur presque blanche, sous un verre clair.
+   Au centre, le texte blanc n'a plus qu'un contraste d'environ 1,1:1 : on ne le lit presque plus.
+   Seul le fond bouge ; le texte reste blanc et à pleine opacité. */
+.lv__lueur-mobile { position: absolute; width: 1000px; height: 700px; left: -990px; top: -180px; background: radial-gradient(ellipse, #fff8ee 0%, #ffeedd 45%, #ffd3a0 64%, transparent 78%); border-radius: 50%; filter: blur(30px); }
+.lv__demo-note { display: block; margin-top: 12px; font-size: 20px; color: var(--texte-doux); }
+.lv__vitre-demo { position: absolute; inset: 30px; border: 1px solid rgba(255,255,255,0.28); border-radius: 22px; background: rgba(255,255,255,0.1); -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); }
+.lv figcaption { margin-top: 26px; }
+.lv figcaption strong { display: block; font-size: 32px; font-weight: 600; letter-spacing: -0.025em; }
+.lv figcaption > span { display: block; margin-top: 8px; font-size: 24px; color: var(--texte-doux); }
+.lv__palette { position: absolute; left: 0; top: 140px; display: flex; gap: 28px; }
+.lv__palette span { width: 200px; padding-top: 230px; position: relative; text-align: center; font-size: 26px; }
+.lv__palette span::before { content: ''; position: absolute; inset: 0 0 auto; height: 200px; border-radius: 50%; background: var(--lv-teinte); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 20px 70px rgba(5,10,35,0.25); }
+.lv__mesure { position: absolute; left: 790px; top: 110px; border-left: 1px solid rgba(255,255,255,0.3); padding: 12px 0 30px 80px; }
+.lv__ratio { font-size: 154px; line-height: 1.15; font-weight: 600; letter-spacing: -0.07em; white-space: nowrap; }
+.lv__ratio span { font-size: 86px; font-weight: 400; color: #ffb08a; }
+.lv__seuil { font-size: 32px; margin-top: 22px; }
+.lv__precision { font-size: 25px; margin-top: 14px; color: var(--texte-doux); }
+.lv__echantillons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 42px; }
+.lv__decor { position: relative; isolation: isolate; height: 330px; border-radius: 28px; overflow: hidden; background: #0b1a4a; }
+.lv__decor::before { content: ''; position: absolute; inset: -35px; background: radial-gradient(ellipse at 12% 10%, #c42d1a 0%, transparent 48%), radial-gradient(ellipse at 65% 65%, #d9581f 0%, transparent 63%), radial-gradient(ellipse at 100% 0%, #2c5fd6 0%, transparent 55%); filter: blur(24px); }
+.lv__vitre { position: absolute; inset: 18px; padding: 38px 32px; background: rgba(10,20,64,0.2); border: 1px solid rgba(255,255,255,0.28); border-radius: 22px; -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 24px 60px rgba(5,10,35,0.35); }
+.lv__vitre p { font-size: 48px; line-height: 1.2; font-weight: 600; letter-spacing: -0.035em; }
+.lv__echantillon--fort .lv__vitre { background: rgba(10,20,64,0.45); }
+.lv__echantillon--contraste .lv__vitre { background: rgba(10,20,64,0.92); border-color: #fff; }
+.lv__opacite { display: block; font-size: 30px; font-weight: 600; margin-top: 36px; }
+.lv__opacite small { font-size: 22px; font-weight: 400; margin-left: 6px; }
+.lv__preference { position: absolute; top: 555px; right: 0; display: flex; align-items: center; gap: 24px; }
+.lv__preference p { font-size: 27px; font-weight: 600; }
+.lv__preference p span { display: block; font-size: 22px; font-weight: 400; margin-top: 6px; color: var(--texte-doux); }
+.lv__interrupteur { width: 76px; height: 44px; padding: 6px; border-radius: 30px; background: rgba(255,255,255,0.18); }
+.lv__interrupteur i { display: block; width: 32px; height: 32px; border-radius: 50%; background: white; }

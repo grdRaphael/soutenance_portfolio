@@ -1,0 +1,2786 @@
+/* ==========================================================
+   style.css — les diapositives, aux couleurs du portfolio.
+   Les valeurs reprennent src/styles/_variables.scss du portfolio,
+   agrandies pour une scène de 1920 × 1080 projetée.
+   ========================================================== */
+:root {
+  /* Lueurs du fond (mêmes couleurs que le site : contraste du texte blanc ≥ 4,5:1) */
+  --rouge: #c42d1a;
+  --orange: #d9581f;
+  --bleu: #2c5fd6;
+  --bleu-profond: #1638a8;
+  --nuit: #0b1a4a;
+
+  /* Texte */
+  --texte: #ffffff;
+  --texte-doux: rgba(255, 255, 255, 0.9);
+  --vert-statut: #4ade80;
+
+  /* Verre : plus marqué que sur le site, la scène est vue de loin */
+  --verre-teinte: 10 20 64;
+  --verre-fond: rgb(var(--verre-teinte) / 0.2);
+  --verre-fond--fort: rgb(var(--verre-teinte) / 0.45);
+  --verre-bord: rgba(255, 255, 255, 0.28);
+  --verre-flou: 28px;
+
+  /* Arrondis */
+  --rayon-l: 48px;
+  --rayon: 28px;
+  --rayon-s: 16px;
+
+  --police: "Manrope", system-ui, sans-serif;
+
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #050b24;
+}
+
+body {
+  font-family: var(--police);
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--texte);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, dl, dd, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+#deck {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scène 1920 × 1080, mise à l'échelle par main.js (--scale) */
+#stage {
+  position: relative;
+  flex: none;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  background: var(--nuit);
+  overflow: hidden;
+  transform: scale(var(--scale, 1));
+  transform-origin: center center;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.slide.is-active { visibility: visible; }
+
+/* Pendant un voyage de la caméra, la diapositive quittée reste visible : on la traverse */
+.slide.is-sortante { visibility: visible; }
+
+/* Filet de sécurité : rien ne dépasse d'une diapositive cachée. Un enfant qui reçoit
+   « visibility: visible » (par une animation) resterait sinon visible sur la slide suivante. */
+.slide:not(.is-active):not(.is-sortante) * { visibility: hidden !important; }
+
+#slide-number {
+  position: absolute;
+  right: 64px;
+  bottom: 48px;
+  font-size: 20px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+}
+
+#stage.sans-numero #slide-number { display: none; }
+
+/* ==========================================================
+   Le fond : celui du portfolio (Background.scss)
+   Deux dégradés, trois lueurs floutées, un grain en surimpression.
+   Commun à toutes les diapositives : il ne se recharge pas d'une slide à l'autre.
+   ========================================================== */
+.fond {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 70% at 100% 100%, rgb(44 95 214 / 0.35) 0%, transparent 70%),
+    linear-gradient(160deg, #13286e 0%, var(--nuit) 60%);
+}
+
+/* Le grain (technique « Grainy Gradients » de CSS-Tricks) : le verre le floute,
+   ce qui donne l'aspect dépoli */
+.fond::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/noise.svg");
+  background-size: 200px;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.lueur {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  filter: blur(110px);
+  will-change: transform;
+}
+
+.lueur--rouge {
+  width: 880px;
+  height: 660px;
+  top: -170px;
+  left: -200px;
+  background: var(--rouge);
+}
+
+.lueur--orange {
+  width: 620px;
+  height: 490px;
+  top: 210px;
+  left: 340px;
+  background: var(--orange);
+}
+
+.lueur--bleue {
+  width: 960px;
+  height: 560px;
+  bottom: -170px;
+  right: -200px;
+  background: var(--bleu);
+}
+
+/* ==========================================================
+   Le verre (mixin glass du portfolio), poussé plus loin :
+   reflet sur la tranche, lumière en haut, ombre portée profonde.
+   --flou est animé par GSAP : le verre « se forme » à l'apparition.
+   ========================================================== */
+.verre {
+  position: relative;
+  background: var(--verre-fond);
+  /* Le préfixe d'abord, la propriété standard en dernier (leçon du portfolio) */
+  -webkit-backdrop-filter: blur(var(--flou, var(--verre-flou))) saturate(160%);
+  backdrop-filter: blur(var(--flou, var(--verre-flou))) saturate(160%);
+  border: 1px solid var(--verre-bord);
+  border-radius: var(--rayon);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 80px rgba(5, 10, 35, 0.45);
+}
+
+/* Une lumière douce tombe du haut du panneau */
+.verre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 38%);
+  pointer-events: none;
+}
+
+/* Le reflet qui balaie la tranche du verre : un dégradé limité au bord
+   par un masque (le contenu est découpé, il ne reste que l'anneau) */
+.verre__reflet {
+  --reflet: 130%;
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(115deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.95) 48%,
+      rgba(255, 214, 190, 0.7) 52%,
+      transparent 62%) var(--reflet) 0 / 260% 100% no-repeat;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ==========================================================
+   Diapositive 1 — Couverture : la profondeur de verre
+   Les couches sont centrées sur la scène ; main.js les place et les
+   met à l'échelle selon leur distance à la caméra (transform, opacité, z-index).
+   ========================================================== */
+.pv-couche {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+/* Les plaques nues : du verre, rien d'autre */
+.pv-plaque { border-radius: var(--rayon-l); }
+.pv-plaque--l { width: 1080px; height: 660px; }
+.pv-plaque--m { width: 860px; height: 540px; }
+.pv-plaque--fond {
+  width: 1500px;
+  height: 900px;
+  background: rgb(var(--verre-teinte) / 0.16);
+}
+
+/* La dalle : la plaque de verre de la diapositive, au plan de mise au point.
+   Tout le texte de la slide est posé dessus : rien ne flotte dans le vide. */
+.pv-dalle {
+  width: 1560px;
+  height: 800px;
+  padding: 72px 110px 86px;
+  border-radius: var(--rayon-l);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pv-dalle__label {
+  display: flex;
+  gap: 14px;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texte-doux);
+}
+
+.pv-nom {
+  display: flex;
+  flex-direction: column;
+  font-size: 236px;
+  font-weight: 500;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 4px 60px rgba(10, 18, 60, 0.35);
+  margin-left: -0.04em;
+}
+
+/* La deuxième ligne décalée : le nom se lit comme une composition, pas comme un bloc */
+.pv-nom__ligne:last-child { margin-left: 0.62em; }
+
+.pv-metier {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: 6px;
+  font-size: 38px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pv-metier::before {
+  content: "";
+  width: 120px;
+  height: 2px;
+  background: var(--texte);
+}
+
+/* Les cartes de verre qui portent les informations */
+.pv-carte {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 36px 30px;
+  border-radius: var(--rayon);
+  white-space: nowrap;
+}
+
+.pv-carte__petit {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--texte-doux);
+}
+
+.pv-carte__fort {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.pv-carte time { font-variant-numeric: tabular-nums; }
+
+.pv-carte--lien {
+  flex-direction: row;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 34px 22px 22px;
+  border-radius: 999px;
+}
+
+.pv-carte--lien .pv-carte__fort { font-size: 26px; }
+
+.pv-cercle {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1.5px solid var(--texte);
+  border-radius: 50%;
+  font-size: 26px;
+}
+
+/* Le disque de verre qui porte l'étoile */
+.pv-disque {
+  display: grid;
+  place-items: center;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+/* Le point vert de disponibilité, qui pulse */
+.pv-statut {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pv-statut::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--vert-statut);
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgb(74 222 128 / 0.6); }
+  100% { box-shadow: 0 0 0 10px rgb(74 222 128 / 0); }
+}
+
+/* Le badge : l'étoile du Hero, entourée de son texte circulaire */
+.badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 210px;
+  height: 210px;
+}
+
+.badge__anneau {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--texte);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.badge__etoile {
+  width: 88px;
+  height: 88px;
+  fill: none;
+  stroke: var(--texte);
+  stroke-width: 15;
+  stroke-linecap: square;
+  /* pathLength="1" : chaque branche se trace de 0 à 1, quelle que soit sa longueur */
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+/* ==========================================================
+   Diapositive 2 — Le déroulé : un parcours en six stations
+   ========================================================== */
+.deroule {
+  position: absolute;
+  inset: 0;
+}
+
+.deroule__tete {
+  position: absolute;
+  left: 120px;
+  top: 92px;
+}
+
+.deroule__kicker {
+  min-height: 1.2em;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffb08a;
+}
+
+.deroule__titre {
+  margin-top: 6px;
+  font-size: 120px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+/* La route : un tracé fantôme (toute la route, discret) et la trace lumineuse laissée par la lueur */
+.deroule__route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.deroule__fantome,
+.deroule__trace {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.deroule__fantome {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 2;
+}
+
+.deroule__trace {
+  stroke: url(#deroule-degrade);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 10px rgba(255, 176, 138, 0.7));
+}
+
+/* La lueur qui parcourt la route : une petite lueur du fond, très concentrée */
+.deroule__lueur {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 16%, #ffd9c2 28%, rgb(232 105 46 / 0.9) 46%, rgb(232 105 46 / 0) 72%);
+  box-shadow: 0 0 40px 14px rgb(232 105 46 / 0.5), 0 0 110px 36px rgb(196 45 26 / 0.3);
+  /* Sous les disques : arrivée à une station, la lueur éclaire le verre par l'arrière */
+  z-index: 1;
+  pointer-events: none;
+  animation: lueur-pouls 1.8s ease-in-out infinite;
+}
+
+@keyframes lueur-pouls {
+  50% { box-shadow: 0 0 56px 20px rgb(232 105 46 / 0.65), 0 0 140px 46px rgb(196 45 26 / 0.38); }
+}
+
+.deroule__stations { position: absolute; inset: 0; }
+
+/* Une station : un point sans taille posé sur la route ; disque et textes sont centrés dessus */
+.station {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 2;
+}
+
+.station__disque {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 132px;
+  height: 132px;
+  margin: -66px 0 0 -66px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.station__icone {
+  width: 58px;
+  height: 58px;
+  fill: none;
+  stroke: var(--texte);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.station__icone--etoile {
+  width: 52px;
+  height: 52px;
+  stroke-width: 13;
+  stroke-linecap: square;
+}
+
+/* L'onde qui part de la station à l'arrivée de la lueur */
+.station__onde {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 132px;
+  height: 132px;
+  margin: -66px 0 0 -66px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 217, 194, 0.9);
+  opacity: 0;
+}
+
+.station__textes {
+  position: absolute;
+  left: 0;
+  width: 480px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.station--haut .station__textes { bottom: 100px; }
+.station--bas .station__textes { top: 100px; }
+
+.station__numero {
+  display: block;
+  min-height: 1.2em;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  color: #ffb08a;
+}
+
+.station__nom {
+  margin-top: 4px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.station__detail {
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--texte-doux);
+}
+
+/* ==========================================================
+   Diapositive 3 — Qui je suis : le fil à gauche, une scène par idée à droite
+   ========================================================== */
+.qui { position: absolute; inset: 0; }
+
+.qui__tete {
+  position: absolute;
+  left: 120px;
+  top: 84px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.qui__pastille {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.qui__icone {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: var(--texte);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.qui__kicker {
+  min-height: 1.2em;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffb08a;
+}
+
+.qui__titre {
+  margin-top: 4px;
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+/* Le fil de l'histoire */
+.fil {
+  position: absolute;
+  left: 120px;
+  top: 340px;
+  width: 440px;
+  height: 540px;
+}
+
+.fil__ligne {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 520px;
+  overflow: visible;
+}
+
+.fil__fantome,
+.fil__trace { fill: none; stroke-linecap: round; }
+.fil__fantome { stroke: rgba(255, 255, 255, 0.18); stroke-width: 2; }
+.fil__trace {
+  stroke: #ffb08a;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgba(255, 176, 138, 0.7));
+}
+
+.fil__etapes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 105px;
+}
+
+.fil__etape {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  height: 20px;
+}
+
+.fil__point {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  background: var(--nuit);
+  box-shadow: 0 0 0 0 rgba(232, 105, 46, 0);
+}
+
+.fil__mot {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Les scènes : une seule visible à la fois */
+.qui__scenes {
+  position: absolute;
+  left: 600px;
+  top: 290px;
+  width: 1200px;
+  height: 700px;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* 1. Full-stack */
+.stack__nom {
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.stack__metier {
+  min-height: 1.2em;
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffb08a;
+}
+
+.stack__pont {
+  position: absolute;
+  left: 0;
+  top: 210px;
+  width: 1200px;
+  height: 320px;
+}
+
+.stack__bout {
+  position: absolute;
+  top: 0;
+  width: 240px;
+  text-align: center;
+}
+
+.stack__bout--front { left: 0; }
+.stack__bout--back { right: 0; }
+
+.stack__tuile {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 40px;
+}
+
+.stack__role {
+  margin-top: 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.stack__techno {
+  margin-top: 2px;
+  font-size: 22px;
+  color: var(--texte-doux);
+}
+
+.stack__liaison {
+  position: absolute;
+  left: 260px;
+  top: 80px;
+  width: 680px;
+  height: 20px;
+  overflow: visible;
+}
+
+.stack__fantome,
+.stack__trait { fill: none; stroke-linecap: round; }
+.stack__fantome { stroke: rgba(255, 255, 255, 0.2); stroke-width: 2; stroke-dasharray: 6 10; }
+.stack__trait {
+  stroke: #ffb08a;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 10px rgba(255, 176, 138, 0.8));
+}
+
+.stack__impulsion {
+  position: absolute;
+  left: 260px;
+  top: 90px;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 20%, #ffd9c2 34%, rgb(232 105 46 / 0.85) 52%, rgb(232 105 46 / 0) 74%);
+  box-shadow: 0 0 34px 12px rgb(232 105 46 / 0.5);
+  opacity: 0;
+}
+
+.stack__qualites {
+  position: absolute;
+  left: 0;
+  top: 590px;
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.qualite {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 30px;
+  border-radius: 999px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.qualite__coche { color: var(--vert-statut); font-weight: 800; }
+
+/* 2. Le sport */
+.sport__disque {
+  position: absolute;
+  left: 0;
+  top: 130px;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.sport__icone,
+.sport__epingle,
+.tache__boucle,
+.mail__icone {
+  fill: none;
+  stroke: var(--texte);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sport__icone { width: 140px; height: 140px; stroke-width: 1.25; }
+
+.poste {
+  position: absolute;
+  left: 350px;
+  width: 780px;
+  padding: 26px 36px 30px;
+  border-radius: var(--rayon);
+}
+
+.poste--2 { top: 60px; }
+.poste--1 { top: 330px; }
+
+.poste__quand {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffb08a;
+}
+
+.poste__titre {
+  margin-top: 6px;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.sport__montee {
+  position: absolute;
+  left: 726px;
+  top: 236px;
+  width: 28px;
+  height: 72px;
+  fill: none;
+  stroke: #ffb08a;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sport__lieu {
+  position: absolute;
+  left: 350px;
+  top: 540px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px 16px 22px;
+  border-radius: 999px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.sport__epingle { width: 36px; height: 36px; stroke-width: 1.75; }
+
+/* 3. Les tâches répétitives et Apps Script */
+.taches {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 460px;
+}
+
+.tache {
+  position: relative;
+  height: 100px;
+  margin-bottom: 46px;
+}
+
+.tache__carte {
+  position: relative;
+  z-index: 1;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 30px;
+  border-radius: 24px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.tache__fantome {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgb(10 20 64 / 0.25);
+}
+
+.tache__boucle { flex-shrink: 0; width: 36px; height: 36px; stroke-width: 1.75; }
+
+.taches__fleche {
+  position: absolute;
+  left: 486px;
+  top: 214px;
+  width: 110px;
+  height: 40px;
+  fill: none;
+  stroke: #ffb08a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.code {
+  position: absolute;
+  left: 610px;
+  top: 30px;
+  width: 590px;
+  padding: 28px 32px 30px;
+  border-radius: var(--rayon);
+}
+
+.code__titre {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.code__js {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #f7df1e;
+  color: #111;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.code__corps {
+  margin: 24px 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16.5px;
+  line-height: 1.8;
+  white-space: normal;
+}
+
+.code__ligne { display: block; min-height: 1.8em; white-space: pre; }
+.code__ligne--note { color: #9fb6ff; }
+
+.code__outils {
+  position: absolute;
+  left: 610px;
+  top: 340px;
+  display: flex;
+  gap: 20px;
+}
+
+.outil {
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* 4. L'exemple : de l'e-mail au tableau */
+.mail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1200px;
+  padding: 28px 34px 30px;
+  border-radius: var(--rayon);
+}
+
+.mail__tete {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.mail__icone { width: 34px; height: 34px; stroke-width: 1.75; }
+
+.mail__corps { margin-top: 20px; }
+
+.mail__corps p {
+  font-size: 22px;
+  line-height: 1.55;
+}
+
+.mail__corps p + p { margin-top: 18px; }
+
+/* La valeur sélectionnée, prête à partir, et sa copie qui vole jusqu'à sa cellule */
+.mail__val,
+.vol {
+  position: relative;
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.vol {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  font-weight: 600;
+  background: rgb(232 105 46 / 0.35);
+  box-shadow: 0 6px 20px rgba(5, 10, 35, 0.4);
+}
+
+.feuille {
+  position: absolute;
+  left: 0;
+  top: 410px;
+  width: 1200px;
+  border-radius: 24px;
+}
+
+/* L'application du tableau, posée au-dessus de son coin */
+.feuille__appli {
+  position: absolute;
+  left: 0;
+  top: -66px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 14px;
+  border-radius: 999px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.feuille__logo { width: 24px; height: 33px; }
+
+.feuille__ligne {
+  display: grid;
+  grid-template-columns: 210px 245px 420px 325px;
+  height: 72px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.feuille__ligne:last-of-type { border-bottom: 0; }
+
+.feuille__ligne > span {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 22px;
+}
+
+.feuille__ligne > span:last-child { border-right: 0; }
+
+.feuille__ligne--tete > span {
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texte-doux);
+}
+
+.feuille__ok {
+  position: absolute;
+  right: -60px;
+  top: 88px;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--vert-statut);
+}
+
+.exemple__note {
+  position: absolute;
+  left: 0;
+  top: 650px;
+  min-height: 1.3em;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffb08a;
+}
+
+/* 5. Le déclic */
+.declic__phrase {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 1200px;
+  font-size: 84px;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.declic__cible {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  color: #ffd9c2;
+}
+
+.declic__rature {
+  position: absolute;
+  left: -5%;
+  top: -16%;
+  width: 110%;
+  height: 132%;
+  overflow: visible;
+  fill: none;
+  stroke: #ff9a5c;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.declic__qui {
+  position: absolute;
+  left: 0;
+  top: 300px;
+  font-size: 34px;
+  font-weight: 500;
+  color: var(--texte-doux);
+}
+
+.declic__suite {
+  position: absolute;
+  left: 0;
+  top: 450px;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.declic__fleche {
+  width: 200px;
+  height: 40px;
+  fill: none;
+  stroke: var(--texte);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.declic__dev {
+  font-size: 76px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 40px rgb(232 105 46 / 0.55);
+}
+
+/* ==========================================================
+   Diapositives 4 à 8 — la suite du pitch : une idée par écran
+   ========================================================== */
+.pitch { position: absolute; inset: 0; }
+.pitch__titre { font-size: 80px; }
+
+.puces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.puce {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 26px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Les icônes au trait (Lucide) */
+.diplome__icone,
+.avatar svg,
+.suite__adresse svg {
+  fill: none;
+  stroke: var(--texte);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 4. Ma formation */
+.diplome {
+  position: absolute;
+  left: 120px;
+  top: 300px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.diplome__disque {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.diplome__progression {
+  position: absolute;
+  inset: -16px;
+  width: 232px;
+  height: 232px;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.diplome__piste { fill: none; stroke: rgba(255, 255, 255, 0.15); stroke-width: 4; }
+
+.diplome__arc {
+  fill: none;
+  stroke: #ffb08a;
+  stroke-width: 6;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(255, 176, 138, 0.7));
+}
+
+.diplome__icone { width: 96px; height: 96px; stroke-width: 1.4; }
+
+.diplome__label,
+.recherche__label,
+.suite__kicker {
+  min-height: 1.2em;
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffb08a;
+}
+
+.diplome__nom {
+  margin-top: 6px;
+  font-size: 128px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.briques {
+  position: absolute;
+  left: 120px;
+  top: 600px;
+  width: 1680px;
+  height: 400px;
+}
+
+.brique { position: absolute; top: 0; width: 480px; }
+.brique--front { left: 0; }
+.brique--back { left: 600px; }
+.brique--agile { left: 1200px; }
+
+.brique__nom {
+  margin-top: 26px;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.brique__detail {
+  margin-top: 4px;
+  font-size: 22px;
+  color: var(--texte-doux);
+}
+
+.navigateur {
+  height: 250px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.navigateur__barre,
+.ecran__barre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.navigateur__barre { height: 40px; }
+
+.navigateur__barre i,
+.ecran__barre i {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.navigateur__corps {
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.logo-js {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #f7df1e;
+  color: #111;
+  font-size: 44px;
+  font-weight: 800;
+}
+
+.navigateur__react { width: 120px; height: 120px; }
+
+.briques__lien {
+  position: absolute;
+  left: 486px;
+  top: 115px;
+  width: 108px;
+  height: 20px;
+  overflow: visible;
+}
+
+.briques__lien path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.briques__paquet {
+  position: absolute;
+  left: 488px;
+  top: 125px;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: #ffd9c2;
+  box-shadow: 0 0 16px 6px rgb(232 105 46 / 0.6);
+  opacity: 0;
+}
+
+.serveur {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.serveur__unite {
+  height: 66px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 24px;
+  border-radius: 16px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.serveur__voyant {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.kanban {
+  position: relative;
+  height: 250px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 16px;
+  border-radius: 22px;
+}
+
+.kanban__col {
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.kanban__col p {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texte-doux);
+}
+
+/* Les cartes partent de « À faire » ; main.js les fait glisser d'une colonne à l'autre */
+.kanban__carte {
+  position: absolute;
+  left: 26px;
+  width: 122px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.kanban__carte:nth-of-type(1) { top: 66px; }
+.kanban__carte:nth-of-type(2) { top: 116px; }
+.kanban__carte:nth-of-type(3) { top: 166px; }
+
+/* 5. Sophie Bluel */
+.ecran {
+  position: absolute;
+  left: 120px;
+  top: 290px;
+  width: 860px;
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.ecran__barre { height: 48px; }
+
+.ecran__url {
+  flex: 1;
+  margin-left: 18px;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 17px;
+  line-height: 30px;
+  color: var(--texte-doux);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ecran__image { height: 645px; overflow: hidden; }
+
+.ecran__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Les garde-fous de l'API : un voile de verre sombre recouvre le site, le bouclier au centre */
+.garde {
+  position: absolute;
+  inset: 48px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 54px;
+}
+
+.garde__voile {
+  position: absolute;
+  inset: 0;
+  background: rgb(8 14 44 / 0.78);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.garde > :not(.garde__voile) { position: relative; }
+
+.garde__bouclier {
+  width: 116px;
+  height: 116px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(232 105 46 / 0.2);
+  border: 1px solid rgba(255, 217, 194, 0.45);
+  box-shadow: 0 0 60px rgb(232 105 46 / 0.35);
+}
+
+.garde__onde {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #ffb08a;
+  opacity: 0;
+}
+
+.garde__icone {
+  width: 60px;
+  height: 60px;
+  fill: none;
+  stroke: #ffd9c2;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.garde__titre {
+  min-height: 1.05em;
+  margin-top: 26px;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.garde__but {
+  margin-top: 10px;
+  font-size: 24px;
+  color: var(--texte-doux);
+}
+
+.garde__liste {
+  margin-top: 40px;
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.garde__item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  column-gap: 20px;
+  padding: 16px 26px;
+  border-radius: 18px;
+}
+
+.garde__picto {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: #ffb08a;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.garde__nom { font-size: 28px; font-weight: 600; }
+
+.garde__detail {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--texte-doux);
+  font-variant-numeric: tabular-nums;
+}
+
+.bluel {
+  position: absolute;
+  left: 1060px;
+  top: 300px;
+  width: 740px;
+  height: 690px;
+}
+
+.bluel__nom {
+  font-size: 104px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.jalons {
+  position: absolute;
+  left: 0;
+  top: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.jalon {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  column-gap: 24px;
+  align-items: center;
+}
+
+.jalon__marque {
+  position: relative;
+  z-index: 1;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgb(10 20 64 / 0.6);
+}
+
+.jalon__marque img { width: 40px; height: 40px; }
+
+.jalon__marque--js {
+  border: 0;
+  background: #f7df1e;
+  color: #111;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.jalon__marque--ligne i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--vert-statut);
+  animation: pulse 2s ease-out infinite;
+}
+
+.jalon__texte {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.jalon__quand { color: #ffb08a; }
+
+.jalon__initiative {
+  grid-column: 2;
+  margin-top: 2px;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--texte-doux);
+}
+
+.jalons__fil {
+  position: absolute;
+  left: 30px;
+  top: 192px;
+  width: 4px;
+  height: 236px;
+  overflow: visible;
+}
+
+.jalons__fil path { fill: none; stroke: rgba(255, 176, 138, 0.6); stroke-width: 3; }
+
+.poids {
+  position: absolute;
+  left: 0;
+  top: 540px;
+  width: 740px;
+}
+
+.poids__valeurs {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  font-variant-numeric: tabular-nums;
+}
+
+.poids__avant { font-size: 40px; font-weight: 600; color: var(--texte-doux); }
+.poids__fleche { font-size: 40px; color: #ffb08a; }
+.poids__apres { font-size: 80px; font-weight: 700; letter-spacing: -0.03em; }
+
+.poids__barre {
+  display: block;
+  width: 620px;
+  height: 10px;
+  margin-top: 12px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.poids__barre span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff9a5c, #ffd9c2);
+  transform-origin: 0 50%;
+}
+
+.poids__label {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 22px;
+  color: var(--texte-doux);
+}
+
+.poids__badge {
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgb(74 222 128 / 0.18);
+  color: var(--vert-statut);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+/* 6. Ma façon de travailler */
+.principes {
+  position: absolute;
+  left: 120px;
+  top: 330px;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.principe {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 28px;
+}
+
+.principe__num {
+  grid-row: 1 / 3;
+  width: 56px;
+  height: 56px;
+  margin-top: 6px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #ffb08a;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffb08a;
+}
+
+.principe__mot {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.principe__detail {
+  margin-top: 6px;
+  font-size: 26px;
+  color: var(--texte-doux);
+}
+
+.facon__scenes {
+  position: absolute;
+  left: 880px;
+  top: 300px;
+  width: 920px;
+  height: 690px;
+}
+
+.loupe {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 920px;
+  padding: 30px 40px 44px;
+  border-radius: var(--rayon);
+}
+
+.loupe__fichier {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #9fb6ff;
+}
+
+.loupe__code { position: relative; margin-top: 24px; }
+
+.loupe__net {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 24px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* Une ligne par bloc, pour pouvoir éclairer les lignes expliquées (fond et filet transparents au départ) */
+.loupe__ligne {
+  display: block;
+  margin: 0 -14px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background-color: rgba(255, 176, 138, 0);
+  box-shadow: inset 4px 0 0 rgba(255, 176, 138, 0);
+}
+
+/* Kasa et Sophie Bluel côte à côte, au-dessus du code */
+.pratique {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: 40px;
+}
+
+.pratique__carte {
+  width: 440px;
+  padding: 24px 30px;
+  border-radius: var(--rayon);
+}
+
+.pratique__tete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.pratique__role {
+  margin-top: 6px;
+  font-size: 22px;
+  color: var(--texte-doux);
+}
+
+.pratique__donnees {
+  margin-top: 16px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #ff9a9a;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.pratique__donnees--oui { border-color: var(--vert-statut); }
+
+.pratique__donnees svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Le code passe sous les cartes */
+.scene--loupe .loupe { top: 230px; }
+
+/* Les deux annotations, au bout des lignes qu'elles expliquent */
+.loupe__note {
+  position: absolute;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 38.4px;
+  color: #ffb08a;
+  white-space: nowrap;
+}
+
+.loupe__note--affichage { left: 290px; top: 0; }
+.loupe__note--api { left: 500px; top: 76.8px; }
+
+/* La fenêtre d'ajout de Sophie Bluel, reproduite avec ses couleurs et ses polices (UploadModal.scss), un peu agrandie */
+.sbm {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 600px;
+  padding: 34px 90px 34px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 30px 70px rgba(5, 10, 35, 0.55);
+  font-family: "Work Sans", sans-serif;
+  color: #3d3d3d;
+}
+
+.sbm__retour,
+.sbm__fermer { position: absolute; top: 30px; width: 26px; height: 26px; }
+.sbm__retour { left: 30px; }
+.sbm__fermer { right: 30px; }
+
+.sbm__titre {
+  text-align: center;
+  font-size: 30px;
+  color: #000000;
+}
+
+.sbm__photo {
+  margin-top: 20px;
+  height: 180px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  background: #e8f1f6;
+}
+
+.sbm__photo img { width: auto; height: 160px; }
+
+.sbm__label {
+  margin-top: 18px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.sbm__champ {
+  margin-top: 8px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  font-size: 20px;
+  color: #000000;
+}
+
+/* La flèche de la liste déroulante */
+.sbm__champ--liste::after {
+  content: "";
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #3d3d3d;
+  border-bottom: 2px solid #3d3d3d;
+  transform: translateY(-3px) rotate(45deg);
+}
+
+.sbm__filet {
+  margin: 28px 0 24px;
+  border-top: 1px solid #b3b3b3;
+}
+
+.sbm__pied {
+  position: relative;
+  align-self: center;
+}
+
+/* Largeur fixe : le bouton ne change pas de taille quand son texte change */
+.sbm__bouton {
+  width: 280px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 60px;
+  background: #1d6154;
+  font-family: "Syne", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.sbm__texte { display: inline-block; }
+
+/* L'onde d'un clic, centrée sur le bouton */
+.sbm__onde {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 110px;
+  height: 110px;
+  margin: -55px 0 0 -55px;
+  border-radius: 50%;
+  border: 3px solid #1d6154;
+  pointer-events: none;
+}
+
+.sbm__curseur {
+  position: absolute;
+  left: 170px;
+  top: 30px;
+  width: 42px;
+  height: 42px;
+  fill: #ffffff;
+  stroke: #0b1a4a;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 8px rgba(5, 10, 35, 0.45));
+}
+
+.sbm__refus {
+  position: absolute;
+  left: 220px;
+  top: 74px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #0b1a4a;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* À droite de la fenêtre, à hauteur du bouton : ce qui se passe */
+.sbm__note {
+  position: absolute;
+  left: 640px;
+  top: 520px;
+  width: 280px;
+  display: flex;
+  gap: 16px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.sbm__note i {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 10px;
+  border-radius: 50%;
+  background: #ff9a9a;
+}
+
+.sbm__note--corrige i { background: var(--vert-statut); }
+
+/* Le journal de bord, en page de cahier */
+.journal {
+  padding: 22px 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(5, 12, 45, 0.55);
+  background-image: repeating-linear-gradient(180deg, transparent 0 55px, rgba(143, 176, 255, 0.16) 55px 56px);
+  background-position: 0 24px;
+}
+
+.journal--grand {
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 860px;
+  padding: 34px 44px 40px;
+}
+
+.journal__nom {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #9fb6ff;
+}
+
+.journal__titre {
+  margin-top: 8px;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.journal__entrees {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.journal__entrees li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 42px;
+  font-size: 28px;
+}
+
+.journal__coche { color: var(--vert-statut); font-weight: 800; }
+.journal__texte { white-space: nowrap; }
+
+.journal__pourquoi {
+  margin-top: 26px;
+  font-size: 22px;
+  font-style: italic;
+  color: #ffd9c2;
+}
+
+/* 7. Ce que je cherche */
+.cible { overflow: visible; }
+
+.cible__anneau,
+.cible__viseur {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.cible__centre { fill: #ff9a5c; }
+
+.recherche {
+  position: absolute;
+  left: 120px;
+  top: 300px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.cible--grande { width: 250px; height: 250px; flex-shrink: 0; }
+
+.recherche__titre {
+  margin-top: 8px;
+  font-size: 100px;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+/* Deux lignes voulues : « Développeur », puis « full-stack junior », sans coupure au trait d'union */
+.cible__ligne { display: block; min-height: 1.02em; white-space: nowrap; }
+
+.equipe {
+  position: absolute;
+  left: 120px;
+  top: 650px;
+  width: 760px;
+}
+
+.equipe__groupe { display: flex; padding-left: 22px; }
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  margin-left: -22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.avatar svg { width: 54px; height: 54px; stroke-width: 1.4; }
+
+.equipe__nom {
+  margin-top: 26px;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.equipe .puces { margin-top: 18px; }
+
+.progres {
+  position: absolute;
+  left: 1040px;
+  top: 680px;
+  width: 700px;
+  height: 300px;
+}
+
+.progres__marches {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 700px;
+  height: 260px;
+  overflow: visible;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.progres__senior {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Moi : une petite lueur, qui gravit les marches */
+.progres__moi {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 18%, #ffd9c2 30%, rgb(232 105 46 / 0.9) 48%, rgb(232 105 46 / 0) 72%);
+  box-shadow: 0 0 30px 10px rgb(232 105 46 / 0.5);
+  opacity: 0;
+}
+
+.progres__texte {
+  position: absolute;
+  left: 0;
+  top: 286px;
+  width: 760px;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* 8. Ce que je veux approfondir */
+.approf {
+  position: absolute;
+  left: 120px;
+  top: 300px;
+  width: 1680px;
+  height: 690px;
+}
+
+.profond {
+  position: absolute;
+  top: 30px;
+  width: 480px;
+  height: 440px;
+}
+
+.profond--ts { left: 0; }
+.profond--archi { left: 580px; }
+
+.profond__calque {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--rayon);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgb(10 20 64 / 0.2);
+}
+
+.profond__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  border-radius: var(--rayon);
+}
+
+.ts {
+  width: 170px;
+  height: 170px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 12px 18px;
+  border-radius: 20px;
+  background: #3178c6;
+  color: #fff;
+  font-size: 78px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.profond__nom {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.archi { width: 250px; height: 228px; }
+
+.archi rect {
+  fill: rgba(255, 255, 255, 0.08);
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 1.5;
+}
+
+.archi path { fill: none; stroke: #ffb08a; stroke-width: 2; }
+
+.archi text {
+  fill: var(--texte);
+  font-family: var(--police);
+  font-size: 18px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.mobile {
+  position: absolute;
+  left: 1180px;
+  top: 0;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.telephone {
+  width: 230px;
+  padding: 10px;
+  border-radius: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: #0b0f1e;
+  box-shadow: 0 30px 60px rgba(5, 10, 35, 0.6);
+}
+
+.telephone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 32px;
+}
+
+.mobile .profond__nom { margin-top: 26px; }
+
+.mobile__detail {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  color: #ffd9c2;
+}
+
+.mobile__detail svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #ffd9c2;
+  stroke-width: 14;
+}
+
+/* L'annonce de la partie 2, au centre, quand le reste s'efface */
+.suite {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  visibility: hidden;
+}
+
+.suite__fenetre {
+  position: relative;
+  width: 860px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.suite__barre {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 84px;
+  padding: 0 24px;
+}
+
+.suite__barre i {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.suite__adresse {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  margin-left: 18px;
+  padding: 0 22px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 24px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.suite__adresse svg { flex-shrink: 0; width: 22px; height: 22px; stroke-width: 2; }
+
+.suite__caret {
+  width: 2px;
+  height: 28px;
+  margin-left: -10px;
+  background: var(--texte);
+  animation: suite-caret 1s steps(1) infinite;
+}
+
+@keyframes suite-caret { 50% { opacity: 0; } }
+
+/* La page qui charge : un filet aux couleurs des lueurs, sous la barre */
+.suite__chargement {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c42d1a, #d9581f, #2c5fd6);
+  transform-origin: 0 50%;
+}
+
+.suite__kicker { margin-top: 40px; }
+
+.suite__titre {
+  margin-top: 8px;
+  font-size: 76px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+/* ==========================================================
+   Fenêtre de code façon VS Code (réutilisable) : barre à trois pastilles,
+   onglet du fichier, numéros de ligne, couleurs du thème Dark+.
+   Repris du principe des soutenances de Kasa et Mon Vieux Grimoire.
+   ========================================================== */
+.vsc {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #1e1e1e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.vsc__barre {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 18px;
+  background: #2d2d30;
+}
+
+.vsc__points { display: flex; gap: 8px; }
+.vsc__points i { width: 13px; height: 13px; border-radius: 50%; }
+.vsc__points i:nth-child(1) { background: #ff5f57; }
+.vsc__points i:nth-child(2) { background: #febc2e; }
+.vsc__points i:nth-child(3) { background: #28c840; }
+
+.vsc__onglet {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  background: #1e1e1e;
+  border-top: 2px solid #e8692e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 19px;
+  color: #ffffff;
+}
+
+.vsc__ext { font-weight: 800; color: #f1d700; }
+.vsc__chemin { color: #8b8b8b; }
+
+.vsc__corps { padding: 16px 0 20px; }
+
+.vsc__ligne {
+  display: flex;
+  align-items: baseline;
+  height: 42px;
+  line-height: 42px;
+  overflow: hidden;
+  border-left: 4px solid transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 20px;
+  white-space: pre;
+  color: #d4d4d4;
+}
+
+.vsc__num {
+  flex-shrink: 0;
+  width: 54px;
+  padding-right: 18px;
+  text-align: right;
+  font-size: 0.85em;
+  color: #858585;
+}
+
+/* Couleurs Dark+ */
+.t-k { color: #9cdcfe; }   /* clé JSON, propriété */
+.t-s { color: #ce9178; }   /* chaîne */
+.t-p { color: #d4d4d4; }   /* ponctuation */
+.t-c { color: #6a9955; }   /* commentaire, élision */
+.t-v { color: #9cdcfe; }   /* variable */
+.t-f { color: #dcdcaa; }   /* fonction */
+.t-t { color: #4ec9b0; }   /* composant */
+
+/* ==========================================================
+   Diapositive 9 — Les données des projets
+   ========================================================== */
+.jd {
+  position: absolute;
+  left: 120px;
+  top: 260px;
+  width: 1680px;
+  height: 740px;
+}
+
+.jd__json {
+  position: absolute;
+  left: 0;
+  top: 160px;
+  width: 870px;
+}
+
+/* La ligne ajoutée au fichier : repliée tant qu'elle n'est pas écrite */
+.jd__nouvelle { height: 0; }
+
+.jd__fleches {
+  position: absolute;
+  left: 870px;
+  top: 0;
+  width: 190px;
+  height: 740px;
+  overflow: visible;
+}
+
+.jd__fleches path {
+  fill: none;
+  stroke: #ffb08a;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.jd__pilule {
+  position: absolute;
+  left: 884px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.jd__pilule--map { top: 186px; }
+.jd__pilule--find { top: 596px; }
+
+/* Les pages : des blocs pleins, comme sur le site */
+.jd__page {
+  position: absolute;
+  left: 1060px;
+  width: 620px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: #0d1640;
+}
+
+.jd__barre {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.jd__barre > i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, 0.35); }
+
+.jd__url {
+  margin-left: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  color: var(--texte-doux);
+  white-space: nowrap;
+}
+
+.jd__accueil { top: 0; height: 362px; }
+.jd__accueil-corps { padding: 14px 24px; }
+.jd__section { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+
+.jd__liste {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jd__rang {
+  height: 44px;
+  display: grid;
+  grid-template-columns: 82px 1fr auto;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.jd__code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; color: #ffb08a; }
+.jd__titre { font-size: 22px; font-weight: 600; }
+.jd__cat { font-size: 17px; color: var(--texte-doux); }
+
+.jd__rang--neuf { opacity: 0; visibility: hidden; }
+
+.jd__composant {
+  position: absolute;
+  left: 1060px;
+  top: 384px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 19px;
+  color: var(--texte-doux);
+}
+
+.jd__composant code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 22px; font-weight: 700; }
+
+.jd__fiche { top: 424px; height: 310px; overflow: visible; }
+
+.jd__chemin { color: #ffd9c2; }
+
+.jd__id {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.jd__note {
+  position: absolute;
+  right: 18px;
+  top: 52px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #bf4f1c;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.jd__fiche-corps {
+  position: relative;
+  height: 262px;
+  overflow: hidden;
+  border-radius: 0 0 18px 18px;
+}
+
+.jd__contenu {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.jd__contenu img,
+.jd__vide {
+  position: absolute;
+  left: 24px;
+  top: 34px;
+  width: 240px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.jd__vide {
+  display: grid;
+  place-items: center;
+  border: 2px dashed #4ade80;
+  font-size: 64px;
+  font-weight: 300;
+  color: #4ade80;
+}
+
+.jd__fiche-titre {
+  position: absolute;
+  left: 292px;
+  top: 52px;
+  width: 310px;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.jd__fiche-cat {
+  position: absolute;
+  left: 292px;
+  top: 160px;
+  font-size: 20px;
+  color: var(--texte-doux);
+}
+
+/* Les masques de SplitText (decouper() dans main.js) : de la marge pour les accents et les jambages */
+.masque {
+  padding: 0.16em 0.03em 0.2em;
+  margin: -0.16em -0.03em -0.2em;
+}
+
+/* Lettres découpées par main.js (data-split) : chaque mot masque ses lettres,
+   qui montent depuis le bas à l'arrivée de la diapositive.
+   La marge du haut laisse la place aux accents des capitales (le tréma de « Ë ») */
+[data-split] .mot {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.2em 0.04em 0.08em;
+  margin: -0.2em -0.04em -0.08em;
+  vertical-align: top;
+}
+
+[data-split] .lettre {
+  display: inline-block;
+}
+
+/* ==========================================================
+   Le moteur (moteur.css) aux couleurs du portfolio
+   ========================================================== */
+#notes, #nt-import, #toast, #timer, .nt-mesure {
+  --bg: #121d4d;
+  --surface: rgba(255, 255, 255, 0.08);
+  --ink: #0a1235;
+  --ink-2: #e9edff;
+  --muted: #aab3d6;
+  --muted-2: #7f89b3;
+  --line: rgba(255, 255, 255, 0.16);
+  --accent: #e8692e;
+  --accent-deep: #ffb08a;
+  --accent-rgb: 232 105 46;
+  --accent-line: rgb(232 105 46 / 0.5);
+  --ok: #4ade80;
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --shadow-sm: 0 1px 2px rgba(5, 10, 35, 0.2), 0 6px 18px rgba(5, 10, 35, 0.3);
+}
+
+#notes button, #nt-import button {
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Le minuteur devient une pastille de verre */
+#timer {
+  background: rgb(10 20 64 / 0.55);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.nti-card { color: var(--ink-2); }
+.nti-card h3 { margin: 0; }
+.nti-card p { margin: 0; }
+
+#nti-texte {
+  min-height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 13px;
+  resize: vertical;
+}
+
+#vue-ensemble { background: #070e2e; }
+
+.vue__section {
+  font-family: var(--police);
+  color: #ffb08a;
+  border-top-color: rgba(255, 176, 138, 0.35);
+}
+
+/* Les miniatures copient la slide, pas le fond : on le leur redonne */
+.vue__ecran {
+  background:
+    radial-gradient(45% 55% at 8% 4%, rgb(196 45 26 / 0.75), transparent 70%),
+    radial-gradient(30% 40% at 30% 40%, rgb(217 88 31 / 0.6), transparent 70%),
+    radial-gradient(50% 50% at 96% 100%, rgb(44 95 214 / 0.8), transparent 70%),
+    linear-gradient(160deg, #13286e 0%, var(--nuit) 60%);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12), 0 12px 24px -10px rgba(0, 0, 0, 0.7);
+}
+
+.vue__legende {
+  font-family: var(--police);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.vue__tuile.is-courante .vue__legende { color: #ffb08a; }
+
+.vue__tuile.is-choisie .vue__ecran {
+  box-shadow: 0 0 0 4px #e8692e, 0 18px 34px -10px rgba(0, 0, 0, 0.8);
+}
+
+.vue__tuile.is-choisie .vue__legende { color: #fff; }

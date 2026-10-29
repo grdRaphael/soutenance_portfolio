@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue présentateur · Portfolio</title>
+  <link rel="stylesheet" href="presentateur.css">
+</head>
+
+<body>
+  <!-- Fenêtre déportée. Elle ne contient aucune slide : elle lit l'état publié
+       par index.html dans le stockage local, et y écrit en retour les
+       commandes de navigation et les modifications du script. -->
+  <div class="pr-vide" data-vide>
+    <p><b>Aucun deck détecté.</b></p>
+    <p>Ouvrez <code>index.html</code> dans une autre fenêtre. Cette page se synchronisera
+      toute seule dès la première slide affichée.</p>
+  </div>
+
+  <!-- Le champ est transparent ; la couche dessous, de mêmes métriques, porte
+       le surlignage du passage correspondant au clic en cours. -->
+  <textarea class="pr-script" data-script spellcheck="false" aria-label="Script de la slide"></textarea>
+
+  <div class="pr-conduite" data-conduite></div>
+
+  <!-- Tout ce qui n'est pas le texte est descendu ici : le script commence en
+       haut de la fenetre, la ou l'oeil se pose. -->
+  <footer class="pr-pied">
+    <div class="pr-jauges">
+      <span class="pr-lien" data-lien><i></i><span class="pr-lien-t">en attente du deck…</span></span>
+      <span class="pr-pos" data-pos></span>
+      <span class="pr-clics" data-clics></span>
+      <span class="pr-passage" data-passage></span>
+      <span class="pr-etat" data-etat></span>
+      <div class="pr-outils">
+        <button type="button" data-out="tout" title="Afficher tout le script de la slide">Tout</button>
+        <button type="button" data-out="conduite">Conduite</button>
+        <button type="button" data-out="moins">A−</button>
+        <button type="button" data-out="plus">A+</button>
+        <button type="button" data-out="retablir" title="Revenir au script d'origine">Rétablir</button>
+      </div>
+      <button class="pr-minuteur" type="button" data-cmd="minuteur" title="Démarrer / mettre en pause"
+        data-minuteur>00:00</button>
+      <button class="pr-raz" type="button" data-cmd="minuteur-zero" title="Remettre le minuteur à zéro">⟲</button>
+    </div>
+
+    <div class="pr-nav-l">
+      <button type="button" class="pr-nav" data-cmd="prev">‹ Précédent</button>
+      <button type="button" class="pr-nav pr-nav--suivant" data-cmd="next">Suivant ›</button>
+    </div>
+  </footer>
+
+  <script src="presentateur.js"></script>
+</body>
+
+</html>

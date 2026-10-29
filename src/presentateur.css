@@ -1,0 +1,321 @@
+/* Variables de la vue présentateur, aux couleurs du portfolio (bleu nuit, lueur orange) */
+:root {
+  --accent: #E8692E;
+  --accent-rgb: 232 105 46;
+  --ink: #0A1235;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ==========================================================================
+   presentateur.css — la fenêtre déportée.
+
+   Fond sombre volontaire : elle reste sur votre écran pendant que les slides,
+   claires, sont partagées. Deux fonds distincts, aucun risque de confondre
+   les deux fenêtres du regard.
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+/* Le texte d'abord : il commence en haut de la fenetre et prend toute la
+   place. Reperes, minuteur et outils sont descendus au pied — on les consulte
+   du coin de l'oeil, on ne les lit pas. */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink, #14131a);
+  color: #efeef2;
+  font-family: var(--sans);
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+/* --- script ---------------------------------------------------------------
+   Le champ et son miroir partagent exactement les mêmes métriques : c'est ce
+   qui permet au surlignage, peint derrière, de tomber sur les bons mots. */
+.pr-script {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 16px 22px 18px;
+  font-family: inherit;
+  font-size: 19px;
+  line-height: 1.62;
+  white-space: pre-wrap;
+  border: 0;
+
+  resize: none;
+  outline: none;
+  background: transparent;
+  color: #efeef2;
+  scrollbar-width: thin;
+  scrollbar-color: #45444f transparent;
+}
+
+.pr-script::-webkit-scrollbar {
+  width: 10px;
+}
+.pr-script::-webkit-scrollbar-thumb {
+  background: #45444f;
+  border-radius: 5px;
+}
+
+.pr-script:focus {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* --- conduite ------------------------------------------------------------- */
+.pr-conduite {
+  display: none;
+  max-height: 22vh;
+  overflow: auto;
+  padding: 11px 22px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #bdbaca;
+  background: rgba(255, 255, 255, 0.045);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+body.avec-conduite .pr-conduite {
+  display: block;
+}
+
+.pr-conduite b {
+  color: #fff;
+}
+
+.pr-conduite .cue {
+  color: #ffb3b3;
+}
+
+/* --- pied ------------------------------------------------------------------ */
+.pr-pied {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 16px 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* Les reperes, sur une seule ligne, au-dessus des deux boutons. */
+.pr-jauges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.pr-nav-l {
+  display: flex;
+  gap: 12px;
+}
+
+.pr-nav {
+  font-size: 15px;
+  font-weight: 650;
+  color: #efeef2;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  padding: 11px 18px;
+  transition: background 0.16s ease;
+}
+
+.pr-nav {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.pr-nav--suivant {
+  background: var(--accent);
+  color: #fff;
+}
+
+.pr-nav:hover {
+  filter: brightness(1.12);
+}
+
+.pr-nav:active {
+  transform: scale(0.98);
+}
+
+.pr-outils {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.pr-outils button {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #cfccd8;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+.pr-outils button:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.pr-etat {
+  font-size: 11.5px;
+  margin-left: 4px;
+  color: #8fd39c;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  white-space: nowrap;
+  margin-right: 3px;
+}
+
+.pr-etat.is-on {
+  opacity: 1;
+}
+
+/* --- écran d'attente ------------------------------------------------------- */
+.pr-vide {
+  display: none;
+  padding: 6px 22px 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #9d9aab;
+}
+
+.pr-vide code {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+.pr-vide b {
+  color: #fff;
+}
+
+body.sans-deck .pr-vide {
+  display: block;
+}
+
+body.sans-deck .pr-script,
+body.sans-deck .pr-suite,
+body.sans-deck .pr-conduite,
+body.sans-deck .pr-pied {
+  display: none;
+}
+
+/* --- les repères, descendus au pied -------------------------------------- */
+.pr-lien {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 7px;
+  font-size: 12px;
+  color: #8e8b9c;
+}
+
+.pr-lien i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6f6c7d;
+  transition: background 0.2s ease;
+}
+
+.pr-lien.is-on i {
+  background: #56c26f;
+  box-shadow: 0 0 0 3px rgba(86, 194, 111, 0.2);
+}
+
+.pr-lien.is-on .pr-lien-t {
+  color: #7fbf90;
+}
+
+.pr-pos {
+  font-size: 13px;
+  color: #a9a6b6;
+}
+
+.pr-pos b {
+  color: #fff;
+  font-size: 15px;
+}
+
+.pr-passage {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  background: rgb(var(--accent-rgb) / 0.14);
+  border-radius: 999px;
+  padding: 2px 9px 3px;
+  white-space: nowrap;
+}
+
+body.tout-le-script .pr-passage {
+  display: none;
+}
+
+.pr-clics {
+  font-size: 12px;
+  color: #8e8b9c;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.pr-minuteur {
+  font-family: var(--mono);
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #6f6c7d;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 3px 11px 4px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.pr-minuteur.is-on {
+  color: #fff;
+}
+
+.pr-minuteur.is-paused {
+  color: #dfab48;
+}
+
+.pr-minuteur.is-over {
+  color: #fff;
+  background: var(--accent);
+}
+
+.pr-raz {
+  font-size: 15px;
+  color: #8e8b9c;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 5px 10px 6px;
+}
+
+/* --- titre ---------------------------------------------------------------- */
+.pr-titre {
+  margin: 0;
+  padding: 15px 22px 13px;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+

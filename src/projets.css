@@ -1,0 +1,191 @@
+/* Slides 18 à 20 — les deux projets de formation.
+   dp18 : la slide d'ouverture. fp : la fiche projet commune à Kasa et Mon Vieux Grimoire
+   (une scène par rubrique, le repère des rubriques en bas). ka19 et vg20 : le propre à chaque projet. */
+
+/* ---------- 18. Deux projets de formation ---------- */
+.dp18 { position: absolute; left: 120px; top: 275px; width: 1680px; height: 710px; }
+.dp18__carte { position: absolute; top: 20px; width: 680px; height: 460px; }
+.dp18__carte--kasa { left: 80px; }
+.dp18__carte--mvg { left: 920px; }
+.dp18__vide { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 24px; border: 3px dashed rgba(255,255,255,.35); font: 600 72px ui-monospace, monospace; color: rgba(255,255,255,.45); }
+.dp18__contenu { position: absolute; inset: 0; overflow: hidden; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.dp18__contenu img { display: block; width: 100%; height: 370px; object-fit: cover; }
+.dp18__contenu p { height: 90px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; }
+.dp18__contenu strong { font-size: 40px; font-weight: 600; letter-spacing: -.03em; }
+.dp18__contenu span { font: 600 24px ui-monospace, monospace; color: #ffb08a; }
+.dp18__liens { position: absolute; inset: 0; width: 100%; height: 710px; fill: none; stroke: #ffb08a; stroke-width: 3; stroke-linecap: round; }
+.dp18__face { position: absolute; top: 525px; width: 260px; height: 70px; display: flex; align-items: center; justify-content: center; gap: 14px; border-radius: 999px; background: #13204f; border: 2px solid #ffb08a; font-size: 32px; font-weight: 600; }
+.dp18__face img { width: 36px; height: 36px; }
+.dp18__face--front { left: 300px; }
+.dp18__face--back { left: 1120px; }
+.dp18__profil { position: absolute; left: 730px; top: 510px; width: 220px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 24px; background: #ffb08a; color: #0b1a4a; font-size: 20px; font-weight: 600; }
+.dp18__profil b { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
+
+/* ---------- La fiche projet commune ---------- */
+.fp { position: absolute; left: 120px; top: 275px; width: 1680px; height: 710px; }
+.fp__scene { position: absolute; inset: 0 0 auto; height: 590px; }
+.fp .vsc { position: absolute; }
+.fp .vsc__ligne { height: 50px; line-height: 50px; font-size: 24px; }
+.fp__icone { width: 64px; height: 64px; flex-shrink: 0; fill: none; stroke: #ffffff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.fp__fleche { position: absolute; inset: 0; width: 100%; height: 590px; fill: none; stroke: #ffb08a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.fp__ext-tsx { color: #4fc1ff; }
+.fp__tag { color: #569cd6; }
+.fp__chev { color: #808080; }
+.fp__extrait { margin-left: 14px; color: #c6c6c6; font: 16px var(--police); }
+.fp__express { filter: invert(1); }
+
+.fp__rail { position: absolute; left: 0; right: 0; bottom: 20px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 0; list-style: none; }
+.fp__rail li { height: 80px; display: flex; align-items: center; justify-content: center; border-top: 2px solid rgba(255,255,255,.25); font-size: 24px; font-weight: 500; color: #c2cbe2; }
+
+.fp__couverture { position: absolute; left: 0; top: 0; width: 760px; height: 570px; object-fit: cover; border-radius: 24px; border: 2px solid rgba(255,255,255,.3); }
+.fp__accroche { position: absolute; left: 840px; top: 140px; width: 840px; }
+.fp__code { font: 600 26px ui-monospace, monospace; color: #ffb08a; }
+.fp__slogan { margin-top: 20px; font-size: 58px; font-weight: 500; line-height: 1.15; letter-spacing: -.03em; }
+
+.fp__navigateur { position: absolute; left: 0; top: 0; width: 840px; margin: 0; overflow: hidden; border-radius: 18px; background: #0a1436; border: 2px solid rgba(255,255,255,.35); }
+.fp__barre { height: 44px; display: flex; align-items: center; gap: 18px; padding: 0 18px; background: #1c253d; font: 18px ui-monospace, monospace; color: #c8d0e5; }
+.fp__navigateur img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.fp__fait { position: absolute; left: 920px; top: 170px; width: 760px; }
+.fp__fait .fp__icone { width: 80px; height: 80px; }
+.fp__fait > p:last-child { margin-top: 24px; font-size: 60px; font-weight: 500; line-height: 1.15; letter-spacing: -.03em; }
+.fp__fait b { font-weight: 600; color: #ffb08a; }
+
+.fp__tuiles { position: absolute; left: 0; top: 70px; width: 1680px; display: flex; gap: 80px; }
+.fp__tuile { width: 360px; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; border-radius: 26px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.fp__tuile img, .fp__tuile .fp__icone { width: 140px; height: 140px; object-fit: contain; }
+.fp__tuile strong { font-size: 38px; font-weight: 600; letter-spacing: -.02em; }
+.fp__tuile span { margin-top: -10px; font-size: 26px; color: #ffd9c2; }
+.fp__tuile--avec { border-color: #ffb08a; }
+.fp__tuiles--cinq { gap: 45px; }
+.fp__tuiles--cinq .fp__tuile { width: 300px; }
+.fp__tuiles--cinq .fp__tuile img, .fp__tuiles--cinq .fp__tuile .fp__icone { width: 120px; height: 120px; }
+
+.fp__preuves { position: absolute; left: 0; top: 30px; width: 1680px; display: flex; gap: 60px; }
+.fp__preuve { width: 520px; }
+.fp__preuve-visuel { position: relative; height: 360px; overflow: hidden; border-radius: 20px; background: #0a1436; border: 2px solid rgba(255,255,255,.3); }
+.fp__preuve-visuel img { width: 100%; height: 100%; object-fit: cover; }
+.fp__preuve-visuel--mobile { display: grid; place-items: center; }
+.fp__preuve-visuel--mobile img { width: auto; height: 330px; border-radius: 18px; }
+.fp__preuve > p { margin-top: 22px; text-align: center; font-size: 32px; font-weight: 500; }
+.fp__preuve > p b { color: #9cf1bd; }
+.fp__preuve--chiffre { height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.fp__preuve--chiffre > b { font-size: 100px; font-weight: 600; letter-spacing: -.04em; line-height: 1.1; }
+.fp__preuve--chiffre > p { margin-top: 0; font-size: 30px; }
+.fp__preuve--chiffre small { font-size: 22px; color: #ffd9c2; }
+
+.fp__pistes { position: absolute; left: 0; top: 50px; width: 1680px; display: flex; gap: 80px; }
+.fp__piste { width: 800px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 40px; text-align: center; border-radius: 26px; border: 3px dashed rgba(255,255,255,.45); }
+.fp__piste .fp__icone { width: 90px; height: 90px; }
+.fp__piste p { font-size: 40px; font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
+.fp__piste small { font-size: 26px; color: #d8def0; }
+.fp__piste span { padding: 4px 18px; border-radius: 999px; border: 2px solid #ffd27a; color: #ffd27a; font-size: 22px; font-weight: 600; }
+
+/* ---------- 19. Kasa ---------- */
+.ka19__maquette { position: absolute; left: 0; top: 20px; width: 720px; }
+.ka19__cadre-nom { margin-bottom: 8px; font: 20px ui-monospace, monospace; color: #9aa3b8; }
+.ka19__cadre { position: relative; border: 3px solid #0d99ff; }
+.ka19__cadre img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.ka19__cadre i { position: absolute; width: 16px; height: 16px; background: #ffffff; border: 3px solid #0d99ff; }
+.ka19__cadre i:nth-of-type(1) { left: -10px; top: -10px; }
+.ka19__cadre i:nth-of-type(2) { right: -10px; top: -10px; }
+.ka19__cadre i:nth-of-type(3) { left: -10px; bottom: -10px; }
+.ka19__cadre i:nth-of-type(4) { right: -10px; bottom: -10px; }
+.ka19__legende { margin-top: 20px; text-align: center; font-size: 30px; font-weight: 500; }
+.ka19__react { position: absolute; left: 1000px; top: 60px; width: 520px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; border-radius: 28px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.ka19__react img { width: 180px; height: 180px; }
+.ka19__react p { font-size: 44px; }
+.ka19__react b { font-weight: 600; color: #61dafb; }
+
+.ka19__pages { position: absolute; left: 0; top: 0; width: 520px; margin: 0; padding: 0; list-style: none; }
+.ka19__pages li { height: 92px; margin-bottom: 16px; display: flex; align-items: center; gap: 20px; padding: 0 26px; border-radius: 18px; background: #13204f; border: 2px solid rgba(255,255,255,.3); font-size: 32px; font-weight: 500; }
+.ka19__pages b { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%; background: #26336a; font-size: 26px; }
+.ka19__composants { position: absolute; left: 0; top: 470px; width: 520px; display: flex; align-items: center; gap: 18px; font-size: 30px; font-weight: 600; color: #ffd9c2; }
+.ka19__composants .fp__icone { width: 52px; height: 52px; stroke: #ffd9c2; }
+.ka19__ordi { left: 620px; width: 860px; }
+.ka19__mobile { position: absolute; left: 1460px; top: 120px; width: 200px; height: 433px; margin: 0; overflow: hidden; border-radius: 30px; border: 8px solid #060a18; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+.ka19__mobile img { width: 100%; height: 100%; object-fit: cover; }
+
+.ka19__page { position: absolute; top: 0; width: 820px; height: 330px; padding: 26px; border-radius: 20px; background: #fafafa; color: #1a1a1a; }
+.ka19__page--apropos { left: 0; }
+.ka19__page--logement { left: 860px; }
+.ka19__page-nom { margin-bottom: 16px; font-size: 24px; font-weight: 700; color: #c43c3c; }
+.ka19__barre-menu { height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; border-radius: 10px; background: #e04e4e; color: #ffffff; font-size: 28px; font-weight: 700; }
+.ka19__barre-menu svg { width: 32px; height: 32px; fill: none; stroke: #ffffff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.ka19__panneau { overflow: hidden; border-radius: 0 0 10px 10px; background: #efefef; }
+.ka19__panneau > div, .ka19__panneau ul { margin: 0; padding: 24px; list-style: none; }
+.ka19__panneau i, .ka19__panneau li { display: block; height: 14px; margin-bottom: 16px; border-radius: 7px; background: #c9c9c9; }
+.ka19__panneau .ka19__court { width: 60%; }
+.ka19__panneau li { width: 40%; }
+.ka19__code { left: 0; top: 380px; width: 1680px; }
+
+.ka19__version { position: absolute; top: 60px; width: 500px; height: 340px; padding: 32px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.ka19__version--1 { left: 0; }
+.ka19__version--2 { left: 590px; }
+.ka19__version--3 { left: 1180px; border-color: #9cf1bd; }
+.ka19__version > b { font-size: 54px; font-weight: 600; color: #ffb08a; }
+.ka19__version > p { margin-top: 12px; font-size: 30px; font-weight: 600; line-height: 1.2; }
+.ka19__version > code { display: inline-block; margin-top: 14px; padding: 4px 12px; border-radius: 8px; background: #1e1e1e; color: #9cdcfe; font-size: 24px; }
+.ka19__version > span { display: block; margin-top: 20px; font-size: 25px; line-height: 1.3; }
+.ka19__version--1 > span { color: #ffb3a8; }
+.ka19__version--2 > span { color: #ffd27a; }
+.ka19__version--3 > span { color: #9cf1bd; }
+
+.ka19__clavier { display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 24px; padding: 30px; }
+.ka19__touche { padding: 12px 26px; border-radius: 12px; border: 2px solid rgba(255,255,255,.6); border-bottom-width: 6px; font: 600 28px ui-monospace, monospace; }
+.ka19__barre-focus { width: 90%; outline: 4px solid #9cf1bd; outline-offset: 5px; }
+
+/* ---------- 20. Mon Vieux Grimoire ---------- */
+.vg20__etoiles { display: flex; gap: 10px; font-size: 76px; line-height: 1; color: #ffd27a; }
+.vg20__etoiles span { display: inline-block; }
+.vg20__etoiles .vg20__vide { color: rgba(255,255,255,.25); }
+
+.vg20__bloc { position: absolute; top: 120px; width: 440px; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.vg20__bloc img { width: 90px; height: 90px; }
+.vg20__bloc .fp__icone { width: 90px; height: 90px; }
+.vg20__bloc strong { font-size: 38px; font-weight: 600; }
+.vg20__bloc span { font-size: 25px; color: #d8def0; }
+.vg20__bloc--front { left: 0; }
+.vg20__bloc--api { left: 620px; border: 3px solid #ffb08a; }
+.vg20__bloc--api span { color: #ffd9c2; font-weight: 600; }
+.vg20__bloc--base { left: 1240px; }
+.vg20__logos { display: flex; gap: 24px; }
+
+.vg20__fige { position: absolute; left: 0; top: 130px; width: 400px; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.vg20__fige .fp__icone { width: 80px; height: 80px; stroke: #ffd27a; }
+.vg20__fige strong { font-size: 36px; font-weight: 600; }
+.vg20__fige span { font-size: 25px; color: #ffd27a; }
+.vg20__contrat { position: absolute; left: 560px; top: 0; width: 760px; padding: 26px 34px; border-radius: 22px; background: #1e1e1e; border: 1px solid rgba(255,255,255,.25); }
+.vg20__contrat-tete { font-size: 26px; font-weight: 600; color: #ffd9c2; }
+.vg20__contrat ul { margin: 12px 0 0; padding: 0; list-style: none; }
+.vg20__contrat li { height: 48px; display: flex; align-items: center; gap: 18px; padding: 0 10px; border-radius: 8px; }
+.vg20__contrat b { width: 100px; font: 700 20px ui-monospace, monospace; color: #dcdcaa; }
+.vg20__contrat code { font-size: 24px; color: #d4d4d4; }
+.vg20__exactement { position: absolute; left: 1360px; top: 240px; width: 320px; font-size: 36px; font-weight: 600; color: #9cf1bd; }
+
+.vg20__regle { display: flex; flex-direction: column; align-items: center; }
+.vg20__bouclier { width: 200px; height: 200px; margin-top: 30px; fill: none; stroke: #ffb08a; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.vg20__regle-texte { margin-top: 30px; text-align: center; font-size: 84px; font-weight: 600; line-height: 1.1; letter-spacing: -.04em; }
+
+.vg20__requete { left: 0; top: 30px; width: 620px; }
+.vg20__console { position: absolute; left: 0; top: 340px; width: 620px; text-align: center; font-size: 26px; font-weight: 600; color: #ffb3a8; }
+.vg20__token { position: absolute; left: 680px; top: 120px; width: 360px; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 26px; border-radius: 22px; background: #13204f; border: 2px solid #9cf1bd; font-size: 28px; font-weight: 600; }
+.vg20__token .fp__icone { width: 56px; height: 56px; stroke: #9cf1bd; }
+.vg20__token code { padding: 6px 14px; border-radius: 8px; background: #0a1436; color: #9cdcfe; font-size: 24px; font-weight: 400; }
+.vg20__serveur { left: 1080px; top: 30px; width: 600px; }
+.vg20__sinon { position: absolute; top: 470px; width: 100%; text-align: center; font-size: 34px; font-weight: 500; }
+
+.fp__preuve--chiffre > .vg20__ligne { display: flex; align-items: center; gap: 22px; font-size: 76px; }
+.vg20__point { width: 30px; height: 30px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 22px 6px rgba(74,222,128,.55); }
+
+.fp__preuves--deux { left: 160px; width: 1360px; }
+.fp__preuves--deux .fp__preuve { width: 650px; }
+.vg20__collection { position: absolute; left: 160px; top: 0; width: 1360px; overflow: hidden; border-radius: 20px; background: #1c1c1e; border: 1px solid rgba(255,255,255,.25); }
+.vg20__collection-barre { height: 52px; display: flex; align-items: center; gap: 20px; padding: 0 20px; background: #2a2a2d; font-size: 21px; color: #d4d4d4; }
+.vg20__requete-test { height: 64px; display: flex; align-items: center; gap: 24px; padding: 0 30px; border-top: 1px solid rgba(255,255,255,.08); border-left: 4px solid transparent; }
+.vg20__requete-test > b { width: 90px; font: 700 21px ui-monospace, monospace; color: #dcdcaa; }
+.vg20__requete-test > code { flex: 1; font-size: 26px; color: #e4e6ea; }
+.vg20__requete-test small { display: block; margin-top: 2px; font-size: 19px; color: #ffd9c2; }
+.vg20__requete-test--refus { height: 88px; background: rgba(255,176,138,.06); }
+.vg20__statut { min-width: 74px; padding: 4px 12px; border-radius: 8px; background: rgba(74,222,128,.16); color: #9cf1bd; text-align: center; font: 700 22px ui-monospace, monospace; }
+.vg20__statut--refus { background: rgba(244,135,113,.18); color: #ffb3a8; }
+.vg20__requete-test em { width: 150px; font-style: normal; font-size: 24px; font-weight: 600; color: #9cf1bd; }

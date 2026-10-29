@@ -1,0 +1,77 @@
+/* Slide 14 — une scène par outil, repère commun en bas. Préfixe exclusif st14. */
+.st14 { position: absolute; left: 120px; top: 275px; width: 1680px; height: 710px; }
+.st14__intro { position: absolute; top: 110px; width: 100%; text-align: center; }
+.st14__intro p { font-size: 142px; font-weight: 500; letter-spacing: -.06em; }
+.st14__intro span { display: block; margin-top: 12px; font-size: 38px; }
+.st14__scene { position: absolute; inset: 0 0 auto; height: 560px; }
+.st14__outils { position: absolute; left: 0; right: 0; bottom: 20px; display: grid; grid-template-columns: repeat(5,1fr); gap: 28px; padding: 0; list-style: none; }
+.st14__outils li { display: flex; align-items: center; justify-content: center; gap: 16px; height: 90px; border-top: 2px solid rgba(255,255,255,.25); color: #e0e5f5; }
+.st14__outils img { width: 46px; height: 46px; object-fit: contain; }
+.st14__outils span { font-size: 27px; font-weight: 500; white-space: nowrap; }
+.st14__petit { color: #ffb08a; font-size: 24px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+.st14__grand { font-size: 53px; line-height: 1.12; letter-spacing: -.035em; font-weight: 500; margin-top: 20px; }
+.st14__react-origine { position: absolute; left: 20px; top: 140px; width: 430px; }
+.st14__react-origine > span { display: block; font-size: 28px; margin-top: 20px; }
+.st14__react-cible { position: absolute; left: 1250px; top: 140px; width: 430px; }
+.st14__react-logo { position: absolute; left: 670px; top: 55px; width: 340px; height: 340px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; background: rgba(10,20,64,.65); }
+.st14__react-logo img { width: 195px; height: 195px; }
+.st14__react-logo strong { font-size: 38px; font-weight: 500; }
+.st14__pont, .st14__flux, .st14__distribution, .st14__routes { position: absolute; inset: 0; width: 100%; height: 500px; fill: none; stroke: #ffb08a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.st14__pont { height: 440px; }
+.st14__entete-scene { display: flex; align-items: baseline; gap: 32px; }
+.st14__entete-scene h3 { font-size: 46px; font-weight: 600; letter-spacing: -.035em; }
+.st14__entete-scene > p { font-size: 29px; color: var(--texte-doux); }
+.st14__editeur { position: absolute; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.25); background: #1e1e1e; box-shadow: 0 25px 55px rgba(5,10,35,.3); }
+.st14__onglet { height: 52px; display: flex; align-items: center; gap: 16px; padding: 0 22px; background: #2c2c2c; color: #e7e7eb; font: 21px ui-monospace, monospace; }
+.st14__onglet > span { color: #8fbaff; font-weight: 700; }
+.st14__onglet small { margin-left: auto; color: #c6c6c6; font: 17px var(--police); }
+.st14__editeur pre { margin: 0; padding: 24px; font: 24px/1.55 ui-monospace, monospace; color: #d4d4d4; }
+.st14__type { left: 0; top: 100px; width: 680px; height: 325px; }
+.st14__json { right: 0; top: 100px; width: 940px; height: 325px; }
+.st14__json-title { display: inline-block; }
+.st14__manquant { position: absolute; left: 55px; top: 151px; color: #ffb3a8; font-size: 22px; }
+.st14__verification { position: absolute; left: 0; top: 445px; width: 1680px; height: 75px; display: flex; align-items: center; gap: 24px; padding: 0 24px; border-radius: 14px; background: #20212a; border: 1px solid rgba(255,255,255,.25); }
+.st14__verification > span:first-child { font: 20px ui-monospace,monospace; color: #c8d0e5; }
+.st14__verification > code { font-size: 25px; white-space: nowrap; }
+.st14__affectation { text-decoration-line: underline; text-decoration-style: wavy; text-decoration-color: transparent; text-underline-offset: 7px; }
+.st14__diagnostic { margin-left: auto; color: #ffb3a8; font-size: 24px; }
+.st14__contrat { position: absolute; top: 453px; left: 0; font-size: 32px; }
+.st14__terminal { position: absolute; left: 0; top: 115px; width: 690px; height: 330px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.25); background: #111728; }
+.st14__terminal .st14__onglet { background: #1c253d; }
+.st14__terminal pre { font: 32px ui-monospace,monospace; margin: 34px 30px; }
+.st14__invite { color: #ffb08a; }
+.st14__pret, .st14__build-pret { position: absolute; left: 30px; top: 165px; font-size: 29px; }
+.st14__terminal b { color: #9cf1bd; }
+.st14__local, .st14__dist { position: absolute; top: 226px; left: 62px; font-size: 25px; color: #b8d0ff; }
+.st14__dev-apercu { position: absolute; right: 0; top: 115px; width: 760px; height: 330px; border-radius: 22px; background: rgba(10,20,64,.65); overflow: hidden; }
+.st14__dev-apercu > p { background: rgba(10,20,64,.65); border-bottom: 1px solid rgba(255,255,255,.2); font-size: 20px; padding: 13px 24px; }
+.st14__dev-apercu > div { padding: 24px 32px; }
+.st14__dev-apercu span { display: block; font-size: 24px; }
+.st14__dev-apercu strong { display: block; font-size: 68px; font-weight: 500; letter-spacing: -.04em; margin-top: 8px; }
+.st14__dev-statut { color: #9cf1bd; margin-top: 10px; }
+.st14__production { position: absolute; right: 0; top: 125px; width: 760px; }
+.st14__fichiers { display: flex; gap: 24px; margin-top: 28px; }
+.st14__fichiers > div { width: 235px; height: 180px; border: 1px solid rgba(255,255,255,.4); border-radius: 18px; background: rgba(10,20,64,.7); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+.st14__fichiers b { font-size: 43px; font-weight: 600; }
+.st14__fichiers span { font-size: 23px; }
+.st14__livrable { margin-top: 22px; font-size: 28px; }
+/* Ce que la construction optimise réellement */
+.st14__optimisations { margin: 18px 0 0; padding: 0; list-style: none; }
+.st14__optimisations li { font-size: 23px; line-height: 1.45; }
+.st14__optimisations b { color: #9cf1bd; margin-right: 12px; }
+.st14__sass-code { left: 0; top: 115px; width: 810px; height: 370px; }
+.st14__sass-code pre { font-size: 25px; }
+.st14__sass-note { margin: 4px 24px; font-size: 22px; color: #e0e5f5; }
+.st14__composants { position: absolute; left: 970px; top: 120px; width: 710px; display: flex; flex-direction: column; gap: 22px; }
+.st14__composant { --flou: 0px; height: 95px; display: flex; justify-content: space-between; align-items: center; padding: 0 32px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(10,20,64,.05); -webkit-backdrop-filter: blur(var(--flou)); backdrop-filter: blur(var(--flou)); }
+.st14__composant > span { font-size: 32px; font-weight: 500; }
+.st14__composant > code { font-size: 23px; color: #ffb08a; }
+.st14__route { position: absolute; top: 82px; left: 600px; width: 480px; text-align: center; font-size: 36px; }
+.st14__route > span { color: #ffb08a; }
+.st14__fiche { position: absolute; top: 195px; width: 770px; height: 335px; margin: 0; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255,255,255,.4); background: #0a1436; }
+.st14__fiche--kasa { left: 40px; }
+.st14__fiche--bluel { right: 40px; }
+.st14__fiche figcaption { height: 55px; display: flex; align-items: center; gap: 14px; padding: 0 22px; background: rgba(10,20,64,.8); font-size: 23px; }
+.st14__fiche figcaption > span { color: #c2cbe2; }
+.st14__fiche figcaption > strong { font-weight: 600; }
+.st14__fiche img { display: block; width: 100%; height: 280px; object-fit: contain; }

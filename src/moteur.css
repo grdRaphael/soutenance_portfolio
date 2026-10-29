@@ -1,0 +1,619 @@
+/* ==========================================================
+   moteur.css — les styles du moteur de présentation, repris tels quels
+   du deck de Menu Maker (projet 7) : vue d'ensemble (G), panneau de
+   script (N), import, minuteur (T) et messages.
+   Les couleurs du portfolio sont appliquées par-dessus, dans style.css.
+   ========================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================
+   Vue d'ensemble (touche G)
+   ========================================================== */
+#vue-ensemble {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  padding: 3vw;
+  background: #171210;
+}
+
+#vue-ensemble[hidden] { display: none; }
+
+.vue__grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 2.2vw 1.6vw;
+}
+
+/* Titre de la section des annexes, séparée du déroulé principal */
+.vue__section {
+  margin: 4vw 0 2vw;
+  padding-top: 2.2vw;
+  border-top: 1px solid rgba(230, 207, 152, .35);
+  font-family: var(--font-carte);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #E6CF98;
+}
+
+.vue__tuile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.vue__ecran {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--cuisine);
+  box-shadow: 0 0 0 2px rgba(246, 240, 228, .12), 0 12px 24px -10px rgba(0, 0, 0, .7);
+  transition: transform .2s, box-shadow .2s;
+}
+
+/* La copie de la diapositive garde sa taille réelle, réduite à la largeur de la tuile */
+.vue__scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  transform: scale(var(--vue-echelle, .15));
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.vue__scene .slide { visibility: visible; }
+
+/* Les miniatures, allégées : le flou du verre et les animations CSS, recalculés pour chaque copie,
+   rendaient la vue lente ; une tuile hors de l'écran n'est pas dessinée */
+.vue__scene *,
+.vue__scene *::before,
+.vue__scene *::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.vue__tuile {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
+}
+
+.vue__legende {
+  font-family: var(--font-carte);
+  font-size: 18px;
+  line-height: 1.25;
+  color: rgba(246, 240, 228, .75);
+}
+
+.vue__tuile.is-courante .vue__legende { color: #E6CF98; font-weight: 600; }
+
+.vue__tuile.is-choisie .vue__ecran {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 4px #E6CF98, 0 18px 34px -10px rgba(0, 0, 0, .8);
+}
+
+.vue__tuile.is-choisie .vue__legende { color: var(--carte); }
+
+
+/* ==========================================================
+   Panneau de script (touche N), import, minuteur et messages
+   Repris du deck de soutenance du projet 6, aux couleurs de Menu Maker.
+   ========================================================== */
+#notes, #nt-import, #toast, #timer, .nt-mesure {
+  --bg: #FCFBF7;
+  --surface: #F2ECE0;
+  --ink: #1F1A17;
+  --ink-2: #3A3330;
+  --muted: #6B625A;
+  --muted-2: #8E857C;
+  --line: #E3DBCC;
+  --accent: #6E1F2B;
+  --accent-deep: #4E141E;
+  --accent-rgb: 110 31 43;
+  --accent-line: rgb(110 31 43 / .28);
+  --ok: #2F7D5B;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --shadow-sm: 0 1px 2px rgba(40, 33, 20, .05), 0 4px 14px rgba(40, 33, 20, .06);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease: var(--ease-out);
+}
+
+#nt-texte {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  padding: 14px 20px 18px;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.62;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: auto;
+  tab-size: 2;
+}
+
+#nt-texte {
+  resize: none;
+  outline: none;
+  background: transparent;
+  color: #efeef2;
+  scrollbar-width: thin;
+  scrollbar-color: #45444f transparent;
+}
+
+#nt-texte::-webkit-scrollbar {
+  width: 9px;
+}
+#nt-texte::-webkit-scrollbar-thumb {
+  background: #45444f;
+  border-radius: 5px;
+}
+
+#nt-texte:focus {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+
+
+/* --- Minuteur ------------------------------------------------------------ */
+#timer {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+#timer.is-on {
+  display: flex;
+}
+
+#timer .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+#timer.is-paused .dot {
+  background: var(--muted-2);
+}
+
+#timer.is-over {
+  border-color: var(--accent-line);
+  color: var(--accent-deep);
+}
+
+#timer.is-over .dot {
+  background: var(--accent);
+}
+
+#timer small {
+  color: var(--muted-2);
+  font-size: 12px;
+}
+
+/* --- Panneau de script (touche N) ---------------------------------------
+   Un éditeur, pas un simple affichage : on y colle son texte, on le retouche,
+   et la slide se remet à l'échelle au-dessus pour rester entièrement visible.
+   ------------------------------------------------------------------------ */
+#notes {
+  --nt-h: 34vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  z-index: 45;
+  height: var(--nt-h);
+  background: var(--ink);
+  color: #efeef2;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(101%);
+  transition: transform 0.32s var(--ease);
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.22);
+}
+
+/* En haut : le panneau se replie vers le haut, sa poignée passe sous lui, et
+   la barre d'outils va au bord opposé aux slides. */
+#notes.en-haut {
+  top: 0;
+  bottom: auto;
+  transform: translateY(-101%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  flex-direction: column-reverse;
+}
+
+#notes.is-open {
+  transform: none;
+}
+
+#notes.en-haut .nt-grip {
+  top: auto;
+  bottom: 0;
+}
+
+#notes.en-haut .nt-bar {
+  border-bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 9px 16px 4px 20px;
+}
+
+#notes.en-haut .nt-conduite {
+  border-bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Poignée de redimensionnement, sur le bord haut du panneau. */
+.nt-grip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 12px;
+  cursor: ns-resize;
+  display: grid;
+  place-items: center;
+  touch-action: none;
+}
+
+.nt-grip i {
+  width: 42px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  transition: background 0.16s var(--ease-out), width 0.16s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nt-grip:hover i {
+    background: var(--accent);
+    width: 58px;
+  }
+}
+
+#notes.is-dragging .nt-grip i {
+  background: var(--accent);
+  width: 58px;
+}
+
+/* Pendant le glissement, le texte ne doit pas se sélectionner. */
+#notes.is-dragging,
+#notes.is-dragging * {
+  user-select: none;
+}
+
+.nt-bar {
+  flex: 0 0 auto;
+  padding-top: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 16px 9px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nt-where {
+  font-size: 12.5px;
+  color: #a9a6b6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nt-where b {
+  color: var(--accent);
+  font-weight: 750;
+  letter-spacing: 0.03em;
+}
+
+/* Le repère de passage : où l'on en est dans le script de la slide. */
+.nt-passage {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #a9a6b6;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 2px 9px 3px;
+  white-space: nowrap;
+}
+
+#notes.tout-le-script .nt-passage {
+  display: none;
+}
+
+/* La référence de la section dans script.md, pour ne plus chercher. */
+.nt-ref {
+  margin-left: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #b9b8f0;
+  background: rgba(185, 184, 240, 0.14);
+  padding: 1px 8px 2px;
+  border-radius: 999px;
+}
+
+.nt-modif {
+  color: #ffcf8a;
+  font-size: 11px;
+  border: 1px solid rgba(255, 207, 138, 0.4);
+  border-radius: 4px;
+  padding: 0 5px;
+  margin-left: 4px;
+}
+
+.nt-etat {
+  font-size: 11.5px;
+  color: #8fd39c;
+  opacity: 0;
+  transition: opacity 0.18s var(--ease-out);
+  white-space: nowrap;
+}
+
+.nt-etat.is-on {
+  opacity: 1;
+}
+
+.nt-tools {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.nt-tools button {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #cfccd8;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: background 0.16s var(--ease-out), color 0.16s var(--ease-out);
+}
+
+/* Les deux flèches de hauteur : des pictogrammes, pas du texte. */
+.nt-tools button[data-nt="baisser"],
+.nt-tools button[data-nt="monter"] {
+  width: 26px;
+  padding: 4px 0 5px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.nt-tools button[data-nt="baisser"] {
+  border-radius: 6px 2px 2px 6px;
+}
+
+.nt-tools button[data-nt="monter"] {
+  border-radius: 2px 6px 6px 2px;
+  margin-left: -4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nt-tools button:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+
+/* Les notes de conduite d'origine, en retrait, affichables à la demande. */
+.nt-conduite {
+  display: none;
+  flex: 0 0 auto;
+  max-height: 26%;
+  overflow: auto;
+  padding: 10px 20px 11px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #bdbaca;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#notes.with-conduite .nt-conduite {
+  display: block;
+}
+
+.nt-cd-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 9px;
+}
+
+.nt-conduite b {
+  color: #fff;
+}
+
+.nt-conduite .cue {
+  color: #ffb3b3;
+}
+
+/* Le champ et son miroir partagent exactement les mêmes métriques : c'est ce
+   qui permet au surlignage, peint derrière, de tomber sur les bons mots. */
+.nt-zone {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+  width: 100%;
+  max-width: 92ch;
+  align-self: center;
+}
+
+/* Règle de mesure : mêmes métriques que le champ, hors écran. Elle sert à
+   connaître la hauteur qu'occupera le passage avant de dimensionner le
+   panneau — un champ étiré par son conteneur ne sait pas se mesurer. */
+.nt-mesure {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  padding: 14px 20px 18px;
+  font-family: var(--sans);
+  line-height: 1.62;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* --- Import du script ---------------------------------------------------- */
+#nt-import {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(10, 9, 14, 0.62);
+  display: grid;
+  place-items: center;
+  padding: 5vh 5vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s var(--ease), visibility 0s linear 0.22s;
+}
+
+#nt-import.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.22s var(--ease), visibility 0s;
+}
+
+.nti-card {
+  width: min(760px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 22px 24px 20px;
+  box-shadow: 0 24px 60px rgba(10, 9, 14, 0.35);
+}
+
+.nti-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.nti-card p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.nti-card code {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.nti-etat {
+  color: var(--accent-deep) !important;
+  min-height: 18px;
+}
+
+.nti-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.nti-actions button {
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background: var(--surface);
+  color: var(--ink-2);
+  transition: background 0.16s var(--ease-out);
+}
+
+.nti-actions .nti-ok {
+  background: var(--accent);
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nti-actions button:hover {
+    filter: brightness(1.06);
+  }
+}
+
+/* --- Message bref -------------------------------------------------------- */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  z-index: 80;
+  transform: translate(-50%, 14px);
+  max-width: min(620px, 88vw);
+  padding: 11px 20px 12px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #efeef2;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(10, 9, 14, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease-out), transform 0.24s var(--ease-out);
+}
+
+#toast.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* La poignée signale le mode : corail quand le panneau s'ajuste tout seul. */
+#notes.hauteur-auto .nt-grip i {
+  background: rgb(var(--accent-rgb) / 0.55);
+  width: 30px;
+}

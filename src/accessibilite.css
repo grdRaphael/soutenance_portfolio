@@ -1,0 +1,79 @@
+/* Slide 13 — démonstrations agrandies, préfixe exclusif ac13.
+   Dimensions exprimées dans la scène 1920 × 1080 du deck. */
+.ac13 { position: absolute; left: 120px; top: 270px; width: 1680px; height: 720px; }
+.ac13__navigation, .ac13__formulaire, .ac13__mouvement { position: absolute; inset: 0; }
+.ac13__navigateur { width: 1100px; height: 665px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,.3); background: #0b1a4a; box-shadow: 0 30px 70px rgba(5,10,35,.35); }
+.ac13__barre { height: 45px; display: flex; align-items: center; gap: 140px; padding: 0 24px; background: #0a1436; font-size: 16px; color: #d8dff2; }
+.ac13__barre > span:first-child { font-size: 13px; letter-spacing: 4px; color: #ffb08a; }
+.ac13__page { position: relative; height: 620px; background: radial-gradient(ellipse at 15% 20%, #76362e, transparent 65%), radial-gradient(ellipse at 100% 100%, #2346a2, transparent 60%), #0b1a4a; }
+.ac13__entete { position: absolute; left: 24px; right: 24px; top: 24px; height: 174px; padding: 22px 28px; border: 2px solid transparent; border-radius: 18px; background: rgba(10,20,64,.65); }
+.ac13__marque { font-size: 26px; font-weight: 600; }
+.ac13__marque em { font-style: normal; font-weight: 400; }
+.ac13__menu { position: absolute; left: 28px; right: 28px; bottom: 20px; display: flex; align-items: center; gap: 28px; height: 54px; padding: 8px 12px; border: 2px solid transparent; border-radius: 10px; font-size: 21px; }
+.ac13__contenu { position: absolute; left: 44px; right: 44px; top: 222px; height: 280px; padding: 30px 24px; border: 2px solid transparent; border-radius: 24px; background: rgba(10,20,64,.3); }
+.ac13__contenu > p { font-size: 22px; }
+.ac13__contenu > strong { display: block; font-size: 72px; font-weight: 600; letter-spacing: -.05em; line-height: 1.3; }
+.ac13__projets { position: absolute; left: 24px; top: 196px; width: 250px; height: 54px; padding: 13px 20px; display: flex; justify-content: space-between; align-items: center; border-radius: 28px; background: #fff; color: #1638a8; font-size: 21px; font-weight: 600; }
+.ac13__pied { position: absolute; left: 24px; right: 24px; top: 530px; height: 65px; display: flex; align-items: center; padding: 16px 28px; border: 2px solid transparent; border-top-color: rgba(255,255,255,.3); border-radius: 10px; font-size: 18px; }
+.ac13__evitement { position: absolute; left: 24px; top: 54px; width: 260px; height: 56px; display: grid; place-items: center; background: #152353; border: 1px solid rgba(255,255,255,.45); border-radius: 28px; font-size: 24px; font-weight: 600; }
+.ac13__focus { position: absolute; left: 18px; top: 48px; width: 272px; height: 68px; border: 3px solid white; border-radius: 33px; pointer-events: none; }
+.ac13__trajet { position: absolute; inset: 0; width: 1100px; height: 620px; fill: none; stroke: #ffb08a; stroke-width: 4; stroke-linecap: round; pointer-events: none; }
+.ac13__balise { position: absolute; top: 10px; right: 16px; padding: 3px 10px; border-radius: 6px; background: #0a1436; color: #ffb08a; font-size: 23px; }
+.ac13__menu .ac13__balise { right: 12px; top: 10px; }
+.ac13__pied .ac13__balise { top: 14px; }
+.ac13__explications { position: absolute; left: 1170px; top: 65px; width: 510px; }
+.ac13__texte { position: absolute; inset: 0 auto auto 0; width: 100%; }
+.ac13__texte kbd { display: inline-block; padding: 14px 24px; border: 1px solid rgba(255,255,255,.5); border-bottom-width: 5px; border-radius: 14px; background: rgba(10,20,64,.65); font: 600 32px var(--police); }
+.ac13__grand { margin-top: 28px; margin-bottom: 24px; font-size: 47px; line-height: 1.1; font-weight: 500; letter-spacing: -.04em; }
+.ac13__texte > p:not(.ac13__grand):not(.ac13__surtitre) { font-size: 27px; line-height: 1.55; color: var(--texte-doux); }
+.ac13__surtitre { font-size: 23px; letter-spacing: .07em; text-transform: uppercase; font-weight: 600; color: #ffb08a; }
+.ac13__liste { list-style: none; display: flex; flex-direction: column; gap: 22px; margin-top: 36px; padding: 0; }
+.ac13__liste li { display: flex; gap: 18px; align-items: center; font-size: 24px; }
+.ac13__liste code { width: 100px; color: #ffb08a; font-size: 24px; }
+.ac13__form { position: absolute; left: 120px; top: 0; width: 850px; height: 680px; padding: 34px 44px; border-radius: 28px; background: rgba(10,20,64,.78); }
+.ac13__form-titre { font-size: 44px; font-weight: 500; margin-top: 6px; letter-spacing: -.025em; }
+.ac13__champ { position: absolute; left: 44px; right: 44px; }
+.ac13__champ--nom { top: 150px; }
+.ac13__champ--email { top: 345px; }
+.ac13__champ > p:first-child { font-size: 25px; font-weight: 600; margin-bottom: 12px; }
+.ac13__saisie { position: relative; height: 66px; border: 2px solid rgba(255,255,255,.28); border-radius: 12px; background: rgba(255,255,255,.1); }
+.ac13__curseur { position: absolute; left: 20px; top: 17px; width: 2px; height: 28px; background: white; }
+.ac13__erreur { font-size: 24px; font-weight: 600; margin-top: 14px; line-height: 1.35; display: flex; gap: 12px; }
+.ac13__erreur > span:first-child { color: #ffd2c4; font-size: 28px; }
+.ac13__envoyer { position: absolute; left: 44px; bottom: 30px; padding: 14px 28px; border-radius: 32px; background: white; color: #1638a8; font-size: 24px; font-weight: 600; }
+.ac13__focus-form { position: absolute; left: 38px; top: 582px; width: 191px; height: 70px; border: 3px solid white; border-radius: 36px; pointer-events: none; }
+.ac13__lien-erreur { position: absolute; left: 20px; top: 225px; width: 14px; height: 83px; border-left: 3px solid #ffb08a; border-bottom: 3px solid #ffb08a; border-top: 3px solid #ffb08a; border-radius: 10px 0 0 10px; }
+.ac13__attribut { display: inline-block; margin-top: 28px; font-size: 23px; color: #ffb08a; }
+.ac13__signaux { margin-top: 36px; display: flex; flex-direction: column; gap: 24px; }
+.ac13__signaux p { display: flex; gap: 20px; align-items: center; font-size: 28px; }
+.ac13__signaux i { width: 34px; height: 34px; border: 3px solid #ffd2c4; border-radius: 9px; background: rgba(255,210,196,.2); }
+.ac13__signaux b { display: inline-block; min-width: 34px; font-size: 28px; color: #ffd2c4; font-weight: 600; }
+.ac13__reglage { position: absolute; left: 95px; top: 0; width: 1490px; height: 110px; padding: 20px 34px; display: flex; align-items: center; gap: 26px; border-radius: 24px; background: rgba(10,20,64,.75); }
+.ac13__reglage > p { font-size: 32px; font-weight: 600; }
+.ac13__reglage > p > span { display: block; font-size: 21px; color: var(--texte-doux); font-weight: 400; margin-top: 4px; }
+.ac13__toggle { width: 86px; height: 48px; padding: 6px; background: rgba(255,255,255,.2); border-radius: 30px; }
+.ac13__toggle i { display: block; width: 36px; height: 36px; background: white; border-radius: 50%; }
+.ac13__etat { margin-left: auto; font-size: 25px; color: #9cf1bd; }
+.ac13__animation { position: absolute; left: 95px; top: 155px; width: 340px; height: 370px; display: flex; flex-direction: column; align-items: center; border-radius: 24px; background: rgba(10,20,64,.55); }
+.ac13__etoile { width: 140px; height: 140px; margin-top: 45px; fill: none; stroke: white; stroke-width: 3; stroke-linecap: round; }
+.ac13__animation > p { font-size: 26px; margin-top: 30px; }
+.ac13__immobile { font-size: 28px; color: #9cf1bd; margin-top: 12px; }
+.ac13__media { position: absolute; left: 485px; top: 155px; width: 710px; margin: 0; }
+.ac13__media-ecran { position: relative; height: 370px; overflow: hidden; border-radius: 22px; background: #0a1436; border: 1px solid rgba(255,255,255,.4); }
+.ac13__media img, .ac13__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.ac13__media figcaption { display: flex; justify-content: space-between; margin-top: 20px; font-size: 25px; }
+.ac13__image-fixe { color: #9cf1bd; font-weight: 600; }
+.ac13__defilement { position: absolute; left: 1245px; top: 155px; width: 340px; height: 370px; display: flex; flex-direction: column; align-items: center; border-radius: 24px; background: rgba(10,20,64,.55); }
+.ac13__fenetre { width: 260px; margin-top: 34px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.4); background: #0a1436; }
+.ac13__fenetre-barre { height: 40px; display: flex; align-items: center; justify-content: flex-end; padding: 0 12px; background: rgba(255,255,255,.08); }
+.ac13__clic { font-size: 16px; font-weight: 600; padding: 3px 11px; border: 2px solid white; border-radius: 20px; }
+.ac13__fenetre-vue { height: 156px; overflow: hidden; }
+.ac13__section { height: 156px; padding: 20px 20px 0; border-top: 1px solid rgba(255,255,255,.6); }
+.ac13__section:first-child { border-top: 0; }
+.ac13__section p { font-size: 20px; font-weight: 600; }
+.ac13__section code { color: #ffb08a; }
+.ac13__section i { display: block; height: 10px; width: 85%; margin-top: 16px; border-radius: 5px; background: rgba(255,255,255,.22); }
+.ac13__section i + i { width: 55%; }
+.ac13__defilement > p { font-size: 26px; margin-top: 30px; }
+.ac13__saut { font-size: 28px; color: #9cf1bd; margin-top: 12px; }
+.ac13__confort { position: absolute; top: 625px; width: 100%; text-align: center; font-size: 34px; letter-spacing: -.025em; }
