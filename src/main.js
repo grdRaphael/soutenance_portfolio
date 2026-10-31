@@ -145,17 +145,19 @@
     const stations = Array.from(slide.querySelectorAll('.station'));
     const L = chemin.getTotalLength();
 
-    // La longueur de route parcourue au droit de chaque station
+    // La longueur de route parcourue au droit de chaque station. La route est mesurée une seule fois
+    // pour toutes les stations : la mesurer pour chacune figeait la première entrée sur la diapositive
+    const points = [];
+    for (let l = 0; l <= L; l += 4) points.push({ l, p: chemin.getPointAtLength(l) });
     const longueurs = stations.map((st) => {
       const cx = Number(st.dataset.x);
       const cy = Number(st.dataset.y);
       let meilleure = 0;
       let ecart = Infinity;
-      for (let l = 0; l <= L; l += 2) {
-        const p = chemin.getPointAtLength(l);
+      points.forEach(({ l, p }) => {
         const e = (p.x - cx) ** 2 + (p.y - cy) ** 2;
         if (e < ecart) { ecart = e; meilleure = l; }
-      }
+      });
       return meilleure;
     });
 
@@ -206,13 +208,14 @@
 
   /* Diapositive 3 : qui je suis. Une étape par phrase du script :
      e1 « Je commence par me présenter » : l'en-tête et le fil vide ;
-     e2 full-stack : un pont de React (l'interface) à Node.js (l'API) ;
-     e3 le sport : deux postes, l'un au-dessus de l'autre, et l'épingle de La Réunion ;
-     e4 les tâches répétitives qui s'empilent, puis le code Apps Script qui s'écrit ;
-     e5 l'exemple : l'e-mail d'inscription arrive, seul, au centre ;
-     e6 le script range : l'e-mail monte, le tableau Google Sheets apparaît, les valeurs volent
+     e2 à e5 full-stack : le nom et le métier, React (l'interface), le pont jusqu'à Node.js (l'API),
+     puis l'accessibilité et les performances ;
+     e6 le sport : deux postes, l'un au-dessus de l'autre, et l'épingle de La Réunion ;
+     e7 les tâches répétitives qui s'empilent, puis le code Apps Script qui s'écrit ;
+     e8 l'exemple : l'e-mail d'inscription arrive, seul, au centre ;
+     e9 le script range : l'e-mail monte, le tableau Google Sheets apparaît, les valeurs volent
      jusqu'à leurs cellules, le numéro se remet en forme ;
-     e7 le déclic : « perdre du temps » entouré, une flèche vers le développement.
+     e10 le déclic : « perdre du temps » entouré, une flèche vers le développement.
      À chaque étape, un mot-clé s'ajoute au fil, à gauche. */
   function construireQui() {
     const slide = document.getElementById('slide-03');
@@ -265,28 +268,35 @@
       return t;
     };
 
-    // 1. Full-stack : le nom, le métier qui se décode, puis le pont de React à Node.js
-    const sceneStack = () => {
+    // 1. Full-stack, en quatre étapes : le nom et le métier qui se décode, React, le pont jusqu'à Node.js, puis les qualités
+    const [front, back] = stack.querySelectorAll('.stack__bout');
+    const sceneStack = () => gsap.timeline()
+      .from(nom.chars, { yPercent: 110, duration: 0.9, stagger: 0.03, ease: 'expo.out' }, 0)
+      .add(decoder(stack.querySelector('.stack__metier'), 1), 0.35);
+
+    // De l'interface en React
+    const stackFront = () => gsap.timeline()
+      .from(front.querySelector('.stack__tuile'), { scale: 0.4, autoAlpha: 0, duration: 0.7, ease: 'back.out(2)' }, 0)
+      .from(front.querySelectorAll('p'), { y: 16, autoAlpha: 0, duration: 0.5, stagger: 0.08 }, 0.2);
+
+    // À l'API en Node.js : l'impulsion part de React et trace le pont jusqu'à Node.js
+    const stackBack = () => {
       const liaison = stack.querySelector('.stack__trait');
       const impulsion = stack.querySelector('.stack__impulsion');
-      const [front, back] = stack.querySelectorAll('.stack__bout');
       return gsap.timeline()
-        .from(nom.chars, { yPercent: 110, duration: 0.9, stagger: 0.03, ease: 'expo.out' }, 0)
-        .add(decoder(stack.querySelector('.stack__metier'), 1), 0.35)
-        .from(front.querySelector('.stack__tuile'), { scale: 0.4, autoAlpha: 0, duration: 0.7, ease: 'back.out(2)' }, 0.7)
-        .from(front.querySelectorAll('p'), { y: 16, autoAlpha: 0, duration: 0.5, stagger: 0.08 }, 0.9)
-        .from(stack.querySelector('.stack__fantome'), { autoAlpha: 0, duration: 0.4 }, 1)
-        // L'impulsion part de React et trace le pont jusqu'à Node.js
-        .fromTo(impulsion, { autoAlpha: 0, x: 0 }, { autoAlpha: 1, duration: 0.2 }, 1.1)
-        .fromTo(liaison, { drawSVG: '0%' }, { drawSVG: '100%', duration: 1.1, ease: 'power2.inOut' }, 1.15)
-        .to(impulsion, { x: 680, duration: 1.1, ease: 'power2.inOut' }, 1.15)
-        .to(impulsion, { autoAlpha: 0, scale: 2.2, duration: 0.4 }, 2.25)
-        .from(back.querySelector('.stack__tuile'), { scale: 0.4, autoAlpha: 0, duration: 0.7, ease: 'back.out(2)' }, 2.1)
-        .from(back.querySelectorAll('p'), { y: 16, autoAlpha: 0, duration: 0.5, stagger: 0.08 }, 2.3)
-        // En soignant l'accessibilité et les performances
-        .from(stack.querySelectorAll('.qualite'), { y: -50, autoAlpha: 0, duration: 0.8, stagger: 0.18, ease: 'bounce.out' }, 2.6)
-        .from(stack.querySelectorAll('.qualite__coche'), { scale: 0, duration: 0.4, stagger: 0.18, ease: 'back.out(3)' }, 3.1);
+        .from(stack.querySelector('.stack__fantome'), { autoAlpha: 0, duration: 0.4 }, 0)
+        .fromTo(impulsion, { autoAlpha: 0, x: 0 }, { autoAlpha: 1, duration: 0.2 }, 0)
+        .fromTo(liaison, { drawSVG: '0%' }, { drawSVG: '100%', duration: 0.9, ease: 'power2.inOut' }, 0.05)
+        .to(impulsion, { x: 680, duration: 0.9, ease: 'power2.inOut' }, 0.05)
+        .to(impulsion, { autoAlpha: 0, scale: 2.2, duration: 0.4 }, 0.95)
+        .from(back.querySelector('.stack__tuile'), { scale: 0.4, autoAlpha: 0, duration: 0.7, ease: 'back.out(2)' }, 0.8)
+        .from(back.querySelectorAll('p'), { y: 16, autoAlpha: 0, duration: 0.5, stagger: 0.08 }, 1);
     };
+
+    // En soignant l'accessibilité et les performances
+    const stackQualites = () => gsap.timeline()
+      .from(stack.querySelectorAll('.qualite'), { y: -50, autoAlpha: 0, duration: 0.8, stagger: 0.18, ease: 'bounce.out' }, 0)
+      .from(stack.querySelectorAll('.qualite__coche'), { scale: 0, duration: 0.4, stagger: 0.18, ease: 'back.out(3)' }, 0.5);
 
     // 2. Le sport : le disque d'haltère, le premier poste, puis le second au-dessus, et La Réunion
     const sceneSport = () => gsap.timeline()
@@ -372,14 +382,16 @@
       .from(slide.querySelectorAll('.fil__point'), { scale: 0, duration: 0.4, stagger: 0.1, ease: 'back.out(2)' }, 0.8)
       .addLabel('e1');
 
+    // Les étapes suivantes d'une même scène, sur le même mot-clé du fil
+    const suites = new Map([[sceneStack, [stackFront, stackBack, stackQualites]], [sceneExemple, [rangerExemple]]]);
+
     let etape = 2;
     [sceneStack, sceneSport, sceneTaches, sceneExemple, sceneDeclic].forEach((scene, k) => {
       tl.add(changerScene(k))
         .add(avancerFil(k), '<')
         .add(scene(), k > 0 ? '<0.4' : '<')
         .addLabel(`e${etape++}`);
-      // L'exemple se joue en deux étapes, sur la même scène et le même mot-clé du fil
-      if (scene === sceneExemple) tl.add(rangerExemple()).addLabel(`e${etape++}`);
+      (suites.get(scene) || []).forEach((suite) => tl.add(suite()).addLabel(`e${etape++}`));
     });
     return tl;
   }
@@ -776,13 +788,14 @@
     .to(vol, { y: Math.min(d.y, a.y) - hauteur, duration: duree / 2, ease: 'power2.out' }, 0)
     .to(vol, { y: a.y, duration: duree / 2, ease: 'power2.in' }, duree / 2);
 
-  /* Diapositive 9 : les données des projets. Le fichier JSON à gauche, la liste et la fiche à droite.
+  /* Diapositive 9 : les données des projets. Le fichier JSON à gauche, la liste et la fiche à droite
+     (captures du site en ligne).
      e1 « les projets sont rangés dans un fichier JSON » : le fichier, puis la liste et la fiche Kasa ;
-     e2 map : chaque objet du fichier crée sa ligne dans la liste, l'un après l'autre ;
+     e2 map : chaque objet du fichier allume sa ligne dans la liste, l'un après l'autre ;
      e3 une seule page pour toutes les fiches : la fiche passe d'un projet à l'autre ;
      e4 elle lit l'identifiant : « kasa » dans l'adresse, la fiche attend ses données ;
      e5 find : la recherche parcourt le fichier, s'arrête sur Kasa, la fiche se remplit ;
-     e6 un projet ajouté au fichier : sa ligne dans la liste, et sa propre fiche. */
+     e6 un projet ajouté au fichier : la liste défile sur sa ligne, et il a sa propre fiche. */
   function construireDonnees() {
     const slide = document.getElementById('slide-09');
     const json = slide.querySelector('.jd__json');
@@ -812,7 +825,6 @@
         .from(json, { x: -60, autoAlpha: 0, duration: 0.6, ease: 'power3.out' }, 0.1)
         .from(lignes, { x: -20, autoAlpha: 0, duration: 0.35, stagger: 0.06 }, 0.35)
         .from(slide.querySelector('.jd__accueil'), { x: 40, autoAlpha: 0, duration: 0.5, ease: 'power3.out' }, 0.8)
-        .from([rangs[0], rangs[1], rangs[2], rangs[3]], { x: 20, autoAlpha: 0, duration: 0.4, stagger: 0.06 }, 1)
         .from(slide.querySelector('.jd__fiche'), { x: 40, autoAlpha: 0, duration: 0.5, ease: 'power3.out' }, 0.95)
         .add(montrer(contenus.kasa), 1.2),
 
@@ -820,13 +832,13 @@
       () => {
         const t = gsap.timeline()
           .fromTo(slide.querySelector('.jd__fleche-map'), { drawSVG: '0%' }, { drawSVG: '100%', duration: 0.5, ease: 'power2.out' }, 0)
-          .from(slide.querySelector('.jd__pilule--map'), { scale: 0.6, autoAlpha: 0, duration: 0.4, ease: 'back.out(2.5)' }, 0.3)
-          .to([rangs[0], rangs[1], rangs[2], rangs[3]], { autoAlpha: 0, duration: 0.2 }, 0.2);
+          .from(slide.querySelector('.jd__pilule--map'), { scale: 0.6, autoAlpha: 0, duration: 0.4, ease: 'back.out(2.5)' }, 0.3);
         objets.forEach((objet, k) => {
           const debut = 0.6 + k * 0.45;
           t.to(objet, allumer(objet), debut)
-            .fromTo(rangs[k], { autoAlpha: 0, x: 30 }, { autoAlpha: 1, x: 0, duration: 0.35, ease: 'power3.out', immediateRender: false }, debut + 0.12)
-            .to(objet, eteindre, debut + 0.4);
+            .fromTo(rangs[k], { autoAlpha: 0, scale: 1.06 }, { autoAlpha: 1, scale: 1, duration: 0.25, ease: 'power3.out', immediateRender: false }, debut + 0.12)
+            .to(objet, eteindre, debut + 0.4)
+            .to(rangs[k], { autoAlpha: 0, duration: 0.25 }, debut + 0.45);
         });
         return t;
       },
@@ -862,6 +874,7 @@
         .to(nouvelle, allumer(nouvelle, '74,222,128'), 0.3)
         .fromTo(nouvelle.querySelector('code'), { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, ease: 'steps(28)' }, 0.4)
         .to(slide.querySelectorAll('.jd__fleches path'), { stroke: '#4ade80', duration: 0.3 }, 1.1)
+        .to(slide.querySelector('.jd__defile'), { y: -25, duration: 0.5, ease: 'power2.inOut' }, 1.1)
         .fromTo(rangs[4], { autoAlpha: 0, x: 30 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: 'power3.out', immediateRender: false }, 1.25)
         .to(rangs[4], { backgroundColor: 'rgba(74,222,128,0.16)', duration: 0.3 }, 1.4)
         .add(changerFiche('kasa', 'nouveau-projet'), 1.45)
@@ -1077,6 +1090,26 @@
     const reperes = ['entete', 'menu', 'contenu', 'pied'].map(n => q(`.ac13__${n}`));
     const lignes = qa('.ac13__liste li');
     const video = q('.ac13__video');
+
+    // Survol d'un signal (couleur, symbole, texte) : la ligne avance, le formulaire montre ce signal
+    const signaux = q('.ac13__signaux');
+    const form = q('.ac13__form');
+    qa('.ac13__signaux p').forEach((p) => {
+      p.addEventListener('mouseenter', () => {
+        // Pas de survol tant que l'étape n'a pas montré la ligne
+        if (getComputedStyle(p).visibility === 'hidden') return;
+        p.classList.add('est-survole');
+        signaux.classList.add('a-survol');
+        gsap.to(p, { scale: 1.12, x: 12, duration: 0.3, ease: 'power2.out' });
+        form.dataset.signal = p.dataset.signal;
+      });
+      p.addEventListener('mouseleave', () => {
+        p.classList.remove('est-survole');
+        signaux.classList.remove('a-survol');
+        gsap.to(p, { scale: 1, x: 0, duration: 0.3, ease: 'power2.out' });
+        delete form.dataset.signal;
+      });
+    });
     const lecture = { temps: 0 };
     // La vidéo reste en pause. GSAP parcourt un court extrait et peut le rembobiner ;
     // aucune lecture autonome ne persiste en quittant la diapositive.
@@ -1584,8 +1617,8 @@
   }
 
   /* Diapositive 17 : vitesse et référencement. Le premier affichage sur une ligne de temps,
-     la place réservée aux images, le poids des couvertures et des vidéos, le résultat Google
-     et le seul h1, les titres d'onglet, puis les mots-clés des offres qui rejoignent la description. */
+     le poids des couvertures et des vidéos, le résultat Google
+     et le seul h1, les titres d'onglet, le <title> que React 19 place dans le <head>, puis la Search Console. */
   function construireVitesse() {
     const slide = document.getElementById('slide-17');
     const q = (s) => slide.querySelector(s);
@@ -1604,22 +1637,14 @@
     // 1 300 px de barre pour 1,1 Mo de couvertures
     const LARGEUR = 1300;
     const reduite = LARGEUR * 388 / 1100;
-    // Les mots-clés volent de leur offre jusqu'à la description, mesurés avant toute animation
-    const mots = scene('mots');
-    const vols = ['full-stack', 'javascript', 'junior', 'react', 'node'].map((cle) => {
-      const arrivee = mots.querySelector(`.vr17__mot[data-mot="${cle}"]`);
-      return { arrivee, ...preparerVol('vr17__vol', arrivee.textContent, mots.querySelector(`.vr17__offres [data-mot="${cle}"]`), arrivee, mots) };
-    });
     const onglets = qa('.vr17__onglet');
 
     return enEtapes(gsap.timeline({ paused: true }).addLabel('debut', 0), [
-      () => gsap.timeline()
-        .add(entreeTete(slide), 0)
-        .from(rail, { autoAlpha: 0, y: 20, duration: 0.45, stagger: 0.08 }, 0.3),
-
       // Le premier affichage en 0,6 s : le temps défile, la page apparaît
       () => gsap.timeline()
-        .add(allumer(0), 0)
+        .add(entreeTete(slide), 0)
+        .from(rail, { autoAlpha: 0, y: 20, duration: 0.45, stagger: 0.08 }, 0.2)
+        .add(allumer(0), 0.3)
         .add(entrer(scene('affichage'), 0.3), 0)
         .from(q('.vr17__navigateur'), { autoAlpha: 0, x: 30, duration: 0.5, ease: 'power3.out' }, 0.05)
         .from(q('.vr17__axe'), { autoAlpha: 0, duration: 0.3 }, 0.2)
@@ -1629,14 +1654,6 @@
         .add(compter(q('.vr17__chiffre'), 0, 0.6, 1.2, (v) => `${virgule(v, 1)} s`), 0.45)
         .from(qa('.vr17__page > *'), { autoAlpha: 0, duration: 0.25, stagger: 0.04 }, 1.6),
 
-      // La page ne bouge pas : l'image remplit la place réservée, le texte reste sur son repère
-      () => gsap.timeline()
-        .fromTo(q('.vr17__guide'), { scaleX: 0, transformOrigin: '0 50%' }, { scaleX: 1, duration: 0.5, ease: 'power2.out' }, 0)
-        .from(q('.vr17__reserve img'), { autoAlpha: 0, duration: 0.6 }, 0.45)
-        .to(q('.vr17__reserve'), { borderColor: 'rgba(255,176,138,0)', duration: 0.4 }, 0.6)
-        .to(q('.vr17__stat--affichage'), { opacity: 0.45, duration: 0.4 }, 0.4)
-        .from(q('.vr17__stat--decalage'), { autoAlpha: 0, y: 20, duration: 0.5, ease: 'power3.out' }, 0.7),
-
       // Les couvertures : la moitié de la taille, le tiers du poids
       () => gsap.timeline()
         .add(sortir(scene('affichage')), 0)
@@ -1645,6 +1662,8 @@
         .from([q('.vr17__dimensions'), q('.vr17__poids')], { autoAlpha: 0, y: 16, duration: 0.4, stagger: 0.1 }, 0.6)
         .to(qa('.vr17__vignettes img'), { scale: 0.86, duration: 0.7, ease: 'power3.inOut' }, 1.2)
         .to(q('.vr17__taille'), { text: '1 600 × 1 200 px', duration: 0.5, ease: 'none' }, 1.2)
+        // Redimensionnées et converties en WebP
+        .from(q('.vr17__format'), { autoAlpha: 0, scale: 0.6, duration: 0.45, ease: 'back.out(2.5)' }, 1.5)
         .to(q('.vr17__poids i'), { scaleX: reduite / LARGEUR, duration: 1, ease: 'power3.inOut' }, 1.3)
         .to(q('.vr17__poids-valeur'), { x: reduite - LARGEUR, duration: 1, ease: 'power3.inOut' }, 1.3)
         .add(compter(q('.vr17__poids-valeur'), 1100, 388, 1, (v) => (v >= 1000 ? `${virgule(v / 1000, 1)} Mo` : `${Math.round(v)} Ko`)), 1.3),
@@ -1684,22 +1703,40 @@
           .from(q('.vr17__onglets-legende'), { autoAlpha: 0, y: 12, duration: 0.4 }, 1.5);
       },
 
-      // Les mots-clés des trois offres rejoignent la description du site
-      () => {
-        const t = gsap.timeline()
-          .add(sortir(scene('onglets-scene')), 0)
-          .add(entrer(mots, 0.3), 0.25)
-          .from(qa('.vr17__offre'), { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, 0.3)
-          .from(q('.vr17__meta'), { autoAlpha: 0, y: 30, duration: 0.5, ease: 'power3.out' }, 0.7);
-        vols.forEach((v, i) => {
-          const debut = 1.3 + i * 0.35;
-          t.to(mots.querySelector(`.vr17__offres [data-mot="${v.arrivee.dataset.mot}"]`), { color: '#ffb08a', borderColor: '#ffb08a', duration: 0.25 }, debut)
-            .add(voler(v, 0.8, 60), debut)
-            .to(v.vol, { autoAlpha: 0, duration: 0.15 }, debut + 0.8)
-            .to(v.arrivee, { backgroundColor: 'rgba(255,176,138,0.28)', color: '#ffffff', duration: 0.3 }, debut + 0.75);
-        });
-        return t;
-      }
+      // React 19 place le <title> dans le <head> : la ligne de la fiche s'ouvre devant le titre général, qui passe au second plan
+      () => gsap.timeline()
+        .add(sortir(q('.vr17__code-titre')), 0)
+        .add(sortir(q('.vr17__onglets-legende')), 0)
+        .add(entrer(q('.vr17__head'), 0.45), 0.2)
+        .from(q('.vr17__head-fiche'), { height: 0, duration: 0.5, ease: 'power3.inOut' }, 0.65)
+        .from(q('.vr17__head-fiche code'), { autoAlpha: 0, y: -30, duration: 0.45, ease: 'power3.out' }, 0.8)
+        .from(q('.vr17__head-fiche'), { backgroundColor: 'rgba(232,105,46,0)', borderLeftColor: 'rgba(232,105,46,0)', duration: 0.4 }, 0.95)
+        .to(q('.vr17__head-general code'), { opacity: 0.45, duration: 0.5 }, 1)
+        .from(q('.vr17__head-note--react'), { autoAlpha: 0, x: -20, duration: 0.45, ease: 'power3.out' }, 1.1)
+        .from(q('.vr17__head-general .vr17__head-note'), { autoAlpha: 0, duration: 0.4 }, 1.25),
+
+      // Déclaré dans la Search Console : à gauche, l'outil Inspection de l'URL. L'adresse se tape,
+      // la page n'est pas sur Google, le curseur clique sur « Demander une indexation », la confirmation s'affiche
+      () => gsap.timeline()
+        .add(sortir(scene('onglets-scene')), 0)
+        .add(entrer(scene('console-scene'), 0.3), 0.25)
+        .from(q('.vr17__console-capture'), { autoAlpha: 0, x: -40, duration: 0.55, ease: 'power3.out' }, 0.3)
+        .from(q('.vr17__gsc-legende'), { autoAlpha: 0, duration: 0.4 }, 0.6)
+        .add(taper(q('.vr17__gsc-url'), 0.018), 0.6)
+        .from(qa('.vr17__gsc-carte > *'), { autoAlpha: 0, y: 10, duration: 0.35, stagger: 0.1 }, 1.6)
+        .fromTo(q('.vr17__gsc-curseur'), { autoAlpha: 0, x: 160, y: 110 }, { autoAlpha: 1, x: 0, y: 0, duration: 0.6, ease: 'power2.out', immediateRender: false }, 2)
+        .to(q('.vr17__gsc-curseur'), { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1 }, 2.65)
+        .to(q('.vr17__gsc-bouton'), { backgroundColor: 'rgba(26,115,232,0.16)', duration: 0.15 }, 2.65)
+        .to(q('.vr17__gsc-voile'), { autoAlpha: 1, duration: 0.3 }, 2.9)
+        .fromTo(q('.vr17__gsc-dialogue'), { autoAlpha: 0, scale: 0.92 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: 'back.out(1.8)', immediateRender: false }, 2.95),
+
+      // L'indexation demandée pour chaque page : à droite, la propriété validée, puis les pages une à une
+      () => gsap.timeline()
+        .from(q('.vr17__console'), { autoAlpha: 0, x: 40, duration: 0.55, ease: 'power3.out' }, 0)
+        .from(q('.vr17__console-valide'), { autoAlpha: 0, scale: 0.6, duration: 0.45, ease: 'back.out(2.5)' }, 0.4)
+        .from(q('.vr17__console-fichier'), { autoAlpha: 0, x: -20, duration: 0.4 }, 0.5)
+        .from(qa('.vr17__console-pages li'), { autoAlpha: 0, x: -24, duration: 0.4, stagger: 0.15, ease: 'power3.out' }, 0.7)
+        .from(qa('.vr17__console-pages span'), { autoAlpha: 0, scale: 0.7, transformOrigin: '100% 50%', duration: 0.35, stagger: 0.15, ease: 'back.out(2.5)' }, 0.9)
     ]);
   }
 
@@ -1762,8 +1799,8 @@
     return { q, qa, changer, tracer, arrivee };
   };
 
-  /* Diapositive 19 : Kasa. Contexte (la location, la maquette Figma), l'enjeu, la stack,
-     le menu dépliant sur deux pages puis ses trois versions, le résultat, les améliorations. */
+  /* Diapositive 19 : Kasa. Contexte (la location, la maquette Figma et le JSON, la mission), la stack,
+     le menu dépliant sur deux pages, le résultat, les améliorations. */
   function construireKasa() {
     const slide = document.getElementById('slide-19');
     const { q, qa, changer, tracer, arrivee } = ficheProjet(slide);
@@ -1782,24 +1819,25 @@
         .add(tracer(qa('.ka19__location .fp__icone path')), 0.5)
         .from(q('.ka19__location .fp__fait > p'), { autoAlpha: 0, y: 20, duration: 0.5 }, 0.6),
 
+      // Ce que le projet fournissait : la maquette Figma, puis le jeu de données JSON
       () => changer('.ka19__location', '.ka19__figma')
         .from(q('.ka19__maquette'), { autoAlpha: 0, x: -30, duration: 0.55, ease: 'power3.out' }, 0.3)
         .from(qa('.ka19__cadre i'), { scale: 0, duration: 0.3, stagger: 0.06, ease: 'back.out(3)' }, 0.6)
-        .add(tracer(q('.ka19__figma .fp__fleche path')), 0.9)
-        .from(q('.ka19__react'), { autoAlpha: 0, scale: 0.85, duration: 0.5, ease: 'back.out(1.6)' }, 1.2)
-        .from(q('.ka19__react img'), { rotation: -120, duration: 1, ease: 'power3.out' }, 1.2),
+        .from(q('.ka19__plus'), { autoAlpha: 0, scale: 0, duration: 0.4, ease: 'back.out(3)' }, 0.75)
+        .from(q('.ka19__donnees'), { autoAlpha: 0, x: -30, duration: 0.55, ease: 'power3.out' }, 0.9)
+        .from(qa('.ka19__json .vsc__ligne'), { autoAlpha: 0, x: -12, duration: 0.25, stagger: 0.07 }, 1.1),
 
-      () => changer('.ka19__figma', '.ka19__enjeu', 1)
-        .from(qa('.ka19__pages li'), { autoAlpha: 0, x: -30, duration: 0.4, stagger: 0.12, ease: 'power3.out' }, 0.3)
-        .from(q('.ka19__composants'), { autoAlpha: 0, y: 14, duration: 0.4 }, 0.9)
-        .from(q('.ka19__ordi'), { autoAlpha: 0, x: 30, duration: 0.55, ease: 'power3.out' }, 1.1)
-        .from(q('.ka19__mobile'), { autoAlpha: 0, y: 40, duration: 0.55, ease: 'power3.out' }, 1.35),
+      // La mission : l'application front-end en React, à partir des deux
+      () => gsap.timeline()
+        .add(tracer(q('.ka19__figma .fp__fleche path')), 0)
+        .from(q('.ka19__react'), { autoAlpha: 0, scale: 0.85, duration: 0.5, ease: 'back.out(1.6)' }, 0.25)
+        .from(q('.ka19__react img'), { rotation: -120, duration: 1, ease: 'power3.out' }, 0.25),
 
-      () => changer('.ka19__enjeu', '.ka19__stack', 2)
+      () => changer('.ka19__figma', '.ka19__stack', 1)
         .from(qa('.ka19__stack .fp__tuile'), { autoAlpha: 0, y: 40, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, 0.3),
 
       // Le même menu, sur deux pages : il s'ouvre sur l'une, puis sur l'autre
-      () => changer('.ka19__stack', '.ka19__menu', 3)
+      () => changer('.ka19__stack', '.ka19__menu', 2)
         .from(qa('.ka19__page'), { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, 0.3)
         .from(q('.ka19__code'), { autoAlpha: 0, y: 30, duration: 0.5, ease: 'power3.out' }, 0.5)
         .to(lignes[0], surligner, 1)
@@ -1807,19 +1845,14 @@
         .to(lignes[1], surligner, 1.7)
         .add(ouvrir(q('.ka19__page--logement')), 1.7),
 
-      () => changer('.ka19__menu', '.ka19__versions')
-        .from(q('.ka19__version--1'), { autoAlpha: 0, y: 30, duration: 0.45, ease: 'power3.out' }, 0.3)
-        .add(tracer(qa('.ka19__versions .fp__fleche path')[0], 0.3), 0.75)
-        .from(q('.ka19__version--2'), { autoAlpha: 0, y: 30, duration: 0.45, ease: 'power3.out' }, 0.95)
-        .add(tracer(qa('.ka19__versions .fp__fleche path')[1], 0.3), 1.4)
-        .from(q('.ka19__version--3'), { autoAlpha: 0, y: 30, scale: 0.95, duration: 0.5, ease: 'back.out(1.6)' }, 1.6),
-
-      () => changer('.ka19__versions', '.ka19__resultat', 4)
+      () => changer('.ka19__menu', '.ka19__resultat', 3)
         .from(qa('.ka19__resultat .fp__preuve'), { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3)
-        .from(qa('.ka19__touche'), { y: -12, autoAlpha: 0, duration: 0.3, stagger: 0.15 }, 1)
-        .from(q('.ka19__barre-focus'), { outlineColor: 'rgba(156,241,189,0)', duration: 0.4 }, 1.3),
+        // L'adresse inconnue, rechargée : la page 404 s'affiche quand même
+        .from(q('.ka19__recharger'), { rotation: -360, transformOrigin: '50% 50%', duration: 0.8, ease: 'power2.inOut' }, 1)
+        .from(q('.ka19__404'), { autoAlpha: 0, scale: 0.6, duration: 0.5, ease: 'back.out(2)' }, 1.5)
+        .from(q('.ka19__oups'), { autoAlpha: 0, y: 12, duration: 0.4 }, 1.75),
 
-      () => changer('.ka19__resultat', '.ka19__ameliorer', 5)
+      () => changer('.ka19__resultat', '.ka19__ameliorer', 4)
         .from(qa('.ka19__ameliorer .fp__piste'), { autoAlpha: 0, scale: 0.94, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3)
     ]);
   }
@@ -1894,8 +1927,8 @@
   /* ---------- Diapositives 21 à 23 : les initiatives, le résumé, le merci ---------- */
 
   /* Diapositive 21 : au-delà des consignes. GymTracker (l'application, le rôle de chacun, les données),
-     Sophie Bluel réécrit en React, les portfolios étudiés et leur fichier de sources, puis la méthode :
-     un commit par étape, un journal, une branche Git pour une variante. Le repère suit les quatre initiatives. */
+     Sophie Bluel réécrit en React, puis la méthode :
+     un commit par étape, un journal, une branche Git pour une variante. Le repère suit les trois initiatives. */
   function construireInitiatives() {
     const slide = document.getElementById('slide-21');
     const q = (s) => slide.querySelector(s);
@@ -1953,18 +1986,8 @@
         .from(q('.in21__react'), { autoAlpha: 0, x: 30, duration: 0.55, ease: 'power3.out' }, 1.2)
         .from(q('.in21__point'), { scale: 0, duration: 0.4, ease: 'back.out(3)' }, 1.7),
 
-      // Les portfolios de développeurs étudiés
-      () => changer('sophie', 'etudes', 2)
-        .from(qa('.in21__portfolios p'), { autoAlpha: 0, y: 24, scale: 0.95, duration: 0.4, stagger: { each: 0.08, grid: [3, 3], from: 'start' }, ease: 'power3.out' }, 0.3),
-
-      // Chaque idée reprise, notée avec sa source
-      () => changer('etudes', 'sources')
-        .from(q('.in21__fichier'), { autoAlpha: 0, y: 30, duration: 0.5, ease: 'power3.out' }, 0.3)
-        .from(qa('.in21__fichier .vsc__ligne'), { autoAlpha: 0, x: -15, duration: 0.3, stagger: 0.12 }, 0.6)
-        .from(q('.in21__treize'), { autoAlpha: 0, y: 14, duration: 0.45 }, 1.4),
-
       // La méthode : un commit par étape
-      () => changer('sources', 'methode', 3)
+      () => changer('sophie', 'methode', 2)
         .from(q('.in21__pilier--commits'), { autoAlpha: 0, y: 30, duration: 0.5, ease: 'power3.out' }, 0.3)
         .from(qa('.in21__terminal p'), { autoAlpha: 0, x: -12, duration: 0.3, stagger: 0.15 }, 0.6),
 

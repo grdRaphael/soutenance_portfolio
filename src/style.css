@@ -2569,31 +2569,66 @@ ul, ol { padding: 0; list-style: none; }
 }
 
 .jd__accueil { top: 0; height: 362px; }
-.jd__accueil-corps { padding: 14px 24px; }
-.jd__section { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
 
-.jd__liste {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+/* La capture de la liste (1405 × 773) ramenée à 620 px : échelle 0,441.
+   .jd__defile monte d'une ligne à l'ajout du projet, comme si la page défilait */
+.jd__accueil-corps {
+  position: relative;
+  height: 316px;
+  overflow: hidden;
 }
 
+.jd__defile { position: relative; }
+
+.jd__capture {
+  display: block;
+  width: 620px;
+  height: auto;
+}
+
+/* Le repère d'une ligne de la capture, allumé quand map passe sur son objet */
 .jd__rang {
-  height: 44px;
-  display: grid;
-  grid-template-columns: 82px 1fr auto;
-  align-items: center;
-  padding: 0 14px;
-  border-radius: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  left: 14px;
+  width: 334px;
+  height: 52px;
+  border-radius: 8px;
+  border: 2px solid #febc2e;
+  background: rgba(254, 188, 46, 0.14);
+  opacity: 0;
+  visibility: hidden;
 }
 
-.jd__code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; color: #ffb08a; }
-.jd__titre { font-size: 22px; font-weight: 600; }
-.jd__cat { font-size: 17px; color: var(--texte-doux); }
+/* La ligne du projet ajouté, sous la capture, dans le style des lignes du site */
+.jd__rang--neuf {
+  top: 296px;
+  left: 18px;
+  width: 326px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  background: transparent;
+}
 
-.jd__rang--neuf { opacity: 0; visibility: hidden; }
+.jd__titre {
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.jd__code {
+  margin-right: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #4ade80;
+}
 
 .jd__composant {
   position: absolute;
@@ -2608,7 +2643,7 @@ ul, ol { padding: 0; list-style: none; }
 
 .jd__composant code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 22px; font-weight: 700; }
 
-.jd__fiche { top: 424px; height: 310px; overflow: visible; }
+.jd__fiche { top: 424px; height: 298px; overflow: visible; }
 
 .jd__chemin { color: #ffd9c2; }
 
@@ -2632,7 +2667,7 @@ ul, ol { padding: 0; list-style: none; }
 
 .jd__fiche-corps {
   position: relative;
-  height: 262px;
+  height: 250px;
   overflow: hidden;
   border-radius: 0 0 18px 18px;
 }
@@ -2644,41 +2679,45 @@ ul, ol { padding: 0; list-style: none; }
   visibility: hidden;
 }
 
-.jd__contenu img,
-.jd__vide {
-  position: absolute;
-  left: 24px;
-  top: 34px;
-  width: 240px;
-  height: 180px;
+/* La capture du haut de la fiche (1440 × 580) remplit la fenêtre */
+.jd__contenu img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
 }
 
+/* Le projet ajouté : une carte en pointillés à la place de la carte du site */
 .jd__vide {
-  display: grid;
-  place-items: center;
+  position: absolute;
+  left: 52px;
+  top: 12px;
+  width: 516px;
+  height: 226px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   border: 2px dashed #4ade80;
-  font-size: 64px;
+  border-radius: 18px;
+}
+
+.jd__vide span {
+  font-size: 56px;
   font-weight: 300;
+  line-height: 1;
   color: #4ade80;
 }
 
 .jd__fiche-titre {
-  position: absolute;
-  left: 292px;
-  top: 52px;
-  width: 310px;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
 
 .jd__fiche-cat {
-  position: absolute;
-  left: 292px;
-  top: 160px;
   font-size: 20px;
   color: var(--texte-doux);
 }

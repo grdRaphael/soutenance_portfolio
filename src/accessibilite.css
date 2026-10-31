@@ -48,6 +48,32 @@
 .ac13__signaux p { display: flex; gap: 20px; align-items: center; font-size: 28px; }
 .ac13__signaux i { width: 34px; height: 34px; border: 3px solid #ffd2c4; border-radius: 9px; background: rgba(255,210,196,.2); }
 .ac13__signaux b { display: inline-block; min-width: 34px; font-size: 28px; color: #ffd2c4; font-weight: 600; }
+
+/* Survol d'un signal : la ligne avance, et le formulaire montre où ce signal apparaît
+   (data-signal posé sur .ac13__form par main.js). La ligne avance avec GSAP (main.js) ; filter : GSAP anime déjà opacity */
+.ac13__signaux p { transform-origin: left center; transition: filter .3s ease; }
+.ac13__signaux i, .ac13__signaux b { transition: box-shadow .3s ease, text-shadow .3s ease; }
+.ac13__signaux.a-survol p:not(.est-survole) { filter: opacity(0.35); }
+.ac13__signaux p.est-survole i { box-shadow: 0 0 22px rgba(255,210,196,.75); }
+.ac13__signaux p.est-survole b { text-shadow: 0 0 18px rgba(255,210,196,.9); }
+
+.ac13__saisie { transition: box-shadow .3s ease, filter .3s ease; }
+.ac13__erreur > span { transition: scale .3s ease, filter .3s ease, background-color .3s ease, box-shadow .3s ease, text-shadow .3s ease; }
+.ac13__erreur > span:first-child { display: inline-block; transform-origin: center 60%; }
+
+/* Une couleur : le contour des champs */
+.ac13__form[data-signal="couleur"] .ac13__saisie { box-shadow: 0 0 0 5px rgba(255,210,196,.35), 0 0 30px rgba(255,210,196,.45); }
+/* Un symbole : le ⚠ devant chaque message */
+.ac13__form[data-signal="symbole"] .ac13__erreur > span:first-child { scale: 1.45; text-shadow: 0 0 18px rgba(255,210,196,.9); }
+/* Un texte explicite : le message lui-même, surligné */
+.ac13__form[data-signal="texte"] .ac13__erreur > span:last-child { background-color: rgba(255,210,196,.22); box-shadow: 0 0 0 5px rgba(255,210,196,.22); border-radius: 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* Les deux autres signaux s'effacent */
+.ac13__form[data-signal="symbole"] .ac13__saisie,
+.ac13__form[data-signal="texte"] .ac13__saisie,
+.ac13__form[data-signal="couleur"] .ac13__erreur > span,
+.ac13__form[data-signal="symbole"] .ac13__erreur > span:last-child,
+.ac13__form[data-signal="texte"] .ac13__erreur > span:first-child { filter: opacity(0.35); }
 .ac13__reglage { position: absolute; left: 95px; top: 0; width: 1490px; height: 110px; padding: 20px 34px; display: flex; align-items: center; gap: 26px; border-radius: 24px; background: rgba(10,20,64,.75); }
 .ac13__reglage > p { font-size: 32px; font-weight: 600; }
 .ac13__reglage > p > span { display: block; font-size: 21px; color: var(--texte-doux); font-weight: 400; margin-top: 4px; }

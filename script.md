@@ -28,7 +28,13 @@ Je vais dérouler la présentation dans cet ordre :
 
 Je commence par me présenter.
 
-`[→]` Je suis Raphaël Grondin, développeur web full-stack : je crée des applications complètes, de l'interface en React à l'API en Node.js, en soignant leur accessibilité et leurs performances.
+`[→]` Je suis Raphaël Grondin, développeur web full-stack : je crée des applications complètes,
+
+`[→]` de l'interface en React
+
+`[→]` à l'API en Node.js,
+
+`[→]` en soignant leur accessibilité et leurs performances.
 
 `[→]` Avant le code, il y a eu le sport : j'ai été coach sportif, puis responsable d'un club de fitness, à La Réunion.
 
@@ -264,7 +270,7 @@ Passons aux choix techniques. J'ai pris l'option Full-Code, avec un outil pour c
 
 `[→]` Pour construire le site, Vite, pour sa rapidité : le serveur de développement démarre presque instantanément,
 
-`[→]` et la construction produit un site optimisé.
+`[→]` et le build produit un site optimisé.
 
 `[→]` Pour les styles, Sass, qui porte le design system : les variables et les mixins évitent de répéter les valeurs.
 
@@ -291,7 +297,7 @@ Passons aux choix techniques. J'ai pris l'option Full-Code, avec un outil pour c
 
 `[→]` tout est en CSS : le fondu de l'aperçu, le défilement, la rotation du badge du CV.
 
-`[→]` Et le texte qui tourne autour de l'étoile est un simple SVG, qui fait suivre un cercle au texte.
+`[→]` Et le texte qui tourne autour de l'étoile est un simple SVG : le texte est posé sur un cercle.
 
 `[→]` Au final, en dehors de React et de React Router, le site n'a aucune dépendance.
 
@@ -343,11 +349,9 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 
 ### SLIDE 17 — Vitesse et référencement
 
-[ÉCRAN : le premier affichage, le poids des médias, puis le résultat Google et les onglets. À la fin, les trois offres d'emploi, affichées sans être lues : Groupe Réussite (Développeur junior full stack : React, JavaScript), Androzuk Consulting (Développeur full stack : React, Node.js), Recommand (Junior Software Engineer : JavaScript, React, API). Leurs mots-clés rejoignent la description du site.]
+[ÉCRAN : le premier affichage, le poids des médias, puis le résultat Google, les onglets et la Search Console.]
 
-`[→]` Côté performances, le premier affichage arrive en 0,6 seconde,
-
-`[→]` et la page ne bouge pas pendant le chargement.
+Côté performances, le premier affichage arrive en 0,6 seconde.
 
 `[→]` J'ai aussi allégé les médias : les couvertures des projets passent de 1,1 Mo à 388 Ko,
 
@@ -355,9 +359,13 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 
 `[→]` Côté référencement, chaque page a un seul titre principal et une description pour Google,
 
-`[→]` et chaque fiche projet a son propre titre d'onglet.
+`[→]` et chaque fiche projet a sa propre adresse et sa propre balise `<title>`,
 
-`[→]` Enfin, les mots-clés du site viennent de trois offres d'emploi que j'ai analysées.
+`[→]` que React 19 place dans le `<head>`, devant le titre général. Chaque projet peut donc être référencé comme une page à part.
+
+`[→]` Encore faut-il que Google trouve le site : je l'ai déclaré dans la Search Console,
+
+`[→]` et j'ai demandé l'indexation de chaque page.
 
 
 ### SLIDE 18 — Deux projets de formation
@@ -375,19 +383,17 @@ Passons à deux projets de ma formation.
 
 `[→]` Commençons par Kasa, une plateforme de location entre particuliers.
 
-`[→]` Le projet consistait à refaire son site en React, à partir d'une maquette Figma.
+`[→]` Le contexte : le projet fournissait une maquette Figma et un jeu de données au format JSON.
 
-`[→]` L'enjeu : quatre pages, avec des composants réutilisables, fidèles à la maquette sur ordinateur et sur mobile.
+`[→]` Ma mission était de développer l'application front-end en React à partir de ces deux éléments.
 
 `[→]` Pour ça, j'ai utilisé React, TypeScript et React Router, avec Sass pour les styles.
 
 `[→]` Ma réalisation principale, c'est le menu dépliant : un seul composant, réutilisé sur deux pages, avec une animation d'ouverture fluide.
 
-`[→]` Il m'a fallu trois versions pour qu'il soit vraiment réutilisable.
+`[→]` Au final, le site est en ligne, fidèle à la maquette sur ordinateur et sur mobile, et chaque adresse fonctionne : un logement qui n'existe pas mène à la page 404, même au rechargement.
 
-`[→]` Au final, le site est fidèle à la maquette, adapté au mobile, et ses menus sont utilisables au clavier.
-
-`[→]` Pour l'améliorer, j'ajouterais des tests automatisés, et un carrousel utilisable au clavier et au doigt.
+`[→]` Pour l'améliorer, je rendrais le carrousel utilisable d'un glissement du doigt sur mobile, et j'ajouterais des filtres sur la page d'accueil, par équipement ou par quartier.
 
 
 ### SLIDE 20 — Mon Vieux Grimoire
@@ -424,10 +430,6 @@ Pour finir, mes initiatives personnelles.
 `[→]` En revanche, j'ai collecté moi-même 678 enregistrements pour entraîner la reconnaissance, et sur une séance qu'elle n'avait jamais vue, elle a reconnu 23 séries sur 24.
 
 `[→]` Il y a aussi Sophie Bluel, dont je vous ai parlé : après le projet en JavaScript, je l'ai réécrit en React et TypeScript de ma propre initiative, et mis en ligne.
-
-`[→]` Et pour ce portfolio, avant de le dessiner, j'ai étudié des portfolios de développeurs.
-
-`[→]` Chaque idée que j'ai reprise est notée avec sa source, dans un fichier du dépôt.
 
 `[→]` Enfin, sur chaque projet, j'applique la même méthode : un commit par étape,
 

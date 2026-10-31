@@ -6,17 +6,17 @@
   <title>Soutenance · Portfolio de Raphaël Grondin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Syne:wght@700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Syne:wght@700&family=Work+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="moteur.css?v=2-vue">
-  <link rel="stylesheet" href="style.css?v=6-demo">
+  <link rel="stylesheet" href="style.css?v=7b-captures">
   <link rel="stylesheet" href="design-system.css?v=16-illisible">
-  <link rel="stylesheet" href="accessibilite.css?v=13-2">
+  <link rel="stylesheet" href="accessibilite.css?v=14b-survol">
   <link rel="stylesheet" href="stack.css?v=15-optimisations">
   <link rel="stylesheet" href="hebergement.css?v=15f">
   <link rel="stylesheet" href="tests.css?v=16d">
-  <link rel="stylesheet" href="vitesse.css?v=17b">
-  <link rel="stylesheet" href="projets.css?v=20b">
-  <link rel="stylesheet" href="fin.css?v=22-annexe-svg">
+  <link rel="stylesheet" href="vitesse.css?v=25-webp">
+  <link rel="stylesheet" href="projets.css?v=24-kasa-resultat">
+  <link rel="stylesheet" href="fin.css?v=23-sans-inspirations">
 </head>
 <body>
   <main id="deck" aria-label="Présentation">
@@ -206,7 +206,7 @@
            à droite, une scène par idée, qui remplace la précédente.
            Icônes : Lucide (ISC). Logos React et Node.js : Devicon (MIT), repris du portfolio.
            Logo Google Sheets : redessiné en SVG simplifié. -->
-      <section class="slide" id="slide-03" data-title="Qui je suis" data-etapes="7" aria-label="Qui je suis">
+      <section class="slide" id="slide-03" data-title="Qui je suis" data-etapes="10" aria-label="Qui je suis">
         <div class="qui">
           <header class="qui__tete">
             <div class="qui__pastille verre" aria-hidden="true">
@@ -356,7 +356,13 @@
       
         <template class="slide-script">Je commence par me présenter.
 
-`[→]` Je suis Raphaël Grondin, développeur web full-stack : je crée des applications complètes, de l'interface en React à l'API en Node.js, en soignant leur accessibilité et leurs performances.
+`[→]` Je suis Raphaël Grondin, développeur web full-stack : je crée des applications complètes,
+
+`[→]` de l'interface en React
+
+`[→]` à l'API en Node.js,
+
+`[→]` en soignant leur accessibilité et leurs performances.
 
 `[→]` Avant le code, il y a eu le sport : j'ai été coach sportif, puis responsable d'un club de fitness, à La Réunion.
 
@@ -799,31 +805,32 @@
             <p class="jd__pilule jd__pilule--map" aria-hidden="true"><code><span class="t-v">projects</span><span class="t-p">.</span><span class="t-f">map</span><span class="t-p">(…)</span></code></p>
             <p class="jd__pilule jd__pilule--find" aria-hidden="true"><code><span class="t-v">projects</span><span class="t-p">.</span><span class="t-f">find</span><span class="t-p">(…)</span></code></p>
 
-            <!-- La liste de l'accueil -->
+            <!-- La liste de l'accueil : capture du site en ligne. Chaque ligne a son repère, allumé par map ;
+                 la ligne du nouveau projet attend sous la capture, la page défile pour la montrer -->
             <div class="jd__page jd__accueil" aria-hidden="true">
               <div class="jd__barre"><i></i><i></i><i></i><span class="jd__url">portfolio-grd-raphael.vercel.app</span></div>
               <div class="jd__accueil-corps">
-                <p class="jd__section">Projets</p>
-                <ul class="jd__liste">
-                  <li class="jd__rang"><span class="jd__code">P03</span><span class="jd__titre">Sophie Bluel</span><span class="jd__cat">Full-stack</span></li>
-                  <li class="jd__rang"><span class="jd__code">P05</span><span class="jd__titre">Kasa</span><span class="jd__cat">Front-end</span></li>
-                  <li class="jd__rang"><span class="jd__code">P06</span><span class="jd__titre">Mon Vieux Grimoire</span><span class="jd__cat">Back-end</span></li>
-                  <li class="jd__rang"><span class="jd__code">PERSO</span><span class="jd__titre">GymTracker</span><span class="jd__cat">Mobile</span></li>
-                  <li class="jd__rang jd__rang--neuf"><span class="jd__code">+</span><span class="jd__titre">Nouveau projet</span><span class="jd__cat">—</span></li>
-                </ul>
+                <div class="jd__defile">
+                  <img class="jd__capture" src="../assets/projets/portfolio-liste.webp" alt="" width="1405" height="773">
+                  <span class="jd__rang" style="top: 89px;"></span>
+                  <span class="jd__rang" style="top: 140px;"></span>
+                  <span class="jd__rang" style="top: 192px;"></span>
+                  <span class="jd__rang" style="top: 243px;"></span>
+                  <p class="jd__rang jd__rang--neuf"><span class="jd__titre">Nouveau projet</span><span class="jd__code">NOUVEAU</span></p>
+                </div>
               </div>
             </div>
 
-            <!-- Une fiche : la même page pour tous les projets -->
+            <!-- Une fiche : la même page pour tous les projets (captures du haut de chaque fiche) -->
             <p class="jd__composant" aria-hidden="true"><code><span class="t-p">&lt;</span><span class="t-t">ProjectPage</span> <span class="t-p">/&gt;</span></code> une seule page pour toutes les fiches</p>
             <div class="jd__page jd__fiche" aria-hidden="true">
               <div class="jd__barre"><i></i><i></i><i></i><span class="jd__url">portfolio-grd-raphael.vercel.app<span class="jd__chemin">/projet/</span><span class="jd__id">kasa</span></span></div>
               <div class="jd__fiche-corps">
-                <div class="jd__contenu" data-id="sophie-bluel"><img src="../assets/projets/sophie-bluel-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">Sophie Bluel</p><p class="jd__fiche-cat">Full-stack</p></div>
-                <div class="jd__contenu" data-id="kasa"><img src="../assets/projets/kasa-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">Kasa</p><p class="jd__fiche-cat">Front-end</p></div>
-                <div class="jd__contenu" data-id="mon-vieux-grimoire"><img src="../assets/projets/mon-vieux-grimoire-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">Mon Vieux Grimoire</p><p class="jd__fiche-cat">Back-end</p></div>
-                <div class="jd__contenu" data-id="gym-tracker"><img src="../assets/projets/gym-tracker-cover.webp" alt="" width="1600" height="1200"><p class="jd__fiche-titre">GymTracker</p><p class="jd__fiche-cat">Mobile</p></div>
-                <div class="jd__contenu" data-id="nouveau-projet"><span class="jd__vide">+</span><p class="jd__fiche-titre">Nouveau projet</p><p class="jd__fiche-cat">sa propre fiche</p></div>
+                <div class="jd__contenu" data-id="sophie-bluel"><img src="../assets/projets/portfolio-fiche-sophie-bluel.webp" alt="" width="1440" height="580"></div>
+                <div class="jd__contenu" data-id="kasa"><img src="../assets/projets/portfolio-fiche-kasa.webp" alt="" width="1440" height="580"></div>
+                <div class="jd__contenu" data-id="mon-vieux-grimoire"><img src="../assets/projets/portfolio-fiche-mon-vieux-grimoire.webp" alt="" width="1440" height="580"></div>
+                <div class="jd__contenu" data-id="gym-tracker"><img src="../assets/projets/portfolio-fiche-gym-tracker.webp" alt="" width="1440" height="580"></div>
+                <div class="jd__contenu" data-id="nouveau-projet"><div class="jd__vide"><span>+</span><p class="jd__fiche-titre">Nouveau projet</p><p class="jd__fiche-cat">sa propre fiche</p></div></div>
               </div>
               <span class="jd__note">l'identifiant</span>
             </div>
@@ -1150,7 +1157,7 @@ Mais ce style a un point faible : la lisibilité.
               </div>
               <div class="ac13__explications">
                 <div class="ac13__texte ac13__texte--erreurs"><p class="ac13__surtitre">Validation du formulaire</p><p class="ac13__grand">Une erreur,<br>son champ</p><p>Le message est relié<br>au champ concerné.</p><code class="ac13__attribut">aria-describedby</code></div>
-                <div class="ac13__texte ac13__texte--correction"><p class="ac13__surtitre">Focus automatique</p><p class="ac13__grand">Le premier champ<br>à corriger</p><div class="ac13__signaux"><p><i aria-hidden="true"></i>Une couleur</p><p><b aria-hidden="true">⚠</b>Un symbole</p><p><b aria-hidden="true">Aa</b>Un texte explicite</p></div></div>
+                <div class="ac13__texte ac13__texte--correction"><p class="ac13__surtitre">Focus automatique</p><p class="ac13__grand">Le premier champ<br>à corriger</p><div class="ac13__signaux"><p data-signal="couleur"><i aria-hidden="true"></i>Une couleur</p><p data-signal="symbole"><b aria-hidden="true">⚠</b>Un symbole</p><p data-signal="texte"><b aria-hidden="true">Aa</b>Un texte explicite</p></div></div>
               </div>
             </div>
 
@@ -1276,7 +1283,7 @@ Le contraste, c'est déjà de l'accessibilité. Passons au reste, en commençant
 
 `[→]` Pour construire le site, Vite, pour sa rapidité : le serveur de développement démarre presque instantanément,
 
-`[→]` et la construction produit un site optimisé.
+`[→]` et le build produit un site optimisé.
 
 `[→]` Pour les styles, Sass, qui porte le design system : les variables et les mixins évitent de répéter les valeurs.
 
@@ -1462,7 +1469,7 @@ Le contraste, c'est déjà de l'accessibilité. Passons au reste, en commençant
 
 `[→]` tout est en CSS : le fondu de l'aperçu, le défilement, la rotation du badge du CV.
 
-`[→]` Et le texte qui tourne autour de l'étoile est un simple SVG, qui fait suivre un cercle au texte.
+`[→]` Et le texte qui tourne autour de l'étoile est un simple SVG : le texte est posé sur un cercle.
 
 `[→]` Au final, en dehors de React et de React Router, le site n'a aucune dépendance.</template>
       </section>
@@ -1623,17 +1630,15 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
             <div><p class="qui__kicker" data-texte="04 — Mesurer la qualité"></p><h2 class="qui__titre pitch__titre">Vitesse et référencement</h2></div>
           </header>
           <div class="vr17">
-            <!-- 1. Le premier affichage, puis la place réservée aux images -->
+            <!-- 1. Le premier affichage -->
             <div class="vr17__scene vr17__affichage">
               <div class="vr17__stat vr17__stat--affichage"><p>Premier affichage</p><b class="vr17__chiffre">0,6 s</b></div>
-              <div class="vr17__stat vr17__stat--decalage"><p>Décalage pendant le chargement</p><b>0,004</b><small>Score CLS de Lighthouse</small></div>
               <div class="vr17__navigateur">
                 <p class="vr17__barre-nav"><span class="vsc__points"><i></i><i></i><i></i></span><span>portfolio-grd-raphael.vercel.app</span></p>
                 <div class="vr17__page">
                   <div class="vr17__hero"><span>Raphaël Grondin, développeur web</span><strong>FULL-STACK</strong></div>
-                  <div class="vr17__reserve"><img src="../assets/projets/kasa-cover.webp" alt=""><span>Place réservée</span></div>
+                  <div class="vr17__reserve"><img src="../assets/projets/kasa-cover.webp" alt=""></div>
                   <div class="vr17__lignes"><i></i><i></i><i></i><i class="vr17__court"></i></div>
-                  <span class="vr17__guide" aria-hidden="true"></span>
                 </div>
               </div>
               <div class="vr17__axe"><span class="vr17__piste"></span><span class="vr17__rempli"></span><span class="vr17__repere"><i></i><b>0,6 s</b></span><small class="vr17__axe-debut">0 s</small><small class="vr17__axe-fin">1 s</small></div>
@@ -1648,7 +1653,7 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
                   <img src="../assets/projets/mon-vieux-grimoire-cover.webp" alt="">
                   <img src="../assets/projets/gym-tracker-cover.webp" alt="">
                 </div>
-                <p class="vr17__dimensions"><span>Les 4 couvertures</span><b class="vr17__taille">3 200 × 2 400 px</b></p>
+                <p class="vr17__dimensions"><span>Les 4 couvertures</span><b class="vr17__taille">3 200 × 2 400 px</b><span class="vr17__format">WebP</span></p>
                 <div class="vr17__poids"><i></i><b class="vr17__poids-valeur">1,1 Mo</b></div>
               </div>
               <div class="vr17__videos">
@@ -1696,22 +1701,61 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
                 <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext vr17__ext-tsx">TSX</span>ProjectPage.tsx</span></figcaption>
                 <div class="vsc__corps"><p class="vsc__ligne"><span class="vsc__num">35</span><code><span class="vr17__chev">&lt;</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span><span class="t-p">{</span><span class="t-s">`</span><span class="t-p">${</span><span class="t-v">project</span>.<span class="t-v">title</span><span class="t-p">}</span><span class="t-s"> — Projet </span><span class="t-p">${</span><span class="t-v">project</span>.<span class="t-v">category</span><span class="t-p">}</span><span class="t-s"> | Raphaël Grondin`</span><span class="t-p">}</span><span class="vr17__chev">&lt;/</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span></code></p></div>
               </figure>
-              <p class="vr17__onglets-legende">Un titre d’onglet par fiche projet</p>
+              <p class="vr17__onglets-legende">Un <code>&lt;title&gt;</code> propre à chaque fiche projet</p>
+              <!-- React 19 insère le <title> de la fiche dans le <head>, devant celui de index.html -->
+              <figure class="vsc vr17__head" aria-hidden="true">
+                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet">Le &lt;head&gt; de la page</span></figcaption>
+                <div class="vsc__corps">
+                  <p class="vsc__ligne"><code><span class="vr17__chev">&lt;</span><span class="vr17__tag">head</span><span class="vr17__chev">&gt;</span></code></p>
+                  <p class="vsc__ligne vr17__head-fiche"><code>  <span class="vr17__chev">&lt;</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span>Sophie Bluel — Projet Full-stack | Raphaël Grondin<span class="vr17__chev">&lt;/</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span></code><span class="vr17__head-note vr17__head-note--react">← ajouté par React 19</span></p>
+                  <p class="vsc__ligne vr17__head-general"><code>  <span class="vr17__chev">&lt;</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span>Grondin Raphaël - Développeur Web Full Stack<span class="vr17__chev">&lt;/</span><span class="vr17__tag">title</span><span class="vr17__chev">&gt;</span></code><span class="vr17__head-note">titre général (index.html)</span></p>
+                  <p class="vsc__ligne"><code><span class="vr17__chev">&lt;/</span><span class="vr17__tag">head</span><span class="vr17__chev">&gt;</span></code></p>
+                </div>
+              </figure>
             </div>
 
-            <!-- 5. Les mots-clés : trois offres d'emploi, et la description du site -->
-            <div class="vr17__scene vr17__mots">
-              <div class="vr17__offres">
-                <div class="vr17__offre"><p class="vr17__entreprise">Groupe Réussite</p><p class="vr17__poste">Développeur junior <span data-mot="full-stack">full stack</span></p><p class="vr17__puces"><span>React</span><span data-mot="javascript">JavaScript</span></p></div>
-                <div class="vr17__offre"><p class="vr17__entreprise">Androzuk Consulting</p><p class="vr17__poste">Développeur full stack</p><p class="vr17__puces"><span data-mot="react">React</span><span data-mot="node">Node.js</span></p></div>
-                <div class="vr17__offre"><p class="vr17__entreprise">Recommand</p><p class="vr17__poste"><span data-mot="junior">Junior</span> Software Engineer</p><p class="vr17__puces"><span>JavaScript</span><span>React</span><span>API</span></p></div>
+            <!-- 5. La Search Console : le site déclaré, l'indexation demandée pour chaque page -->
+            <div class="vr17__scene vr17__console-scene">
+              <div class="vr17__console">
+                <div class="vr17__console-tete">
+                  <div><p class="vr17__console-outil">Google Search Console</p><p class="vr17__console-site">portfolio-grd-raphael.vercel.app</p></div>
+                  <span class="vr17__console-valide">✓ Propriété validée</span>
+                </div>
+                <p class="vr17__console-fichier"><span>Fichier de vérification</span><code>public/googlec5a1a4ba40d650d8.html</code></p>
+                <ul class="vr17__console-pages" role="list">
+                  <li><code>/</code><span>✓ Indexation demandée</span></li>
+                  <li><code>/projet/sophie-bluel</code><span>✓ Indexation demandée</span></li>
+                  <li><code>/projet/kasa</code><span>✓ Indexation demandée</span></li>
+                  <li><code>/projet/mon-vieux-grimoire</code><span>✓ Indexation demandée</span></li>
+                  <li><code>/projet/gym-tracker</code><span>✓ Indexation demandée</span></li>
+                </ul>
               </div>
-              <div class="vr17__meta">
-                <code>&lt;meta name="description"&gt;</code>
-                <p>Portfolio de Raphael Grondin, développeur <span class="vr17__mot" data-mot="full-stack">full stack</span> <span class="vr17__mot" data-mot="javascript">JavaScript</span> <span class="vr17__mot" data-mot="junior">junior</span> : projets <span class="vr17__mot" data-mot="react">React</span>, <span class="vr17__mot" data-mot="node">Node.js</span> et MongoDB, responsives et accessibles. Mobile en France.</p>
-              </div>
+              <!-- L'outil « Inspection de l'URL » de la Search Console, reconstitué aux couleurs de Google :
+                   l'adresse de la fiche se tape, puis « Demander une indexation » et sa confirmation -->
+              <figure class="vr17__console-capture vr17__gsc" aria-hidden="true">
+                <div class="vr17__gsc-barre">
+                  <svg class="vr17__gsc-menu-icone" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+                  <p class="vr17__gsc-logo"><svg viewBox="0 0 24 24"><rect x="2" y="13" width="4" height="9" rx="1" fill="#4285f4" /><rect x="8" y="8" width="4" height="14" rx="1" fill="#ea4335" /><rect x="14" y="4" width="4" height="18" rx="1" fill="#fbbc04" /><rect x="20" y="10" width="2.5" height="12" rx="1" fill="#34a853" /></svg><span>Search Console</span></p>
+                  <p class="vr17__gsc-recherche"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg><span class="vr17__gsc-url" data-ligne="https://portfolio-grd-raphael.vercel.app/projet/kasa"></span></p>
+                </div>
+                <div class="vr17__gsc-corps">
+                  <div class="vr17__gsc-nav"><p>Vue d’ensemble</p><p class="vr17__gsc-actif">Inspection de l’URL</p><p>Performances</p><p>Pages</p><p>Sitemaps</p></div>
+                  <div class="vr17__gsc-carte">
+                    <p class="vr17__gsc-titre">Inspection de l’URL</p>
+                    <p class="vr17__gsc-adresse">https://portfolio-grd-raphael.vercel.app/projet/kasa</p>
+                    <div class="vr17__gsc-etat"><span class="vr17__gsc-pastille">i</span><div><b>L’URL n’est pas sur Google</b><small>Cette page n’est pas encore indexée.</small></div></div>
+                    <span class="vr17__gsc-bouton">Demander une indexation<svg class="vr17__gsc-curseur" viewBox="0 0 24 24"><path d="M5 2.5v17l4.6-4.4 2.9 6.6 2.8-1.2-2.9-6.5h6.3z" /></svg></span>
+                  </div>
+                </div>
+                <span class="vr17__gsc-voile"></span>
+                <div class="vr17__gsc-dialogue">
+                  <p class="vr17__gsc-dialogue-titre"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m7.5 12.5 3 3 6-6.5" /></svg>Indexation demandée</p>
+                  <p class="vr17__gsc-dialogue-texte">L’URL a été ajoutée à une file d’attente d’exploration prioritaire.</p>
+                  <span class="vr17__gsc-ok">OK</span>
+                </div>
+              </figure>
+              <p class="vr17__gsc-legende">Interface reconstituée</p>
             </div>
-
             <ol class="vr17__rail" aria-label="Les deux sujets de la slide">
               <li><svg class="vr17__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg><span>Vitesse</span></li>
               <li><svg class="vr17__icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg><span>Référencement</span></li>
@@ -1719,11 +1763,9 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
           </div>
         </div>
       
-        <template class="slide-script">[ÉCRAN : le premier affichage, le poids des médias, puis le résultat Google et les onglets. À la fin, les trois offres d'emploi, affichées sans être lues : Groupe Réussite (Développeur junior full stack : React, JavaScript), Androzuk Consulting (Développeur full stack : React, Node.js), Recommand (Junior Software Engineer : JavaScript, React, API). Leurs mots-clés rejoignent la description du site.]
+        <template class="slide-script">[ÉCRAN : le premier affichage, le poids des médias, puis le résultat Google, les onglets et la Search Console.]
 
-`[→]` Côté performances, le premier affichage arrive en 0,6 seconde,
-
-`[→]` et la page ne bouge pas pendant le chargement.
+Côté performances, le premier affichage arrive en 0,6 seconde.
 
 `[→]` J'ai aussi allégé les médias : les couvertures des projets passent de 1,1 Mo à 388 Ko,
 
@@ -1731,9 +1773,13 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 
 `[→]` Côté référencement, chaque page a un seul titre principal et une description pour Google,
 
-`[→]` et chaque fiche projet a son propre titre d'onglet.
+`[→]` et chaque fiche projet a sa propre adresse et sa propre balise `&lt;title&gt;`,
 
-`[→]` Enfin, les mots-clés du site viennent de trois offres d'emploi que j'ai analysées.</template>
+`[→]` que React 19 place dans le `&lt;head&gt;`, devant le titre général. Chaque projet peut donc être référencé comme une page à part.
+
+`[→]` Encore faut-il que Google trouve le site : je l'ai déclaré dans la Search Console,
+
+`[→]` et j'ai demandé l'indexation de chaque page.</template>
       </section>
 
       <section class="slide" id="slide-18" data-title="Deux projets de formation" data-etapes="3" aria-label="Deux projets de formation">
@@ -1765,7 +1811,7 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 `[→]` Kasa côté front-end, Mon Vieux Grimoire côté back-end.</template>
       </section>
 
-      <section class="slide" id="slide-19" data-title="Kasa" data-etapes="9" aria-label="Kasa">
+      <section class="slide" id="slide-19" data-title="Kasa" data-etapes="8" aria-label="Kasa">
         <div class="pitch">
           <header class="qui__tete">
             <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z" /></svg></div>
@@ -1784,21 +1830,32 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
               <div class="fp__fait"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z" /></svg><p>Location de logements <b>entre particuliers</b></p></div>
             </div>
 
-            <!-- Contexte : de la maquette Figma à React -->
+            <!-- Contexte : la maquette Figma et le jeu de données JSON fournis, puis la mission en React -->
             <div class="fp__scene ka19__figma">
-              <div class="ka19__maquette"><p class="ka19__cadre-nom">Kasa — Desktop</p><div class="ka19__cadre"><img src="../assets/projets/kasa-desktop.webp" alt=""><i></i><i></i><i></i><i></i></div><p class="ka19__legende">La maquette Figma</p></div>
-              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 760 260 H 960 M 942 248 L 960 260 942 272" /></svg>
-              <div class="ka19__react"><img src="../assets/logos/react.svg" alt=""><p>Refait en <b>React</b></p></div>
-            </div>
-
-            <!-- L'enjeu : quatre pages, des composants réutilisables, ordinateur et mobile -->
-            <div class="fp__scene ka19__enjeu">
-              <ol class="ka19__pages">
-                <li><b>1</b>Accueil</li><li><b>2</b>Fiche logement</li><li><b>3</b>À propos</li><li><b>4</b>Page 404</li>
-              </ol>
-              <p class="ka19__composants"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></svg>Des composants réutilisables</p>
-              <figure class="fp__navigateur ka19__ordi"><p class="fp__barre"><span class="vsc__points"><i></i><i></i><i></i></span>Ordinateur</p><img src="../assets/projets/kasa-desktop.webp" alt=""></figure>
-              <figure class="ka19__mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></figure>
+              <div class="ka19__entree ka19__maquette">
+                <div class="ka19__visuel"><div><p class="ka19__cadre-nom">Kasa — Desktop</p><div class="ka19__cadre"><img src="../assets/projets/kasa-desktop.webp" alt=""><i></i><i></i><i></i><i></i></div></div></div>
+                <p class="ka19__legende">Une maquette <b>Figma</b></p>
+              </div>
+              <span class="ka19__plus" aria-hidden="true">+</span>
+              <div class="ka19__entree ka19__donnees">
+                <div class="ka19__visuel">
+                  <figure class="vsc ka19__json" aria-hidden="true">
+                    <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext">{ }</span>data.json</span></figcaption>
+                    <div class="vsc__corps">
+                      <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="t-p">[</span></code></p>
+                      <p class="vsc__ligne"><span class="vsc__num">2</span><code>  <span class="t-p">{</span></code></p>
+                      <p class="vsc__ligne"><span class="vsc__num">3</span><code>    <span class="t-k">"title"</span><span class="t-p">:</span> <span class="t-s">"Appartement cosy"</span><span class="t-p">,</span></code></p>
+                      <p class="vsc__ligne"><span class="vsc__num">4</span><code>    <span class="t-k">"pictures"</span><span class="t-p">: [</span><span class="t-c">…</span><span class="t-p">],</span></code></p>
+                      <p class="vsc__ligne"><span class="vsc__num">5</span><code>    <span class="t-k">"equipments"</span><span class="t-p">: [</span><span class="t-c">…</span><span class="t-p">]</span></code></p>
+                      <p class="vsc__ligne"><span class="vsc__num">6</span><code>  <span class="t-p">},</span> <span class="t-c">… 20 logements</span></code></p>
+                      <p class="vsc__ligne"><span class="vsc__num">7</span><code><span class="t-p">]</span></code></p>
+                    </div>
+                  </figure>
+                </div>
+                <p class="ka19__legende">Un jeu de données <b>JSON</b></p>
+              </div>
+              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 1060 250 H 1170 M 1152 238 L 1170 250 1152 262" /></svg>
+              <div class="ka19__react"><p class="ka19__mission">Ma mission</p><img src="../assets/logos/react.svg" alt=""><p>L’application <b class="ka19__front">front-end</b> en <b>React</b></p></div>
             </div>
 
             <!-- La stack -->
@@ -1824,33 +1881,25 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
               </figure>
             </div>
 
-            <!-- Réalisation : trois versions -->
-            <div class="fp__scene ka19__versions">
-              <div class="ka19__version ka19__version--1"><b>V1</b><p>Un état dans chaque menu</p><span>✕ Un bug ouvrait tous les menus</span></div>
-              <div class="ka19__version ka19__version--2"><b>V2</b><p>L’état remonté dans la page</p><span>~ Un seul menu ouvert à la fois, jamais demandé</span></div>
-              <div class="ka19__version ka19__version--3"><b>V3</b><p>L’état revient dans le composant</p><code>useState(false)</code><span>✓ Réutilisable sur n’importe quelle page</span></div>
-              <svg class="fp__fleche" viewBox="0 0 1680 590" aria-hidden="true"><path d="M 515 230 H 575 M 561 220 L 575 230 561 240" /><path d="M 1105 230 H 1165 M 1151 220 L 1165 230 1151 240" /></svg>
-            </div>
-
             <!-- Le résultat -->
             <div class="fp__scene ka19__resultat">
               <div class="fp__preuves">
-                <div class="fp__preuve"><div class="fp__preuve-visuel"><img src="../assets/projets/kasa-desktop.webp" alt=""></div><p><b>✓</b> Fidèle à la maquette</p></div>
-                <div class="fp__preuve"><div class="fp__preuve-visuel fp__preuve-visuel--mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></div><p><b>✓</b> Adapté au mobile</p></div>
-                <div class="fp__preuve"><div class="fp__preuve-visuel ka19__clavier"><span class="ka19__touche">Tab</span><span class="ka19__touche">Entrée</span><p class="ka19__barre-menu ka19__barre-focus">Fiabilité<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></p></div><p><b>✓</b> Menus utilisables au clavier</p></div>
+                <div class="fp__preuve"><div class="fp__preuve-visuel ka19__en-ligne"><p class="fp__barre"><span class="vsc__points"><i></i><i></i><i></i></span>oc-projet5-kasa.vercel.app</p><img src="../assets/projets/kasa-desktop.webp" alt=""></div><p><b>✓</b> En ligne, fidèle à la maquette</p></div>
+                <div class="fp__preuve"><div class="fp__preuve-visuel fp__preuve-visuel--mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></div><p><b>✓</b> Sur mobile aussi</p></div>
+                <div class="fp__preuve"><div class="fp__preuve-visuel ka19__erreur"><p class="fp__barre"><svg class="ka19__recharger" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4" /></svg>/logement/<b>inconnu</b></p><div class="ka19__erreur-page"><p class="ka19__404">404</p><p class="ka19__oups">Oups ! La page que vous demandez n’existe pas.</p></div></div><p><b>✓</b> Chaque adresse fonctionne</p></div>
               </div>
             </div>
 
             <!-- Pour l'améliorer -->
             <div class="fp__scene ka19__ameliorer">
               <div class="fp__pistes">
-                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3" /><path d="M7 15h10" /></svg><p>Des tests automatisés</p><span>À venir</span></div>
-                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2" /><path d="m8 10-2 2 2 2M16 10l2 2-2 2" /></svg><p>Un carrousel utilisable au clavier et au doigt</p><span>À venir</span></div>
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2" /><path d="M9 12h6M13 10l2 2-2 2" /></svg><p>Le carrousel, d'un glissement du doigt</p><small>Sur mobile</small><span>À venir</span></div>
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5Z" /></svg><p>Des filtres sur l'accueil</p><small>Par équipement ou par quartier</small><span>À venir</span></div>
               </div>
             </div>
 
-            <ol class="fp__rail" aria-label="Les rubriques de la fiche">
-              <li>Contexte</li><li>L’enjeu</li><li>La stack</li><li>Réalisation</li><li>Résultat</li><li>À améliorer</li>
+            <ol class="fp__rail ka19__rail" aria-label="Les rubriques de la fiche">
+              <li>Contexte</li><li>La stack</li><li>Réalisation</li><li>Résultat</li><li>À améliorer</li>
             </ol>
           </div>
         </div>
@@ -1859,19 +1908,17 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 
 `[→]` Commençons par Kasa, une plateforme de location entre particuliers.
 
-`[→]` Le projet consistait à refaire son site en React, à partir d'une maquette Figma.
+`[→]` Le contexte : le projet fournissait une maquette Figma et un jeu de données au format JSON.
 
-`[→]` L'enjeu : quatre pages, avec des composants réutilisables, fidèles à la maquette sur ordinateur et sur mobile.
+`[→]` Ma mission était de développer l'application front-end en React à partir de ces deux éléments.
 
 `[→]` Pour ça, j'ai utilisé React, TypeScript et React Router, avec Sass pour les styles.
 
 `[→]` Ma réalisation principale, c'est le menu dépliant : un seul composant, réutilisé sur deux pages, avec une animation d'ouverture fluide.
 
-`[→]` Il m'a fallu trois versions pour qu'il soit vraiment réutilisable.
+`[→]` Au final, le site est en ligne, fidèle à la maquette sur ordinateur et sur mobile, et chaque adresse fonctionne : un logement qui n'existe pas mène à la page 404, même au rechargement.
 
-`[→]` Au final, le site est fidèle à la maquette, adapté au mobile, et ses menus sont utilisables au clavier.
-
-`[→]` Pour l'améliorer, j'ajouterais des tests automatisés, et un carrousel utilisable au clavier et au doigt.</template>
+`[→]` Pour l'améliorer, je rendrais le carrousel utilisable d'un glissement du doigt sur mobile, et j'ajouterais des filtres sur la page d'accueil, par équipement ou par quartier.</template>
       </section>
 
       <section class="slide" id="slide-20" data-title="Mon Vieux Grimoire" data-etapes="10" aria-label="Mon Vieux Grimoire">
@@ -2014,7 +2061,7 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 `[→]` Pour l'améliorer, j'ajouterais des tests automatisés, lancés à chaque modification du code, et je limiterais les tentatives de connexion.</template>
       </section>
 
-      <section class="slide" id="slide-21" data-title="Au-delà des consignes" data-etapes="10" aria-label="Au-delà des consignes">
+      <section class="slide" id="slide-21" data-title="Au-delà des consignes" data-etapes="8" aria-label="Au-delà des consignes">
         <div class="pitch">
           <header class="qui__tete">
             <div class="qui__pastille verre" aria-hidden="true"><svg class="qui__icone" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" /></svg></div>
@@ -2065,37 +2112,6 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
               </div>
             </div>
 
-            <!-- Les portfolios étudiés -->
-            <div class="in21__scene in21__etudes">
-              <div class="in21__portfolios">
-                <p><b>Gaël Manzola</b><code>gmanzola.fr</code></p>
-                <p><b>Brittany Chiang</b><code>brittanychiang.com</code></p>
-                <p><b>Isaac Fayemi</b><code>fayemi.design</code></p>
-                <p><b>Michael Gatt</b><code>michaelgatt.com</code></p>
-                <p><b>Lynn Fisher</b><code>lynnandtonic.com</code></p>
-                <p><b>Keziah Moselle</b><code>keziahmoselle.fr</code></p>
-                <p><b>David Fiz</b><code>davidfiz.com</code></p>
-                <p><b>Ev Astapov</b><code>astapable.com</code></p>
-                <p><b>Joseph</b><code>joe.arkaans.com</code></p>
-              </div>
-            </div>
-
-            <!-- Chaque idée notée avec sa source -->
-            <div class="in21__scene in21__sources">
-              <figure class="vsc in21__fichier" aria-hidden="true">
-                <figcaption class="vsc__barre"><span class="vsc__points"><i></i><i></i><i></i></span><span class="vsc__onglet"><span class="vsc__ext in21__ext-md">M↓</span>INSPIRATIONS.md <small class="in21__extrait">Extrait</small></span></figcaption>
-                <div class="vsc__corps">
-                  <p class="vsc__ligne"><span class="vsc__num">1</span><code><span class="in21__md">|</span> <span class="t-k">#</span> <span class="in21__md">|</span> <span class="t-k">Idée</span> <span class="in21__md">|</span> <span class="t-k">Inspiré de</span> <span class="in21__md">|</span></code></p>
-                  <p class="vsc__ligne"><span class="vsc__num">2</span><code><span class="in21__md">|---|---|---|</span></code></p>
-                  <p class="vsc__ligne"><span class="vsc__num">3</span><code><span class="in21__md">|</span> 1 <span class="in21__md">|</span> Sections numérotées « 01 — À propos » <span class="in21__md">|</span> <span class="t-s">Gaël Manzola</span> <span class="in21__md">|</span></code></p>
-                  <p class="vsc__ligne"><span class="vsc__num">4</span><code><span class="in21__md">|</span> 6 <span class="in21__md">|</span> Lien du menu actif selon la section lue <span class="in21__md">|</span> <span class="t-s">Brittany Chiang</span> <span class="in21__md">|</span></code></p>
-                  <p class="vsc__ligne"><span class="vsc__num">5</span><code><span class="in21__md">|</span> 9 <span class="in21__md">|</span> Menu écrit comme une phrase <span class="in21__md">|</span> <span class="t-s">Michael Gatt</span> <span class="in21__md">|</span></code></p>
-                  <p class="vsc__ligne"><span class="vsc__num">6</span><code><span class="in21__md">|</span> 13 <span class="in21__md">|</span> Grain sur le fond <span class="in21__md">|</span> <span class="t-s">CSS-Tricks, Grainy Gradients</span> <span class="in21__md">|</span></code></p>
-                </div>
-              </figure>
-              <p class="in21__treize">13 idées reprises, chacune avec sa source</p>
-            </div>
-
             <!-- La méthode : commits, journal, branche -->
             <div class="in21__scene in21__methode">
               <div class="in21__pilier in21__pilier--commits">
@@ -2119,7 +2135,7 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
             </div>
 
             <ol class="in21__rail" aria-label="Les initiatives">
-              <li>GymTracker</li><li>Sophie Bluel en React</li><li>Inspirations</li><li>Méthode</li>
+              <li>GymTracker</li><li>Sophie Bluel en React</li><li>Méthode</li>
             </ol>
           </div>
         </div>
@@ -2133,10 +2149,6 @@ Ratio : (L clair + 0,05) / (L sombre + 0,05) = (1 + 0,05) / (0,079 + 0,05) ≈ 8
 `[→]` En revanche, j'ai collecté moi-même 678 enregistrements pour entraîner la reconnaissance, et sur une séance qu'elle n'avait jamais vue, elle a reconnu 23 séries sur 24.
 
 `[→]` Il y a aussi Sophie Bluel, dont je vous ai parlé : après le projet en JavaScript, je l'ai réécrit en React et TypeScript de ma propre initiative, et mis en ligne.
-
-`[→]` Et pour ce portfolio, avant de le dessiner, j'ai étudié des portfolios de développeurs.
-
-`[→]` Chaque idée que j'ai reprise est notée avec sa source, dans un fichier du dépôt.
 
 `[→]` Enfin, sur chaque projet, j'applique la même méthode : un commit par étape,
 
@@ -2317,6 +2329,6 @@ Le badge du CV est un SVG : une image décrite par du code.
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/DrawSVGPlugin.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/TextPlugin.min.js"></script>
   <script src="notes.js"></script>
-  <script src="main.js?v=30"></script>
+  <script src="main.js?v=47-kasa-resultat"></script>
 </body>
 </html>

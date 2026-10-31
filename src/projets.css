@@ -35,6 +35,7 @@
 .fp__express { filter: invert(1); }
 
 .fp__rail { position: absolute; left: 0; right: 0; bottom: 20px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 0; list-style: none; }
+.ka19__rail { grid-template-columns: repeat(5, 1fr); }
 .fp__rail li { height: 80px; display: flex; align-items: center; justify-content: center; border-top: 2px solid rgba(255,255,255,.25); font-size: 24px; font-weight: 500; color: #c2cbe2; }
 
 .fp__couverture { position: absolute; left: 0; top: 0; width: 760px; height: 570px; object-fit: cover; border-radius: 24px; border: 2px solid rgba(255,255,255,.3); }
@@ -81,7 +82,13 @@
 .fp__piste span { padding: 4px 18px; border-radius: 999px; border: 2px solid #ffd27a; color: #ffd27a; font-size: 22px; font-weight: 600; }
 
 /* ---------- 19. Kasa ---------- */
-.ka19__maquette { position: absolute; left: 0; top: 20px; width: 720px; }
+.ka19__entree { position: absolute; top: 20px; height: 500px; display: flex; flex-direction: column; }
+.ka19__visuel { flex: 1; display: grid; align-items: center; }
+.ka19__maquette { left: 0; width: 440px; }
+.ka19__donnees { left: 510px; width: 520px; }
+.ka19__plus { position: absolute; left: 440px; width: 70px; top: 190px; text-align: center; font-size: 64px; font-weight: 300; color: #ffb08a; }
+.fp .ka19__json { position: relative; }
+.fp .ka19__json .vsc__ligne { height: 40px; line-height: 40px; font-size: 20px; }
 .ka19__cadre-nom { margin-bottom: 8px; font: 20px ui-monospace, monospace; color: #9aa3b8; }
 .ka19__cadre { position: relative; border: 3px solid #0d99ff; }
 .ka19__cadre img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
@@ -91,19 +98,14 @@
 .ka19__cadre i:nth-of-type(3) { left: -10px; bottom: -10px; }
 .ka19__cadre i:nth-of-type(4) { right: -10px; bottom: -10px; }
 .ka19__legende { margin-top: 20px; text-align: center; font-size: 30px; font-weight: 500; }
-.ka19__react { position: absolute; left: 1000px; top: 60px; width: 520px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; border-radius: 28px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
-.ka19__react img { width: 180px; height: 180px; }
-.ka19__react p { font-size: 44px; }
+.ka19__legende b { font-weight: 700; }
+.ka19__react { position: absolute; left: 1200px; top: 50px; width: 480px; height: 400px; padding: 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; text-align: center; border-radius: 28px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
+.ka19__react img { width: 140px; height: 140px; }
+.ka19__react p { font-size: 40px; line-height: 1.2; }
 .ka19__react b { font-weight: 600; color: #61dafb; }
+.ka19__react .ka19__front { color: #ffffff; }
+.ka19__react .ka19__mission { font-size: 22px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #ffb08a; }
 
-.ka19__pages { position: absolute; left: 0; top: 0; width: 520px; margin: 0; padding: 0; list-style: none; }
-.ka19__pages li { height: 92px; margin-bottom: 16px; display: flex; align-items: center; gap: 20px; padding: 0 26px; border-radius: 18px; background: #13204f; border: 2px solid rgba(255,255,255,.3); font-size: 32px; font-weight: 500; }
-.ka19__pages b { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%; background: #26336a; font-size: 26px; }
-.ka19__composants { position: absolute; left: 0; top: 470px; width: 520px; display: flex; align-items: center; gap: 18px; font-size: 30px; font-weight: 600; color: #ffd9c2; }
-.ka19__composants .fp__icone { width: 52px; height: 52px; stroke: #ffd9c2; }
-.ka19__ordi { left: 620px; width: 860px; }
-.ka19__mobile { position: absolute; left: 1460px; top: 120px; width: 200px; height: 433px; margin: 0; overflow: hidden; border-radius: 30px; border: 8px solid #060a18; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
-.ka19__mobile img { width: 100%; height: 100%; object-fit: cover; }
 
 .ka19__page { position: absolute; top: 0; width: 820px; height: 330px; padding: 26px; border-radius: 20px; background: #fafafa; color: #1a1a1a; }
 .ka19__page--apropos { left: 0; }
@@ -118,21 +120,13 @@
 .ka19__panneau li { width: 40%; }
 .ka19__code { left: 0; top: 380px; width: 1680px; }
 
-.ka19__version { position: absolute; top: 60px; width: 500px; height: 340px; padding: 32px; border-radius: 24px; background: #13204f; border: 2px solid rgba(255,255,255,.3); }
-.ka19__version--1 { left: 0; }
-.ka19__version--2 { left: 590px; }
-.ka19__version--3 { left: 1180px; border-color: #9cf1bd; }
-.ka19__version > b { font-size: 54px; font-weight: 600; color: #ffb08a; }
-.ka19__version > p { margin-top: 12px; font-size: 30px; font-weight: 600; line-height: 1.2; }
-.ka19__version > code { display: inline-block; margin-top: 14px; padding: 4px 12px; border-radius: 8px; background: #1e1e1e; color: #9cdcfe; font-size: 24px; }
-.ka19__version > span { display: block; margin-top: 20px; font-size: 25px; line-height: 1.3; }
-.ka19__version--1 > span { color: #ffb3a8; }
-.ka19__version--2 > span { color: #ffd27a; }
-.ka19__version--3 > span { color: #9cf1bd; }
-
-.ka19__clavier { display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 24px; padding: 30px; }
-.ka19__touche { padding: 12px 26px; border-radius: 12px; border: 2px solid rgba(255,255,255,.6); border-bottom-width: 6px; font: 600 28px ui-monospace, monospace; }
-.ka19__barre-focus { width: 90%; outline: 4px solid #9cf1bd; outline-offset: 5px; }
+.ka19__en-ligne img { height: calc(100% - 44px); }
+.ka19__erreur { display: flex; flex-direction: column; }
+.ka19__erreur .fp__barre b { font-weight: 700; color: #ffffff; }
+.ka19__recharger { width: 22px; height: 22px; fill: none; stroke: #c8d0e5; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ka19__erreur-page { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 0 40px; text-align: center; }
+.ka19__404 { font-size: 130px; font-weight: 700; line-height: 1; color: #ff6060; }
+.ka19__oups { font-size: 24px; line-height: 1.3; }
 
 /* ---------- 20. Mon Vieux Grimoire ---------- */
 .vg20__etoiles { display: flex; gap: 10px; font-size: 76px; line-height: 1; color: #ffd27a; }
