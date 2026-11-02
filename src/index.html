@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="hebergement.css?v=15f">
   <link rel="stylesheet" href="tests.css?v=16d">
   <link rel="stylesheet" href="vitesse.css?v=25-webp">
-  <link rel="stylesheet" href="projets.css?v=24-kasa-resultat">
+  <link rel="stylesheet" href="projets.css?v=26-mvg-hebergement">
   <link rel="stylesheet" href="fin.css?v=23-sans-inspirations">
 </head>
 <body>
@@ -1883,11 +1883,9 @@ Côté performances, le premier affichage arrive en 0,6 seconde.
 
             <!-- Le résultat -->
             <div class="fp__scene ka19__resultat">
-              <div class="fp__preuves">
+              <div class="fp__preuves fp__preuves--deux">
                 <div class="fp__preuve"><div class="fp__preuve-visuel ka19__en-ligne"><p class="fp__barre"><span class="vsc__points"><i></i><i></i><i></i></span>oc-projet5-kasa.vercel.app</p><img src="../assets/projets/kasa-desktop.webp" alt=""></div><p><b>✓</b> En ligne, fidèle à la maquette</p></div>
-                <div class="fp__preuve"><div class="fp__preuve-visuel fp__preuve-visuel--mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></div><p><b>✓</b> Sur mobile aussi</p></div>
-                <div class="fp__preuve"><div class="fp__preuve-visuel ka19__erreur"><p class="fp__barre"><svg class="ka19__recharger" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4" /></svg>/logement/<b>inconnu</b></p><div class="ka19__erreur-page"><p class="ka19__404">404</p><p class="ka19__oups">Oups ! La page que vous demandez n’existe pas.</p></div></div><p><b>✓</b> Chaque adresse fonctionne</p></div>
-              </div>
+                <div class="fp__preuve"><div class="fp__preuve-visuel fp__preuve-visuel--mobile"><img src="../assets/projets/kasa-mobile.webp" alt=""></div><p><b>✓</b> Sur mobile aussi</p></div>              </div>
             </div>
 
             <!-- Pour l'améliorer -->
@@ -1916,7 +1914,7 @@ Côté performances, le premier affichage arrive en 0,6 seconde.
 
 `[→]` Ma réalisation principale, c'est le menu dépliant : un seul composant, réutilisé sur deux pages, avec une animation d'ouverture fluide.
 
-`[→]` Au final, le site est en ligne, fidèle à la maquette sur ordinateur et sur mobile, et chaque adresse fonctionne : un logement qui n'existe pas mène à la page 404, même au rechargement.
+`[→]` Au final, le site est en ligne sur Vercel, et fidèle à la maquette, sur ordinateur comme sur mobile.
 
 `[→]` Pour l'améliorer, je rendrais le carrousel utilisable d'un glissement du doigt sur mobile, et j'ajouterais des filtres sur la page d'accueil, par équipement ou par quartier.</template>
       </section>
@@ -2021,15 +2019,14 @@ Côté performances, le premier affichage arrive en 0,6 seconde.
             </div>
 
             <div class="fp__scene vg20__resultat">
-              <div class="fp__preuves fp__preuves--deux">
-                <div class="fp__preuve fp__preuve--chiffre"><b class="vg20__poids">−98 %</b><p>Sur le poids des images</p><small>67,5 Mo → 1,2 Mo</small></div>
+              <div class="fp__preuves fp__preuves--une">
                 <div class="fp__preuve fp__preuve--chiffre"><b class="vg20__ligne"><span class="vg20__point"></span>En ligne</b><p>Une démo publique</p><small>Front sur Vercel · API sur Alwaysdata</small></div>
               </div>
             </div>
 
             <div class="fp__scene vg20__ameliorer">
               <div class="fp__pistes">
-                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3" /><path d="M7 15h10" /></svg><p>Des tests automatisés</p><small>Lancés à chaque modification du code</small><span>À venir</span></div>
+                <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /><path d="M12 17v-5M9.5 14.5 12 12l2.5 2.5" /></svg><p>Stocker les images sur un service dédié</p><small>Par exemple Cloudinary ou Amazon S3</small><span>À venir</span></div>
                 <div class="fp__piste"><svg class="fp__icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg><p>Limiter les tentatives de connexion</p><small>Par exemple avec express-rate-limit</small><span>À venir</span></div>
               </div>
             </div>
@@ -2056,9 +2053,9 @@ Côté performances, le premier affichage arrive en 0,6 seconde.
 
 `[→]` Pour le vérifier, j'ai testé chaque route avec Postman, y compris les cas qui doivent être refusés, comme modifier le livre d'un autre ou donner une note supérieure à 5.
 
-`[→]` Côté résultats, les images sont 98 % plus légères, et la démo est en ligne.
+`[→]` Côté résultats, la démo est en ligne : le front sur Vercel, et l'API sur Alwaysdata.
 
-`[→]` Pour l'améliorer, j'ajouterais des tests automatisés, lancés à chaque modification du code, et je limiterais les tentatives de connexion.</template>
+`[→]` Pour l'améliorer, je stockerais les images sur un service dédié, pour que l'API puisse tourner sur n'importe quel hébergeur, et je limiterais les tentatives de connexion.</template>
       </section>
 
       <section class="slide" id="slide-21" data-title="Au-delà des consignes" data-etapes="8" aria-label="Au-delà des consignes">
@@ -2329,6 +2326,6 @@ Le badge du CV est un SVG : une image décrite par du code.
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/DrawSVGPlugin.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/TextPlugin.min.js"></script>
   <script src="notes.js"></script>
-  <script src="main.js?v=47-kasa-resultat"></script>
+  <script src="main.js?v=49-mvg-hebergement"></script>
 </body>
 </html>

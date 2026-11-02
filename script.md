@@ -391,7 +391,7 @@ Passons à deux projets de ma formation.
 
 `[→]` Ma réalisation principale, c'est le menu dépliant : un seul composant, réutilisé sur deux pages, avec une animation d'ouverture fluide.
 
-`[→]` Au final, le site est en ligne, fidèle à la maquette sur ordinateur et sur mobile, et chaque adresse fonctionne : un logement qui n'existe pas mène à la page 404, même au rechargement.
+`[→]` Au final, le site est en ligne sur Vercel, et fidèle à la maquette, sur ordinateur comme sur mobile.
 
 `[→]` Pour l'améliorer, je rendrais le carrousel utilisable d'un glissement du doigt sur mobile, et j'ajouterais des filtres sur la page d'accueil, par équipement ou par quartier.
 
@@ -414,9 +414,9 @@ Passons à deux projets de ma formation.
 
 `[→]` Pour le vérifier, j'ai testé chaque route avec Postman, y compris les cas qui doivent être refusés, comme modifier le livre d'un autre ou donner une note supérieure à 5.
 
-`[→]` Côté résultats, les images sont 98 % plus légères, et la démo est en ligne.
+`[→]` Côté résultats, la démo est en ligne : le front sur Vercel, et l'API sur Alwaysdata.
 
-`[→]` Pour l'améliorer, j'ajouterais des tests automatisés, lancés à chaque modification du code, et je limiterais les tentatives de connexion.
+`[→]` Pour l'améliorer, je stockerais les images sur un service dédié, pour que l'API puisse tourner sur n'importe quel hébergeur, et je limiterais les tentatives de connexion.
 
 
 ### SLIDE 21 — Au-delà des consignes

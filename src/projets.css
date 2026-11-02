@@ -121,12 +121,6 @@
 .ka19__code { left: 0; top: 380px; width: 1680px; }
 
 .ka19__en-ligne img { height: calc(100% - 44px); }
-.ka19__erreur { display: flex; flex-direction: column; }
-.ka19__erreur .fp__barre b { font-weight: 700; color: #ffffff; }
-.ka19__recharger { width: 22px; height: 22px; fill: none; stroke: #c8d0e5; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.ka19__erreur-page { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 0 40px; text-align: center; }
-.ka19__404 { font-size: 130px; font-weight: 700; line-height: 1; color: #ff6060; }
-.ka19__oups { font-size: 24px; line-height: 1.3; }
 
 /* ---------- 20. Mon Vieux Grimoire ---------- */
 .vg20__etoiles { display: flex; gap: 10px; font-size: 76px; line-height: 1; color: #ffd27a; }
@@ -173,6 +167,8 @@
 
 .fp__preuves--deux { left: 160px; width: 1360px; }
 .fp__preuves--deux .fp__preuve { width: 650px; }
+.fp__preuves--une { justify-content: center; }
+.fp__preuves--une .fp__preuve { width: 820px; }
 .vg20__collection { position: absolute; left: 160px; top: 0; width: 1360px; overflow: hidden; border-radius: 20px; background: #1c1c1e; border: 1px solid rgba(255,255,255,.25); }
 .vg20__collection-barre { height: 52px; display: flex; align-items: center; gap: 20px; padding: 0 20px; background: #2a2a2d; font-size: 21px; color: #d4d4d4; }
 .vg20__requete-test { height: 64px; display: flex; align-items: center; gap: 24px; padding: 0 30px; border-top: 1px solid rgba(255,255,255,.08); border-left: 4px solid transparent; }

@@ -1846,11 +1846,7 @@
         .add(ouvrir(q('.ka19__page--logement')), 1.7),
 
       () => changer('.ka19__menu', '.ka19__resultat', 3)
-        .from(qa('.ka19__resultat .fp__preuve'), { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3)
-        // L'adresse inconnue, rechargée : la page 404 s'affiche quand même
-        .from(q('.ka19__recharger'), { rotation: -360, transformOrigin: '50% 50%', duration: 0.8, ease: 'power2.inOut' }, 1)
-        .from(q('.ka19__404'), { autoAlpha: 0, scale: 0.6, duration: 0.5, ease: 'back.out(2)' }, 1.5)
-        .from(q('.ka19__oups'), { autoAlpha: 0, y: 12, duration: 0.4 }, 1.75),
+        .from(qa('.ka19__resultat .fp__preuve'), { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3),
 
       () => changer('.ka19__resultat', '.ka19__ameliorer', 4)
         .from(qa('.ka19__ameliorer .fp__piste'), { autoAlpha: 0, scale: 0.94, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3)
@@ -1916,8 +1912,7 @@
 
       () => changer('.vg20__postman', '.vg20__resultat')
         .from(qa('.vg20__resultat .fp__preuve'), { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3)
-        .add(compter(q('.vg20__poids'), 0, 98, 1, (v) => `−${Math.round(v)} %`), 0.4)
-        .from(q('.vg20__point'), { scale: 0, duration: 0.4, ease: 'back.out(3)' }, 0.8),
+        .from(q('.vg20__point'), { scale: 0, duration: 0.4, ease: 'back.out(3)' }, 0.6),
 
       () => changer('.vg20__resultat', '.vg20__ameliorer', 5)
         .from(qa('.vg20__ameliorer .fp__piste'), { autoAlpha: 0, scale: 0.94, duration: 0.5, stagger: 0.2, ease: 'power3.out' }, 0.3)
